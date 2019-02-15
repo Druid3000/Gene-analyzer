@@ -192,14 +192,52 @@ class CanvasLine extends JComponent{
                 }
             }
             //создать новую линию на графике лишь после отрисовки линии.
-            //Random randCol=new Random();
-            //Color lineColor=Color.getHSBColor(randCol.nextInt(50), randCol.nextInt(50), randCol.nextInt(50));
-            //g2d.setColor(lineColor);
             if (MouseLocation.pos) {//если не идет выбор конца отрезка
                 new Line(pxls);//, lineColor);
             }
 
-            System.out.println(CanvasGraph.lines.length);
+            //отрисовка предыдущих линий на картинке
+            //if(CanvasGraph.lines.length>0)  //если линии есть, то рисуем их:
+            for (int a=0;a<CanvasGraph.lines.length;a++){
+                Line l = CanvasGraph.lines[a];
+                y1=l.getArray()[0].get_y();
+                y2=l.getArray()[l.getArray().length-1].get_y();
+                x1=l.getArray()[0].get_x();
+                x2=l.getArray()[l.getArray().length-1].get_x();
+                k=(double)(y1-y2)/(x1-x2);
+                b=y1-k*x1;
+                int oldLength=Math.max(Math.abs(x1-x2),(Math.abs(y1-y2)));//длина отрезка (кол-во пикселей)
+                //Pixel[] oldPxls = new Pixel[oldLength];//создаю массив пикселей на отрезке
+                if(Math.abs(k)>=1) {
+                    double x , y=y1;
+                    for (int i = 0; i < oldLength; i++) {
+                        x = (y-b)/k;
+                        g2d.drawLine((int) x, (int) y, (int) x, (int) y);
+                        //oldPxls[i]=all_pxls[(int)x][(int)y];//заполняю массив пикселей на отрезке
+                        //System.out.println(x+":"+y);
+                        if (y1<y2)y++;
+                        else y--;
+                    }
+                }
+                else{
+                    double x = x1, y;
+                    for (int i = 0; i < oldLength; i++) {
+                        y = k * x + b;
+                        g2d.drawLine((int) x, (int) y, (int) x, (int) y);
+                        //oldPxls[i]=all_pxls[(int)x][(int)y];//заполняю массив пикселей на отрезке
+                        x++;
+                    }
+                }
+                //super.setFont(new Font("Verdana",Font.PLAIN,18));
+                g2d.setFont(new Font("Verdana",Font.PLAIN,18));
+                g2d.setColor(new Color(144,9,9));
+                g2d.drawString(Integer.toString(a),x1,y1);//подпись номера линии
+                g2d.setColor(Color.RED);
+                //super.setFont(new Font("Verdana",Font.PLAIN,11));
+                g2d.setFont(new Font("Verdana",Font.PLAIN,11));
+            }
+
+            //System.out.println(CanvasGraph.lines.length);
             //отрисовка осей графика
             g2d.setColor(Color.RED);
             int deltaH=400;

@@ -3,8 +3,8 @@ import java.awt.*;
 
 /* Класс с отрисовкой отрезка и заполнением массива пикселей */
 class CanvasGraph extends JComponent{
-    public static int height=500, weight=500,intensity=256,xBorder=50, yBorder=50,graphHeight=400,graphWeight=400;
-    public static double maxDensity=0;
+    public static int height=500, weight=600,intensity=256,xBorder=50, yBorder=50,graphHeight=400,graphWeight=400;
+    public static double maxDensity=1;
     public static Line[] lines=new Line[0];
     public static int maxLengthX=0;
 
@@ -18,25 +18,26 @@ class CanvasGraph extends JComponent{
     }
     public void drawCoordinateAxes(Graphics2D g, Color c){//отрисовка осей координат
         g.setColor(c);
-        g.drawLine(xBorder, height-yBorder, xBorder, yBorder);
-        g.drawLine(xBorder, height-yBorder, weight-xBorder, height-yBorder);
+        g.drawLine(xBorder, graphHeight+yBorder, xBorder, yBorder);
+        g.drawLine(xBorder, graphHeight+yBorder, graphWeight+xBorder, graphHeight+yBorder);
     }
 
     public void drawCoordinateLabels(Graphics2D g, Color c){//отрисовка подписей координат
         g.setColor(c);
         int n=20;   //n делений по оси ординат
-        int l=(int)maxDensity+1;    //максимальное значение оси ординат
-        maxDensity=l;
+        //int l=(int)maxDensity+1;    //максимальное значение оси ординат
+        //maxDensity=l;
+
         g.drawString(Double.toString(0), xBorder/2 , (height - yBorder));
         for (int i=1;i<n+1;i++) {
-            g.drawString(Double.toString((double)l*i/n), xBorder/2 , (height - yBorder )-i*graphHeight/n);//высота графика 800px
+            g.drawString(Double.toString((double)maxDensity*i/n), xBorder/2 , (height - yBorder )-i*graphHeight/n);//высота графика 800px
         }
 
         n=10;       //n делений по оси абсцисс
         maxLengthX();        //поиск максимального значение оси абсцисс (без нормирования всегда graphWeight
         g.drawString(Double.toString(0), xBorder , (height - yBorder/2));
         for (int i=1;i<n+1;i++) {
-            g.drawString(Double.toString((double)graphWeight*i/n), xBorder+i*graphWeight/n , (height - yBorder/2));//ширина графика 800px
+            g.drawString(Integer.toString((int)graphWeight*i/n), xBorder+i*graphWeight/n , (height - yBorder/2));//ширина графика 800px
         }
     }
     public void drawGraph(Graphics2D g){//отрисовка графика линий
@@ -66,13 +67,22 @@ class CanvasGraph extends JComponent{
                 else y =  yBorder;
                 g.drawLine(x, y, x, y);
             }
+            //отрисовка легенды графика
+            if(t>0) {
+                super.setFont(new Font("Verdana", Font.PLAIN, 14));
+                g.drawLine(xBorder/2 + weight, yBorder + t * 15, xBorder/2 + weight + 20, yBorder + t * 15);
+                g.drawLine(xBorder/2 + weight, yBorder +1+ t * 15, xBorder/2 + weight + 20, yBorder +1+ t * 15);
+                g.setColor(Color.black);
+                g.drawString(Integer.toString(t), xBorder/2 + weight + 25, yBorder + t * 15 + 5);
+                super.setFont(new Font("Verdana", Font.PLAIN, 11));
+            }
         }
     }
     public void maxDensity() {//поиск максимальной плотности D
-        maxDensity=0;
+        maxDensity=1;
         for(int a=0;a<lines.length;a++){
-            if (lines[a].getMaxDensity(intensity)>maxDensity){
-                maxDensity=1+(int)lines[a].getMaxDensity(intensity);
+            if ((int)lines[a].getMaxDensity(intensity)+1>maxDensity){
+                maxDensity+=Math.abs((int)lines[a].getMaxDensity(intensity)+1-maxDensity);
             }
         }
     }

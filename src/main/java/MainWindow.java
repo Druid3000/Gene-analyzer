@@ -18,7 +18,7 @@ public class MainWindow extends JFrame {
         //запиливаю менюху!
         {
 
-            Font font = new Font("Verdana", Font.PLAIN, 14); //стиль менюшных строк
+            final Font font = new Font("Verdana", Font.PLAIN, 14); //стиль менюшных строк
             JMenuBar menuBar = new JMenuBar();                          //меню-строка
             final JMenu fileMenu = new JMenu("File");                      //кнопка меню "file"
             fileMenu.setFont(font);
@@ -41,17 +41,20 @@ public class MainWindow extends JFrame {
                         //label.setText(file.getName());
                     }
 
+                    if (panel.isVisible()) {
+                        CanvasLine canv = new CanvasLine();
+                        canv.setPreferredSize(new Dimension(400, 367 + 10));
+                        canv.addMouseListener(new MouseLocation());
+                        canv.addMouseMotionListener(new MouseLocation());
+                        canv.setFont(new Font("Verdana", Font.PLAIN, 11));
 
-                    CanvasLine canv=new CanvasLine();
-                    canv.setPreferredSize(new Dimension(400,367+10));
-                    canv.addMouseListener(new MouseLocation());
-                    canv.addMouseMotionListener(new MouseLocation());
+                        panel.add(canv);
+                        //revalidate();
 
-                    panel.add(canv);
-                    //revalidate();
-
-                    getContentPane().add(panel);
-
+                        getContentPane().add(panel);
+                    }
+                    else
+                        panel.setVisible(true);
 
 
                 }
@@ -124,9 +127,9 @@ public class MainWindow extends JFrame {
                     final GraphWindow graphWindow = new GraphWindow();
                     final CanvasGraph canvGraph = new CanvasGraph();
                     canvGraph.setPreferredSize(new Dimension(500,500));
-
                     //panel.add(canvGraph);
                     //MainWindow.revalidate();
+                    canvGraph.setFont(new Font("Verdana",font.PLAIN,11));
                     graphWindow.add(canvGraph);
                     graphWindow.setVisible(true);
                     closeItem.addActionListener(new ActionListener() {

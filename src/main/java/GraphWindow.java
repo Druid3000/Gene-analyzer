@@ -7,7 +7,7 @@ public class GraphWindow extends JFrame {
     GraphWindow(){
         super("Графики оптической плотности");
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(500,500);
+        setSize(700,550);
     }
 }
 
