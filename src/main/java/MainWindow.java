@@ -18,10 +18,9 @@ public class MainWindow extends JFrame {
         //запиливаю менюху!
         {
 
-
             Font font = new Font("Verdana", Font.PLAIN, 14); //стиль менюшных строк
             JMenuBar menuBar = new JMenuBar();                          //меню-строка
-            JMenu fileMenu = new JMenu("File");                      //кнопка меню "file"
+            final JMenu fileMenu = new JMenu("File");                      //кнопка меню "file"
             fileMenu.setFont(font);
             JMenu newMenu = new JMenu("New");                       //под-меню в меню "file"
             newMenu.setFont(font);
@@ -116,21 +115,24 @@ public class MainWindow extends JFrame {
             drawItem.setFont(font);
             editMenu.add(drawItem);
 
-            JMenuItem graphItem = new JMenuItem("Get graph");
+            final JMenuItem graphItem = new JMenuItem("Get graph");
             graphItem.setFont(font);
             editMenu.add(graphItem);
 
             graphItem.addActionListener(new ActionListener() {   //opening new window with main inf
                 public void actionPerformed(ActionEvent e) {
+                    final GraphWindow graphWindow = new GraphWindow();
                     final CanvasGraph canvGraph = new CanvasGraph();
                     canvGraph.setPreferredSize(new Dimension(500,500));
 
-                    panel.add(canvGraph);
+                    //panel.add(canvGraph);
                     //MainWindow.revalidate();
-
+                    graphWindow.add(canvGraph);
+                    graphWindow.setVisible(true);
                     closeItem.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
-                            panel.remove(canvGraph);
+                            //panel.remove(canvGraph);
+                            graphWindow.setVisible(false);
                         }
                     });
 
