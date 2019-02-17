@@ -37,27 +37,36 @@ public class Menu {
             imgFileItem.setFont(font);
             newMenu.add(imgFileItem);
 
-            imgFileItem.addActionListener(new ActionListener() {
+            JMenuItem folderItem = new JMenuItem("Folder");
+            folderItem.setFont(font);
+            newMenu.add(folderItem);
+            JMenuItem openItem = new JMenuItem("Open");
+            openItem.setFont(font);
+
+
+            openItem.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     JFileChooser fileopen = new JFileChooser();
                     int ret = fileopen.showDialog(null, "Открыть файл");
                     if (ret == JFileChooser.APPROVE_OPTION) {
                         picture = fileopen.getSelectedFile();
-                        cl.drawPicture(picture);
+                        mainController.setPicture(picture);
+                        canvasLine.drawPicture(picture);
+                        canvasLine.setVisible(true);
                         //label.setText(file.getName());
                     }
 
                     //if (panel.isVisible()) {
-                        /*CanvasLine canv = new CanvasLine();
-                        canv.setPreferredSize(new Dimension(400, 367 + 10));
-                        canv.addMouseListener(new MouseLocation());
-                        canv.addMouseMotionListener(new MouseLocation());
-                        canv.setFont(new Font("Verdana", Font.PLAIN, 11));
+                            /*CanvasLine canv = new CanvasLine();
+                            canv.setPreferredSize(new Dimension(400, 367 + 10));
+                            canv.addMouseListener(new MouseLocation());
+                            canv.addMouseMotionListener(new MouseLocation());
+                            canv.setFont(new Font("Verdana", Font.PLAIN, 11));
 
-                        panel.add(canv);
-                        //revalidate();
+                            panel.add(canv);
+                            //revalidate();
 
-                        getContentPane().add(panel);*/
+                            getContentPane().add(panel);*/
                     //}
                     //else
                     //    panel.setVisible(true);
@@ -66,11 +75,6 @@ public class Menu {
                 }
             });
 
-            JMenuItem folderItem = new JMenuItem("Folder");
-            folderItem.setFont(font);
-            newMenu.add(folderItem);
-            JMenuItem openItem = new JMenuItem("Open");
-            openItem.setFont(font);
             fileMenu.add(openItem);
             final JMenuItem closeItem = new JMenuItem("Close");
             closeItem.setFont(font);
