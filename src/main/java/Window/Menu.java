@@ -1,26 +1,30 @@
+package Window;
+
+import Controllers.GraphController;
+import Controllers.MainController;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class MainWindow extends JFrame {
-    public static File picture;
-    public MainWindow(){
-        super("Определение оптической плотности");
-        super.setMinimumSize(new Dimension(1000,1000));
-        //super.getContentPane();
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        //super.setLayout (new FlowLayout(FlowLayout.LEFT));
-
-
-        final JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-        //запиливаю менюху!
-        {
+public class Menu {
+    private MainController mainController;
+    private CanvasLine canvasLine;
+    private GraphController graphController;
+    private GraphWindow graphWindow;
+    private JMenuBar menuBar;
+    private File picture;
+    public Menu(MainController mc, GraphWindow gw, final CanvasLine cl){//, MouseLocation open, MouseLocation coord){//MainController mc, File pict){
+            mainController=mc;
+            graphWindow =gw;
+            canvasLine=cl;
+        //picture = pict;
+        //TO DO
 
             final Font font = new Font("Verdana", Font.PLAIN, 14); //стиль менюшных строк
-            JMenuBar menuBar = new JMenuBar();                          //меню-строка
+            menuBar = new JMenuBar();                          //меню-строка
             final JMenu fileMenu = new JMenu("File");                      //кнопка меню "file"
             fileMenu.setFont(font);
             JMenu newMenu = new JMenu("New");                       //под-меню в меню "file"
@@ -39,11 +43,12 @@ public class MainWindow extends JFrame {
                     int ret = fileopen.showDialog(null, "Открыть файл");
                     if (ret == JFileChooser.APPROVE_OPTION) {
                         picture = fileopen.getSelectedFile();
+                        cl.drawPicture(picture);
                         //label.setText(file.getName());
                     }
 
-                    if (panel.isVisible()) {
-                        CanvasLine canv = new CanvasLine();
+                    //if (panel.isVisible()) {
+                        /*CanvasLine canv = new CanvasLine();
                         canv.setPreferredSize(new Dimension(400, 367 + 10));
                         canv.addMouseListener(new MouseLocation());
                         canv.addMouseMotionListener(new MouseLocation());
@@ -52,10 +57,10 @@ public class MainWindow extends JFrame {
                         panel.add(canv);
                         //revalidate();
 
-                        getContentPane().add(panel);
-                    }
-                    else
-                        panel.setVisible(true);
+                        getContentPane().add(panel);*/
+                    //}
+                    //else
+                    //    panel.setVisible(true);
 
 
                 }
@@ -81,7 +86,7 @@ public class MainWindow extends JFrame {
             closeAllItem.addActionListener(new ActionListener() {
                 //@Override
                 public void actionPerformed(ActionEvent e) {
-                    panel.setVisible(false);
+                    //panel.setVisible(false);
                 }
             });
 
@@ -106,7 +111,7 @@ public class MainWindow extends JFrame {
 
             aboutItem.addActionListener(new ActionListener() {   //opening new window with main inf
                 public void actionPerformed(ActionEvent e) {
-                    JFrame newWindow = new AboutFrame();
+                    JFrame newWindow = new AboutWindow();
                     newWindow.setVisible(true);
                 }
             });
@@ -123,15 +128,16 @@ public class MainWindow extends JFrame {
             graphItem.setFont(font);
             editMenu.add(graphItem);
 
-            graphItem.addActionListener(new ActionListener() {   //opening new window with main inf
+            graphItem.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    final GraphWindow graphWindow = new GraphWindow();
-                    final CanvasGraph canvGraph = new CanvasGraph();
-                    canvGraph.setPreferredSize(new Dimension(500,500));
+                    //final GraphWindow graphWindow = new GraphWindow();
+                    //final CanvasGraph canvGraph = new CanvasGraph();
+                    //canvGraph.setPreferredSize(new Dimension(500,500));
                     //panel.add(canvGraph);
                     //MainWindow.revalidate();
-                    canvGraph.setFont(new Font("Verdana",font.PLAIN,11));
-                    graphWindow.add(canvGraph);
+                    //canvGraph.setFont(new Font("Verdana",font.PLAIN,11));
+                    //graphWindow.add(canvGraph);
+                    //graphWindow.setVisible(true);
                     graphWindow.setVisible(true);
                     closeItem.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {
@@ -146,15 +152,11 @@ public class MainWindow extends JFrame {
 
             menuBar.add(editMenu);
 
-
-
             menuBar.add(helpMenu);
-            super.setJMenuBar(menuBar);
         }
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
 
+    //TO DO (create methods for creating menu and sub-menu buttons
+    public JMenuBar get_menuBar() {
+        return menuBar;
     }
-
 }
