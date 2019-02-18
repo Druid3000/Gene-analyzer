@@ -20,7 +20,6 @@ class CanvasGraph extends JComponent{
     }
 
     public void drawCoordinateAxes(Graphics2D g){//отрисовка осей координат
-        System.out.println("ssssssssssssssssssssssssssssssss");
         g.setColor(Color.BLACK);
         g.drawLine(xBorder, graphHeight+yBorder, xBorder, yBorder);
         g.drawLine(xBorder, graphHeight+yBorder, graphWeight+xBorder, graphHeight+yBorder);
@@ -78,14 +77,14 @@ class CanvasGraph extends JComponent{
                     g.drawLine(x, y, x, y);
                 }
                 //отрисовка легенды графика
-                if (t > 0) {
+
                     super.setFont(new Font("Verdana", Font.PLAIN, 14));
                     g.drawLine(xBorder / 2 + weight, yBorder + t * 15, xBorder / 2 + weight + 20, yBorder + t * 15);
                     g.drawLine(xBorder / 2 + weight, yBorder + 1 + t * 15, xBorder / 2 + weight + 20, yBorder + 1 + t * 15);
                     g.setColor(Color.black);
-                    g.drawString(Integer.toString(t), xBorder / 2 + weight + 25, yBorder + t * 15 + 5);
+                    g.drawString(Integer.toString(mainController.getLines().get(t).getId()), xBorder / 2 + weight + 25, yBorder + t * 15 + 5);
                     super.setFont(new Font("Verdana", Font.PLAIN, 11));
-                }
+
             }
         }
     }

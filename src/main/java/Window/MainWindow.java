@@ -24,7 +24,7 @@ public class MainWindow extends JFrame {
         setJMenuBar(menu.get_menuBar());
         //yBorder=menu.get_menuBar().getHeight()+getInsets().top;
         //xBorder=getInsets().left;
-        System.out.println(xBorder+":"+yBorder);
+        //System.out.println(xBorder+":"+yBorder);
 
         add(canvasLine);
         pack();

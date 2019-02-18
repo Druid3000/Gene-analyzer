@@ -4,14 +4,17 @@ import Model.Area;
 import Model.Line;
 import Model.Pixel;
 
+import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainController {
 
     private ArrayList<Line> lineArray= new ArrayList<Line>();
     private Area area= new Area();
-    private File picture;
+    private BufferedImage picture;
     public MainController(){
     }
     public void addLine(Pixel p1, Pixel p2){
@@ -23,23 +26,31 @@ public class MainController {
         return lineArray.get(id);
 
     }
-    public File getPicture(){
+    public BufferedImage getPicture(){
         return picture;
-
     }
-    public void setPicture(File p){
-        picture = p;
+    public void setPicture(File f){
+        try{
+            picture= ImageIO.read(f);
+        }
+        catch (IOException ex) {
+            // handle exception...
+        }
     }
 
     public ArrayList<Line> getLines(){
         return lineArray;
     }
-    public ArrayList<Pixel> getArea(Pixel p){
+
+    public void setArea(Pixel p){
         area.setArea(p,picture);
+    }
+    public ArrayList<Pixel> getArea(){
+        //area.setArea(p,picture);
         return area.getArea();
     }
-    public ArrayList<Pixel> getAreaPerimetr(Pixel p){
-        area.setArea(p,picture);
-        return area.getArea();
+    public ArrayList<Pixel> getAreaPerimetr(){
+        //area.setArea(p,picture);
+        return area.getAreaPerimetr();
     }
 }

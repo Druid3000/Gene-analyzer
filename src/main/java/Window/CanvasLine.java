@@ -3,22 +3,17 @@ package Window;
 import Controllers.MainController;
 import Model.Line;
 import Model.Pixel;
-import Model.Point;
-
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /* Класс с отрисовкой отрезка и заполнением массива пикселей */
 public  class CanvasLine extends JComponent{
-    private BufferedImage file;
+    private BufferedImage picture;
     private ArrayList<Line> lines = new ArrayList<Line>();
-    private ArrayList<Pixel> pixelArray = new ArrayList<Pixel>();
+   // private ArrayList<Pixel> pixelArray = new ArrayList<Pixel>();
     private MainController mainController;
     private boolean mode=true;  //true - линии, false - области
     public CanvasLine(MainController mc){
@@ -28,43 +23,18 @@ public  class CanvasLine extends JComponent{
     public void setMode(boolean m){
         mode = m;
     }
-    public boolean getMode(){
-        return mode;
-    }
-    public void setPicture(File f){
-
-
-            try {
-                //file = f;
-                BufferedImage image = ImageIO.read(f);
-                Graphics2D g = (Graphics2D) this.getGraphics();
-                this.setSize( new Dimension(image.getWidth(),image.getHeight()));
-                file=image;
-            } catch (IOException ex) {
-                // handle exception...
-            }
-    }
-
     public void setLines(ArrayList<Line> l){
         lines=l;
     }
-    public void setArea(ArrayList<Pixel> pa){
-        pixelArray=pa;
-    }
     private void drawPicture(Graphics2D g){//отрисовка изображения
-        if(file!=null) {
-            //try {
-                //file = f;
-                //BufferedImage image = ImageIO.read(file);
-                //Graphics2D g = (Graphics2D) this.getGraphics();
-                g.drawImage(file, 0, 0, this);
-            //} catch (IOException ex) {
-                // handle exception...
-            //}
+        picture=mainController.getPicture();
+        if (picture!=null) {
+            this.setSize(new Dimension(picture.getWidth(), picture.getHeight()));
+            g.drawImage(picture, 0, 0, this);
         }
     }
     private void drawLines(Graphics2D g) {
-        if(file!=null) {
+        if(picture!=null) {
             //Graphics2D g = (Graphics2D) this.getGraphics();
             g.setColor(Color.RED);//цвет для графика
             int x1, x2, y1, y2, length;//координаты начала и конца отрезка
@@ -83,7 +53,7 @@ public  class CanvasLine extends JComponent{
                     g.setColor(new Color(144, 9, 9));
                     g.drawString(Integer.toString(i + 1), x1, y1);//подпись номера линии
 
-                    System.out.println(x1 + ":" + y1 + "--" + x2 + ":" + y2);
+                    //System.out.println(x1 + ":" + y1 + "--" + x2 + ":" + y2);
 
                 }
             }
@@ -92,13 +62,24 @@ public  class CanvasLine extends JComponent{
     }
 
     private void drawArea(Graphics2D g) {
-        if(file!=null) {
+        if(picture!=null&mainController.getArea()!=null) {
             //Graphics2D g = (Graphics2D) this.getGraphics();
             g.setColor(Color.RED);//цвет для области
             //System.out.println(pixelArray.size());
-            for (int i = 0; i < pixelArray.size(); i++) {
-                g.drawLine(pixelArray.get(i).get_x(), pixelArray.get(i).get_y(), pixelArray.get(i).get_x(), pixelArray.get(i).get_y());
-                System.out.println(i+"  "+pixelArray.get(i).get_x()+":"+ pixelArray.get(i).get_y());
+            for (int i = 0; i < mainController.getArea().size(); i++) {
+                g.drawLine(mainController.getArea().get(i).get_x(), mainController.getArea().get(i).get_y(), mainController.getArea().get(i).get_x(), mainController.getArea().get(i).get_y());
+                //System.out.println(i+"  "+mainController.getArea().get(i).get_x()+":"+ mainController.getArea().get(i).get_y());
+            }
+        }
+    }
+    private void drawAreaPerimetr(Graphics2D g) {
+        if(picture!=null&mainController.getAreaPerimetr()!=null) {
+            //Graphics2D g = (Graphics2D) this.getGraphics();
+            g.setColor(Color.red);//цвет для области
+            //System.out.println(pixelArray.size());
+            for (int i = 0; i < mainController.getAreaPerimetr().size(); i++) {
+                g.drawLine(mainController.getAreaPerimetr().get(i).get_x(), mainController.getAreaPerimetr().get(i).get_y(), mainController.getAreaPerimetr().get(i).get_x(), mainController.getAreaPerimetr().get(i).get_y());
+                //System.out.println(i+"  "+mainController.getArea().get(i).get_x()+":"+ mainController.getArea().get(i).get_y());
             }
         }
     }
@@ -109,8 +90,10 @@ public  class CanvasLine extends JComponent{
             Graphics2D g2d=(Graphics2D)g;
             drawPicture(g2d);
             if(mode)drawLines(g2d);
-            else drawArea(g2d);
-
+            else {
+                //drawArea(g2d);
+                drawAreaPerimetr(g2d);//или drawArea(g2d) - закрасит область
+            }
             super.repaint();
     }
 
@@ -178,7 +161,7 @@ public  class CanvasLine extends JComponent{
                     // слушатель в контроллер при желании
                     if(getxPositionNow()<getWidth()&getyPositionNow()<getHeight()) {
                         if (mode) {
-                            if ( file != null) {
+                            if ( picture != null) {
                                 int x1 = getxPosition1();
                                 int y1 = getyPosition1();
                                 Pixel p1 = new Pixel();
@@ -189,7 +172,7 @@ public  class CanvasLine extends JComponent{
                                 Pixel p2 = new Pixel();
                                 p2.set_x(x2);
                                 p2.set_y(y2);
-                                System.out.println(p1 + "" + p2);
+                                //System.out.println(p1 + "" + p2);
                                 if (!(x1 == x2 & y1 == y2)) {
                                     mainController.addLine(p1, p2);
                                     //System.out.println(mainController.getLines());
@@ -201,27 +184,27 @@ public  class CanvasLine extends JComponent{
                         }
 
                     }
-                    System.out.println(getPos());
+                    //System.out.println(getPos());
                 }
                 if(!mode) {
                     int x = getxPositionNow(), y = getyPositionNow();
                     Pixel p = new Pixel();
                     p.set_x(x);
                     p.set_y(y);
-                    p.set_R((new Color(file.getRGB(x, y)).getRed()));
-                    p.set_G((new Color(file.getRGB(x, y)).getGreen()));
-                    p.set_B((new Color(file.getRGB(x, y)).getBlue()));
-
-                    System.out.println(p.get_R()+" "+p.get_G()+" "+p.get_B());
-                    System.out.println(p.get_x()+":"+p.get_y());
-                    setArea(mainController.getAreaPerimetr(p));
+                    p.set_R((new Color(picture.getRGB(x, y)).getRed()));
+                    p.set_G((new Color(picture.getRGB(x, y)).getGreen()));
+                    p.set_B((new Color(picture.getRGB(x, y)).getBlue()));
+                    mainController.setArea(p);
+                    //System.out.println(p.get_R()+" "+p.get_G()+" "+p.get_B());
+                    //System.out.println(p.get_x()+":"+p.get_y());
+                    //setArea(mainController.getAreaPerimetr(p));
                     //repaint();
                 }
 
                 pos = !pos;
 
 
-                System.out.println("");
+                //System.out.println("");
             }
             public void mouseReleased (MouseEvent Event)
             {

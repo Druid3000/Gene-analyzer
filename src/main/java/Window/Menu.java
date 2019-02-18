@@ -51,7 +51,7 @@ public class Menu {
                     if (ret == JFileChooser.APPROVE_OPTION) {
                         picture = fileopen.getSelectedFile();
                         mainController.setPicture(picture);
-                        canvasLine.setPicture(picture);
+                        //canvasLine.setPicture(picture);
                         canvasLine.setVisible(true);
                     }
 

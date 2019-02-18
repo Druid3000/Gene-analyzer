@@ -5,26 +5,27 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.concurrent.atomic.AtomicInteger;
 
 public class Line {
     public static String[] cordsCode=new String[0];
-    private static int id=1;
+    private static final AtomicInteger id = new AtomicInteger(0);
     private int idThis;
     private double maxDensity;
     private Color color;
     private Point point1;
     private Point point2;
     private ArrayList<Pixel> pixels= new ArrayList<Pixel>();
-    public Line(Pixel p1, Pixel p2, File f){
+    public Line(Pixel p1, Pixel p2, BufferedImage image){
         int x1=p1.get_x(), x2=p2.get_x(),y1=p1.get_y(),y2=p2.get_y();
         double k, b;
         k=(double)(y1-y2)/(x1-x2);
         b=y1-k*x1;
         int length=Math.max(Math.abs(x1-x2),(Math.abs(y1-y2)));//длина отрезка (кол-во пикселей)
         //создаю массив пикселей всего изображения
-        BufferedImage image;
-        try {
-            image = ImageIO.read(f);
+        //BufferedImage image=im;
+        //try {
+        //    image = ImageIO.read(f);
             int h = image.getHeight(), w = image.getWidth(), R, G, B;
 
             Pixel[][] all_pxls = new Pixel[w][h];
@@ -68,33 +69,44 @@ public class Line {
                 }
             }
             //pixels = p;
-            idThis = Line.id;
-            Line.id += 1;
+            idThis = id.incrementAndGet();
+            //System.out.println(idThis+"   "+Line.id);
 
-            switch (id) {
+            switch (idThis) {
                 case 1:
                     color = Color.BLACK;
+                    break;
                 case 2:
                     color = Color.BLUE;
+                    break;
                 case 3:
                     color = Color.CYAN;
+                    break;
                 case 4:
                     color = Color.GREEN;
+                    break;
                 case 5:
                     color = Color.MAGENTA;
+                    break;
                 case 6:
                     color = Color.ORANGE;
+                    break;
                 case 7:
                     color = Color.PINK;
+                    break;
                 case 8:
                     color = Color.RED;
+                    break;
                 case 9:
                     color = Color.WHITE;
+                    break;
                 case 10:
                     color = Color.YELLOW;
+                    break;
+                default:
+                    color = Color.YELLOW;
+
             }
-        }
-        catch (Exception e){};
     }
 
     public Point getPoint1() {
@@ -108,9 +120,11 @@ public class Line {
     public Point getPoint2() {
         return point2;
     }
-
     public void setPoint2(Point point2) {
         this.point2 = point2;
+    }
+    public int getId(){
+        return idThis;
     }
 
     public double getMaxDensity(int intensity){
