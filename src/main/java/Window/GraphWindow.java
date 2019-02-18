@@ -8,23 +8,16 @@ import javax.swing.*;
 import java.util.ArrayList;
 
 public class GraphWindow extends JFrame {
-    private GraphController graphController=new GraphController();
-    private CanvasGraph canvasGraph = new CanvasGraph();
+    //private GraphController graphController=new GraphController();
     private MainController mainController;
+    private CanvasGraph canvasGraph;
     public GraphWindow(MainController mc){
+        setTitle("Графики оптической плотности");
         //graphController.setLines(l);
         mainController=mc;
-        super.add(canvasGraph);
-        graphController.drawCoordinateAxes();
-        graphController.drawCoordinateLabels();
-        drawGraphs(mainController.getLines());
-        this.setTitle("Графики оптической плотности");
+        canvasGraph = new CanvasGraph(mainController);
+        add(canvasGraph);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         setSize(700,550);
-    }
-    void drawGraphs(ArrayList<Line> lines){
-        //Вместо draw я просто выведу в консоль координаты.
-        //System.out.println(line.getPoint1() + " " + line.getPoint2());
-        canvasGraph.drawGraph(lines);
     }
 }

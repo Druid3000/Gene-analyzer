@@ -8,7 +8,6 @@ import java.util.ArrayList;
 
 public class Line {
     public static String[] cordsCode=new String[0];
-    //private ArrayList<Color> colors=new ArrayList<Color>();
     private static int id=1;
     private int idThis;
     private double maxDensity;
@@ -21,11 +20,8 @@ public class Line {
         double k, b;
         k=(double)(y1-y2)/(x1-x2);
         b=y1-k*x1;
-        //length=(Math.sqrt (( Math.pow((x1-x2),2)+Math.pow((y1-y2),2) )));//тута вычисляем длину
         int length=Math.max(Math.abs(x1-x2),(Math.abs(y1-y2)));//длина отрезка (кол-во пикселей)
-        //System.out.println("длина отрезка "+length);
         //создаю массив пикселей всего изображения
-
         BufferedImage image;
         try {
             image = ImageIO.read(f);
