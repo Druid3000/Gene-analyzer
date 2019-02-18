@@ -45,6 +45,10 @@ public class MainController {
     }
     public ArrayList<Pixel> getArea(Pixel p){
         area.setArea(p,picture);
-        return area.getAreaPerimetr();
+        return area.getArea();
+    }
+    public ArrayList<Pixel> getAreaPerimetr(Pixel p){
+        area.setArea(p,picture);
+        return area.getArea();
     }
 }

@@ -3,6 +3,7 @@ package Window;
 import Controllers.MainController;
 import Model.Line;
 import Model.Pixel;
+import Model.Point;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -15,13 +16,11 @@ import java.util.ArrayList;
 
 /* Класс с отрисовкой отрезка и заполнением массива пикселей */
 public  class CanvasLine extends JComponent{
-    private File file;
+    private BufferedImage file;
     private ArrayList<Line> lines = new ArrayList<Line>();
     private ArrayList<Pixel> pixelArray = new ArrayList<Pixel>();
     private MainController mainController;
-    //private static int height=1000, weight=1000;
     private boolean mode=true;  //true - линии, false - области
-    //private ArrayList<Pixel> pixelArray = new ArrayList<Pixel>();
     public CanvasLine(MainController mc){
         addListener();
         mainController=mc;
@@ -33,13 +32,14 @@ public  class CanvasLine extends JComponent{
         return mode;
     }
     public void setPicture(File f){
-        file=f;
+
 
             try {
                 //file = f;
-                BufferedImage image = ImageIO.read(file);
+                BufferedImage image = ImageIO.read(f);
                 Graphics2D g = (Graphics2D) this.getGraphics();
                 this.setSize( new Dimension(image.getWidth(),image.getHeight()));
+                file=image;
             } catch (IOException ex) {
                 // handle exception...
             }
@@ -51,19 +51,19 @@ public  class CanvasLine extends JComponent{
     public void setArea(ArrayList<Pixel> pa){
         pixelArray=pa;
     }
-    public void drawPicture(Graphics2D g){//отрисовка изображения
+    private void drawPicture(Graphics2D g){//отрисовка изображения
         if(file!=null) {
-            try {
+            //try {
                 //file = f;
-                BufferedImage image = ImageIO.read(file);
+                //BufferedImage image = ImageIO.read(file);
                 //Graphics2D g = (Graphics2D) this.getGraphics();
-                g.drawImage(image, 0, 0, this);
-            } catch (IOException ex) {
+                g.drawImage(file, 0, 0, this);
+            //} catch (IOException ex) {
                 // handle exception...
-            }
+            //}
         }
     }
-    public void drawLines(Graphics2D g) {
+    private void drawLines(Graphics2D g) {
         if(file!=null) {
             //Graphics2D g = (Graphics2D) this.getGraphics();
             g.setColor(Color.RED);//цвет для графика
@@ -91,9 +91,9 @@ public  class CanvasLine extends JComponent{
 
     }
 
-    public void drawArea() {
+    private void drawArea(Graphics2D g) {
         if(file!=null) {
-            Graphics2D g = (Graphics2D) this.getGraphics();
+            //Graphics2D g = (Graphics2D) this.getGraphics();
             g.setColor(Color.RED);//цвет для области
             //System.out.println(pixelArray.size());
             for (int i = 0; i < pixelArray.size(); i++) {
@@ -105,18 +105,13 @@ public  class CanvasLine extends JComponent{
     /*Метод, перерисовывающий элемент внутри окна
      *при обновлении*/
     public void paintComponent(Graphics g){
-        //try {
             super.paintComponents(g);
             Graphics2D g2d=(Graphics2D)g;
             drawPicture(g2d);
             if(mode)drawLines(g2d);
-            else drawArea();
-
+            else drawArea(g2d);
 
             super.repaint();
-        //} //catch (IOException ex) {
-            // handle exception...
-        //}
     }
 
 
@@ -203,16 +198,26 @@ public  class CanvasLine extends JComponent{
                                     //System.out.println(mouseLocation.getPos());
                                 }
                             }
-                        } else {
-                            int x = getxPositionNow(), y = getyPositionNow();
-                            Pixel p = new Pixel();
-                            p.set_x(x);
-                            p.set_y(y);
-                            setArea(mainController.getArea(p));
                         }
+
                     }
                     System.out.println(getPos());
                 }
+                if(!mode) {
+                    int x = getxPositionNow(), y = getyPositionNow();
+                    Pixel p = new Pixel();
+                    p.set_x(x);
+                    p.set_y(y);
+                    p.set_R((new Color(file.getRGB(x, y)).getRed()));
+                    p.set_G((new Color(file.getRGB(x, y)).getGreen()));
+                    p.set_B((new Color(file.getRGB(x, y)).getBlue()));
+
+                    System.out.println(p.get_R()+" "+p.get_G()+" "+p.get_B());
+                    System.out.println(p.get_x()+":"+p.get_y());
+                    setArea(mainController.getAreaPerimetr(p));
+                    //repaint();
+                }
+
                 pos = !pos;
 
 
@@ -226,4 +231,5 @@ public  class CanvasLine extends JComponent{
             }
         });
     }
+
 }

@@ -106,8 +106,8 @@ public class MainWindow extends JFrame {
 
             aboutItem.addActionListener(new ActionListener() {   //opening new window with main inf
                 public void actionPerformed(ActionEvent e) {
-                    JFrame newWindow = new AboutFrame();
-                    newWindow.setVisible(true);
+                    //AboutWindow aboutWindow = new AboutWindow();
+                    ///aboutWindow.setVisible(true);
                 }
             });
 

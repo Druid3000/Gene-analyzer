@@ -7,13 +7,15 @@ import java.io.File;
 import java.util.ArrayList;
 
 public class Area {
-    private ArrayList<Pixel> pixels = new ArrayList<Pixel>();
-    private final double delta=0.2;
+    private ArrayList<Pixel> pixels;
+    private final double delta=0.1;
     public void setArea(Pixel pixel, File f){
-
+        pixels = new ArrayList<Pixel>();
         Pixel[][] all_pxls = arrayFromFile(f);
         int x=pixel.get_x(),y=pixel.get_y();
         double intensity=pixel.get_intensity();
+        if(intensity==0)intensity=0.000001;
+        System.out.println(intensity + " это интенсивность первого пикселя");
         pixels.add(pixel);
         all_pxls[x][y].set_R(1000000);
         checkNear(all_pxls,x,y,intensity);
@@ -108,37 +110,67 @@ public class Area {
     }
 
     private void checkNear(Pixel[][] all_pxls, int x, int y, double intensity){
+
+//        System.out.println("checkNear"+Integer.toString(pixels.size()));
+
+        double newIntensity;
         if(x-1>=0)//слева от пикселя
-        if(Math.abs(all_pxls[x-1][y].get_intensity()-intensity)/intensity<=delta) {
-            pixels.add(all_pxls[x-1][y]);
-            all_pxls[x-1][y].set_R(1000000);
-            checkNear(all_pxls, x - 1, y,intensity);
+        {
+            newIntensity=all_pxls[x-1][y].get_intensity();
+            if(newIntensity==0) newIntensity=0.000001;
+            //System.out.println(pixels.size()+ "слева от пикселя " + (x-1)+y);
+            if ((Math.abs(newIntensity - intensity) / (intensity)) <= delta) {
+                pixels.add(all_pxls[x - 1][y]);
+                all_pxls[x - 1][y].set_R(1000000);
+                System.out.println(pixels.size()+ "слева от пикселя " + (x-1)+y);
+                checkNear(all_pxls, x - 1, y, intensity);
+                //System.out.println(x+":"+y);
+            }
         }
         if(x+1<all_pxls.length)//cправа от пикселя
-            if(Math.abs(all_pxls[x+1][y].get_intensity()-intensity)/intensity<=delta) {
-                pixels.add(all_pxls[x+1][y]);
-                all_pxls[x+1][y].set_R(1000000);
-                checkNear(all_pxls, x + 1, y,intensity);
+        {
+            newIntensity=all_pxls[x+1][y].get_intensity();
+            if(newIntensity==0)newIntensity=0.000001;
+            //System.out.println(pixels.size()+ "справа от пикселя " + (x+1)+y);
+            if ((Math.abs(newIntensity - (intensity)) / (intensity)) <= delta) {
+                pixels.add(all_pxls[x + 1][y]);
+                all_pxls[x + 1][y].set_R(1000000);
+                System.out.println(pixels.size()+ "справа от пикселя " + (x+1)+y);
+                checkNear(all_pxls, x + 1, y, intensity);
             }
+        }
         if(y-1>=0)//сверху от пикселя
-            if(Math.abs(all_pxls[x][y-1].get_intensity()-intensity)/intensity<=delta) {
-                pixels.add(all_pxls[x][y-1]);
-                all_pxls[x][y-1].set_R(1000000);
-                checkNear(all_pxls, x , y-1,intensity);
+        {
+            newIntensity=all_pxls[x][y - 1].get_intensity();
+            if(newIntensity==0)newIntensity=0.000001;
+            //System.out.println(pixels.size()+ "сверху от пикселя " + (x)+(y-1));
+            if ((Math.abs(newIntensity - (intensity)) / (intensity)) <= delta) {
+                pixels.add(all_pxls[x][y - 1]);
+                all_pxls[x][y - 1].set_R(1000000);
+                System.out.println(pixels.size());
+                checkNear(all_pxls, x, y - 1, intensity);
             }
+        }
         if(y+1<all_pxls[0].length)//снизу от пикселя
-            if(Math.abs(all_pxls[x][y+1].get_intensity()-intensity)/intensity<=delta) {
-                pixels.add(all_pxls[x][y+1]);
-                all_pxls[x][y+1].set_R(1000000);
-                checkNear(all_pxls, x , y+1,intensity);
+        {
+            newIntensity=all_pxls[x][y + 1].get_intensity();
+            if(newIntensity==0)newIntensity=0.000001;
+            //System.out.println(pixels.size()+ "снизу от пикселя " + (x)+(y+1));
+            if ((Math.abs(newIntensity - (intensity)) / (intensity)) <= delta) {
+                pixels.add(all_pxls[x][y + 1]);
+                all_pxls[x][y + 1].set_R(1000000);
+                System.out.println(pixels.size()+ "снизу от пикселя " + (x)+(y+1));
+                checkNear(all_pxls, x, y + 1, intensity);
             }
+        }
     }
     private Pixel[][] arrayFromFile(File f){
-        Pixel[][] all_pxls = new Pixel[0][0];
+        Pixel[][] all_pxls = null;
         try {
             BufferedImage image = ImageIO.read(f);
             int h = image.getHeight(), w = image.getWidth(), R, G, B;
             all_pxls = new Pixel[w][h];
+            //System.out.println(w+" and "+h);
             Color c = new Color(image.getRGB(100, 100));
             for (int i = 0; i < w; i++) {
                 for (int j = 0; j < h; j++) {

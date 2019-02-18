@@ -17,11 +17,13 @@ public class Menu {
     private GraphWindow graphWindow;
     private JMenuBar menuBar;
     private File picture;
+    private AboutWindow aboutWindow;
     //private MouseLocation mouseLocation;
-    public Menu(MainController mc, GraphWindow gw, CanvasLine cl){//, MouseLocation open, MouseLocation coord){//MainController mc, File pict){
+    public Menu(AboutWindow aw, MainController mc, GraphWindow gw, CanvasLine cl){//, MouseLocation open, MouseLocation coord){//MainController mc, File pict){
             mainController=mc;
             graphWindow =gw;
             canvasLine=cl;
+            aboutWindow=aw;
            // canvasArea=ca;
             //mouseLocation=ml;
         //picture = pict;
@@ -56,27 +58,8 @@ public class Menu {
                         picture = fileopen.getSelectedFile();
                         mainController.setPicture(picture);
                         canvasLine.setPicture(picture);
-                        //canvasArea.setPicture(picture);
                         canvasLine.setVisible(true);
-                        //canvasArea.setVisible(false);
-                        //label.setText(file.getName());
                     }
-
-                    //if (panel.isVisible()) {
-                            /*CanvasLine canv = new CanvasLine();
-                            canv.setPreferredSize(new Dimension(400, 367 + 10));
-                            canv.addMouseListener(new MouseLocation());
-                            canv.addMouseMotionListener(new MouseLocation());
-                            canv.setFont(new Font("Verdana", Font.PLAIN, 11));
-
-                            panel.add(canv);
-                            //revalidate();
-
-                            getContentPane().add(panel);*/
-                    //}
-                    //else
-                    //    panel.setVisible(true);
-
 
                 }
             });
@@ -121,8 +104,8 @@ public class Menu {
 
             aboutItem.addActionListener(new ActionListener() {   //opening new window with main inf
                 public void actionPerformed(ActionEvent e) {
-                    JFrame newWindow = new AboutWindow();
-                    newWindow.setVisible(true);
+                    //AboutWindow aboutWindow = new AboutWindow();
+                    aboutWindow.setVisible(true);
                 }
             });
 
