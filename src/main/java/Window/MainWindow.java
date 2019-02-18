@@ -16,13 +16,13 @@ public class MainWindow extends JFrame {
     private GraphWindow graphWindow = new GraphWindow(mainController);
     private AboutWindow aboutWindow = new AboutWindow();
     private CanvasLine canvasLine = new CanvasLine();
-    private CanvasArea canvasArea = new CanvasArea();
+    //private CanvasArea canvasArea = new CanvasArea();
     //private File picture;
     private MouseLocation mouseLocation;
     private int xBorder=0, yBorder=0;
     //private static boolean pos=true;//true = 1 точка. false = 2 точка
     //private MouseLocation coordinates = new MouseLocation();
-    private Menu menu = new Menu(mainController, graphWindow, canvasLine, canvasArea, mouseLocation);
+    private Menu menu = new Menu(mainController, graphWindow, canvasLine,/* canvasArea, */mouseLocation);
 
 
     public MainWindow(){
@@ -54,6 +54,8 @@ public class MainWindow extends JFrame {
         //this.add(new JPanel());
         //panel.add(canvasLine);
         //setContentPane(panel);
+        //canvasLine.setVisible(true);
+        //canvasArea.setVisible(false);
         add(canvasLine);
         //add(canvasArea);
         pack();
@@ -171,7 +173,8 @@ public class MainWindow extends JFrame {
                 if(!(x1==x2&y1==y2)){
                 mainController.addLine(p1, p2);
                 //System.out.println(mainController.getLines());
-                canvasLine.drawLines(mainController.getLines());
+                canvasLine.setLines(mainController.getLines());
+                //canvasLine.drawLines();
                 //System.out.println(mouseLocation.getPos());
             }
         }

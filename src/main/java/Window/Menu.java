@@ -12,17 +12,17 @@ import java.io.File;
 public class Menu {
     private MainController mainController;
     private CanvasLine canvasLine;
-    private CanvasArea canvasArea;
+    //private CanvasArea canvasArea;
     private GraphController graphController;
     private GraphWindow graphWindow;
     private JMenuBar menuBar;
     private File picture;
     private MouseLocation mouseLocation;
-    public Menu(MainController mc, GraphWindow gw, CanvasLine cl, CanvasArea ca, MouseLocation ml){//, MouseLocation open, MouseLocation coord){//MainController mc, File pict){
+    public Menu(MainController mc, GraphWindow gw, CanvasLine cl, MouseLocation ml){//, MouseLocation open, MouseLocation coord){//MainController mc, File pict){
             mainController=mc;
             graphWindow =gw;
             canvasLine=cl;
-            canvasArea=ca;
+           // canvasArea=ca;
             mouseLocation=ml;
         //picture = pict;
         //TO DO
@@ -55,9 +55,10 @@ public class Menu {
                     if (ret == JFileChooser.APPROVE_OPTION) {
                         picture = fileopen.getSelectedFile();
                         mainController.setPicture(picture);
-                        canvasLine.drawPicture(picture);
-                        canvasArea.drawPicture(picture);
-                        //canvasLine.setVisible(true);
+                        canvasLine.setPicture(picture);
+                        //canvasArea.setPicture(picture);
+                        canvasLine.setVisible(true);
+                        //canvasArea.setVisible(false);
                         //label.setText(file.getName());
                     }
 
@@ -137,7 +138,7 @@ public class Menu {
                     //canvasArea.setVisible(false);
                     //canvasArea.removeMouseListener(mouseLocation);
                     //canvasLine.addMouseListener(mouseLocation);
-                    canvasLine.setVisible(true);
+                    canvasLine.setMode(true);
                 }
             });
 
@@ -149,7 +150,8 @@ public class Menu {
                     //canvasLine.setVisible(false);
                     //canvasLine.removeMouseListener(mouseLocation);
                     //canvasArea.addMouseListener(mouseLocation);
-                    canvasArea.setVisible(true);
+                    //canvasArea.setVisible(true);
+                    canvasLine.setMode(false);
                 }
             });
 

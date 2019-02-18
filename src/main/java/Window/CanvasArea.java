@@ -15,35 +15,44 @@ import java.util.ArrayList;
 public  class CanvasArea extends JComponent{
     private File file;
     private static int height=1000, weight=1000;
-    //private ArrayList<Pixel> pixelArray = new ArrayList<Pixel>();
+    private ArrayList<Pixel> pixelArray = new ArrayList<Pixel>();
 
-    public void drawPicture(File f){//отрисовка изображения
-        try {
-            file = f;
-            BufferedImage image = ImageIO.read(f);
-            Graphics2D g = (Graphics2D) this.getGraphics();
-            g.drawImage(image, 0, 0, this);
-        }
-        catch (IOException ex) {
+    public void setPicture(File f){
+        file=f;
+    }
+    public void setLines(ArrayList<Pixel> pa){
+        pixelArray=pa;
+    }
+    public void drawPicture(){//отрисовка изображения
+        if(file!=null) {
+            try {
+
+                BufferedImage image = ImageIO.read(file);
+                Graphics2D g = (Graphics2D) this.getGraphics();
+                g.drawImage(image, 0, 0, this);
+            } catch (IOException ex) {
                 // handle exception...
+            }
         }
     }
-    public void drawArea(ArrayList<Pixel> pixelArray) {
-        Graphics2D g = (Graphics2D)this.getGraphics();
-        g.setColor(Color.RED);//цвет для области
-        for (int i = 0; i < pixelArray.size(); i++) {
-             g.drawLine(pixelArray.get(i).get_x(),pixelArray.get(i).get_y(),pixelArray.get(i).get_x(),pixelArray.get(i).get_y());
+    public void drawArea() {
+        if(file!=null) {
+            Graphics2D g = (Graphics2D) this.getGraphics();
+            g.setColor(Color.RED);//цвет для области
+            for (int i = 0; i < pixelArray.size(); i++) {
+                g.drawLine(pixelArray.get(i).get_x(), pixelArray.get(i).get_y(), pixelArray.get(i).get_x(), pixelArray.get(i).get_y());
+            }
         }
     }
 
     /*Метод, перерисовывающий элемент внутри окна
      *при обновлении*/
     public void paintComponent(Graphics g){
-        try {
+        //try {
             super.paintComponents(g);
             Graphics2D g2d=(Graphics2D)g;
 
-            g2d.setColor(Color.black);
+            /*g2d.setColor(Color.black);
             if(file==null)
             {
                 //("C:\\practice\\src\\photo1.jpg");
@@ -58,16 +67,17 @@ public  class CanvasArea extends JComponent{
                 f.write(12);
                 f.close();
 
-                */
+
             }
             //else file= MainWindow.picture;
-            BufferedImage image= ImageIO.read(this.file);
+            //BufferedImage image= ImageIO.read(this.file);
             //отрисовка изображения
-            g2d.drawImage(image, 0, 0, this);
-
-            //super.repaint();
-        } catch (IOException ex) {
+            //g2d.drawImage(image, 0, 0, this);*/
+            drawPicture();
+            drawArea();
+            super.repaint();
+        //} catch (IOException ex) {
             // handle exception...
-        }
+        //}
     }
 }
