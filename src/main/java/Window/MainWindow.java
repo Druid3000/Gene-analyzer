@@ -55,7 +55,9 @@ public class MainWindow extends JFrame {
         //panel.add(canvasLine);
         //setContentPane(panel);
         add(canvasLine);
+        //add(canvasArea);
         pack();
+        //canvasArea.setVisible(false);
 
         //System.out.println(menu.get_menuBar().getHeight());
 
@@ -101,6 +103,8 @@ public class MainWindow extends JFrame {
             public void mouseClicked (MouseEvent Event)
             {
                 //System.out.println("mouseClicked");
+
+                onMouseClick();
             }
             public void mouseEntered (MouseEvent Event)
             {
@@ -114,17 +118,27 @@ public class MainWindow extends JFrame {
             {
                 //System.out.println("mousePressed");
                 //if((Event.getX() < CanvasLine.weight)&(Event.getY()< CanvasLine.height)) {
-                if (pos) {
-                    xPosition1 = Event.getX() ;
-                    yPosition1 = Event.getY() ;
-                } else {
-                    xPosition2 = Event.getX() ;
-                    yPosition2 = Event.getY() ;
-                }
-                pos =!pos;
-                onMouseClick();
+
+                int str1=getClass().toString().length();    //больше 25 будем считать канвас
+                int str2=MainWindow.class.toString().length();
+                //if(str1>25) {
+                    if (pos) {
+                        xPosition1 = Event.getX();
+                        yPosition1 = Event.getY();
+                    } else {
+                        xPosition2 = Event.getX();
+                        yPosition2 = Event.getY();
+                    }
+                    pos = !pos;
+                //}
+
+
+                //System.out.println(str1+"="+str2+(str1==str2));
+                //System.out.println(str1.);
                 //System.out.println("x " + xPosition1);
                 //System.out.println("y " + yPosition1);
+                System.out.println("");
+                //onMouseClick();
                 //}
             }
             public void mouseReleased (MouseEvent Event)
@@ -135,15 +149,13 @@ public class MainWindow extends JFrame {
             }
         });
         canvasLine.addMouseListener(mouseLocation);
+        //canvasArea.addMouseListener(mouseLocation);
     }
 
     private void onMouseClick(){
 
         System.out.println("onMouseClick");
-        //Берем коодринаты мышки X и Y.
-        //К примеру, они будут:
-        //x1=100, y1=100
-        //x2=200, y2=200
+
         if ((mouseLocation.getPos())&(mainController.getPicture()!=null)){
             int x1=mouseLocation.getxPosition1()-xBorder;
             int y1=mouseLocation.getyPosition1()-yBorder;

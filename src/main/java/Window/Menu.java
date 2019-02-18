@@ -134,9 +134,9 @@ public class Menu {
             editMenu.add(drawLineItem);
             drawLineItem.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    canvasArea.setVisible(false);
-                    canvasArea.removeMouseListener(mouseLocation);
-                    canvasLine.addMouseListener(mouseLocation);
+                    //canvasArea.setVisible(false);
+                    //canvasArea.removeMouseListener(mouseLocation);
+                    //canvasLine.addMouseListener(mouseLocation);
                     canvasLine.setVisible(true);
                 }
             });
@@ -146,9 +146,9 @@ public class Menu {
             editMenu.add(drawAreaItem);
             drawAreaItem.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    canvasLine.setVisible(false);
-                    canvasLine.removeMouseListener(mouseLocation);
-                    canvasArea.addMouseListener(mouseLocation);
+                    //canvasLine.setVisible(false);
+                    //canvasLine.removeMouseListener(mouseLocation);
+                    //canvasArea.addMouseListener(mouseLocation);
                     canvasArea.setVisible(true);
                 }
             });
