@@ -16,15 +16,28 @@ public  class CanvasLine extends JComponent{
     private File file;
     private ArrayList<Line> lines = new ArrayList<Line>();
     private ArrayList<Pixel> pixelArray = new ArrayList<Pixel>();
-    private static int height=1000, weight=1000;
+    //private static int height=1000, weight=1000;
     private boolean mode=true;  //true - линии, false - области
     //private ArrayList<Pixel> pixelArray = new ArrayList<Pixel>();
     public void setMode(boolean m){
         mode = m;
     }
+    public boolean getMode(){
+        return mode;
+    }
     public void setPicture(File f){
         file=f;
+
+            try {
+                //file = f;
+                BufferedImage image = ImageIO.read(file);
+                Graphics2D g = (Graphics2D) this.getGraphics();
+                this.setSize( new Dimension(image.getWidth(),image.getHeight()));
+            } catch (IOException ex) {
+                // handle exception...
+            }
     }
+
     public void setLines(ArrayList<Line> l){
         lines=l;
     }
@@ -75,8 +88,10 @@ public  class CanvasLine extends JComponent{
         if(file!=null) {
             Graphics2D g = (Graphics2D) this.getGraphics();
             g.setColor(Color.RED);//цвет для области
+            //System.out.println(pixelArray.size());
             for (int i = 0; i < pixelArray.size(); i++) {
                 g.drawLine(pixelArray.get(i).get_x(), pixelArray.get(i).get_y(), pixelArray.get(i).get_x(), pixelArray.get(i).get_y());
+                System.out.println(i+"  "+pixelArray.get(i).get_x()+":"+ pixelArray.get(i).get_y());
             }
         }
     }

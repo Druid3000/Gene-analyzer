@@ -94,10 +94,10 @@ public class MainWindow extends JFrame {
                 return yPosition2;
             }
             public int getxPositionNow(){
-                return yPosition1;
+                return xPositionNow;
             }
             public int getyPositionNow(){
-                return yPosition2;
+                return yPositionNow;
             }
             public void setPos(boolean p){
                 pos=p;
@@ -121,8 +121,8 @@ public class MainWindow extends JFrame {
                 //System.out.println("mousePressed");
                 //if((Event.getX() < CanvasLine.weight)&(Event.getY()< CanvasLine.height)) {
 
-                int str1=getClass().toString().length();    //больше 25 будем считать канвас
-                int str2=MainWindow.class.toString().length();
+                //int str1=getClass().toString().length();    //больше 25 будем считать канвас
+                //int str2=MainWindow.class.toString().length();
                 //if(str1>25) {
                     if (pos) {
                         xPosition1 = Event.getX();
@@ -131,6 +131,8 @@ public class MainWindow extends JFrame {
                         xPosition2 = Event.getX();
                         yPosition2 = Event.getY();
                     }
+                    xPositionNow=Event.getX();
+                    yPositionNow=Event.getX();
                     pos = !pos;
                 //}
 
@@ -157,28 +159,36 @@ public class MainWindow extends JFrame {
     private void onMouseClick(){
 
         System.out.println("onMouseClick");
-
-        if ((mouseLocation.getPos())&(mainController.getPicture()!=null)){
-            int x1=mouseLocation.getxPosition1()-xBorder;
-            int y1=mouseLocation.getyPosition1()-yBorder;
-            Pixel p1 = new Pixel();
-            p1.set_x(x1);
-            p1.set_y(y1);
-            int x2=mouseLocation.getxPosition2()-xBorder;
-            int y2=mouseLocation.getyPosition2()-yBorder;
-                Pixel p2 = new Pixel();
-                p2.set_x(x2);
-                p2.set_y(y2);
-                System.out.println(p1+""+p2);
-                if(!(x1==x2&y1==y2)){
-                mainController.addLine(p1, p2);
-                //System.out.println(mainController.getLines());
-                canvasLine.setLines(mainController.getLines());
-                //canvasLine.drawLines();
-                //System.out.println(mouseLocation.getPos());
+        if(mouseLocation.getxPositionNow()<canvasLine.getWidth()&mouseLocation.getyPositionNow()<canvasLine.getHeight()) {
+            if (canvasLine.getMode()) {
+                if ((mouseLocation.getPos()) & (mainController.getPicture() != null)) {
+                    int x1 = mouseLocation.getxPosition1() - xBorder;
+                    int y1 = mouseLocation.getyPosition1() - yBorder;
+                    Pixel p1 = new Pixel();
+                    p1.set_x(x1);
+                    p1.set_y(y1);
+                    int x2 = mouseLocation.getxPosition2() - xBorder;
+                    int y2 = mouseLocation.getyPosition2() - yBorder;
+                    Pixel p2 = new Pixel();
+                    p2.set_x(x2);
+                    p2.set_y(y2);
+                    System.out.println(p1 + "" + p2);
+                    if (!(x1 == x2 & y1 == y2)) {
+                        mainController.addLine(p1, p2);
+                        //System.out.println(mainController.getLines());
+                        canvasLine.setLines(mainController.getLines());
+                        //canvasLine.drawLines();
+                        //System.out.println(mouseLocation.getPos());
+                    }
+                }
+            } else {
+                int x = mouseLocation.getxPositionNow(), y = mouseLocation.getyPositionNow();
+                Pixel p = new Pixel();
+                p.set_x(x);
+                p.set_y(y);
+                canvasLine.setArea(mainController.getArea(p));
             }
         }
-
         System.out.println(mouseLocation.getPos());
 //        System.out.println(picture.getPath());
     }

@@ -108,25 +108,25 @@ public class Area {
     }
 
     private void checkNear(Pixel[][] all_pxls, int x, int y, double intensity){
-        if(x-1>=0)
+        if(x-1>=0)//слева от пикселя
         if(Math.abs(all_pxls[x-1][y].get_intensity()-intensity)/intensity<=delta) {
             pixels.add(all_pxls[x-1][y]);
             all_pxls[x-1][y].set_R(1000000);
             checkNear(all_pxls, x - 1, y,intensity);
         }
-        if(x+1<all_pxls.length)
+        if(x+1<all_pxls.length)//cправа от пикселя
             if(Math.abs(all_pxls[x+1][y].get_intensity()-intensity)/intensity<=delta) {
                 pixels.add(all_pxls[x+1][y]);
                 all_pxls[x+1][y].set_R(1000000);
                 checkNear(all_pxls, x + 1, y,intensity);
             }
-        if(y-1>=0)
+        if(y-1>=0)//сверху от пикселя
             if(Math.abs(all_pxls[x][y-1].get_intensity()-intensity)/intensity<=delta) {
                 pixels.add(all_pxls[x][y-1]);
                 all_pxls[x][y-1].set_R(1000000);
                 checkNear(all_pxls, x , y-1,intensity);
             }
-        if(y+1<all_pxls[0].length)
+        if(y+1<all_pxls[0].length)//снизу от пикселя
             if(Math.abs(all_pxls[x][y+1].get_intensity()-intensity)/intensity<=delta) {
                 pixels.add(all_pxls[x][y+1]);
                 all_pxls[x][y+1].set_R(1000000);

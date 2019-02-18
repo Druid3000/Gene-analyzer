@@ -53,7 +53,7 @@ public class Line {
             }
 
 
-            //отрисовка отрезка с заполнением массива //теперь только заполнение
+            // заполнение
             if (Math.abs(k) >= 1) {
                 double x, y = y1;
                 for (int i = 0; i < length; i++) {
@@ -76,24 +76,7 @@ public class Line {
             //pixels = p;
             idThis = Line.id;
             Line.id += 1;
-            //Random randCol=new Random();
 
-            //проверка на существование этого же цвета
-            //Color col=Color.getHSBColor(0,0,0);
-        /*boolean eq=false;
-        do{
-            color = new Color(randCol.nextInt(200), randCol.nextInt(200), randCol.nextInt(200));
-            System.out.println(color.getRGB());
-            for (int j = 0; j < CanvasGraph.lines.length; j++) {//проверка такого же цвета
-                eq = (color.getRGB()== CanvasGraph.lines[j].getColor().getRGB());
-                System.out.println(color.getRGB());
-                System.out.println(CanvasGraph.lines[j].getColor().getRGB());
-                if(eq) break;
-            }
-            System.out.println(eq);
-        }while (eq);
-        */
-            //
             switch (id) {
                 case 1:
                     color = Color.BLACK;
@@ -116,35 +99,6 @@ public class Line {
                 case 10:
                     color = Color.YELLOW;
             }
-/*
-        //проверка на существование подобной линии
-        //я хитрый, буду сравнивать не сами линии, а строку координат пикселей
-        String Code="";
-        for (int i=0;i<pixels.size();i++){   //генерация кода
-            Code+=Integer.toString(p[i].get_x())+":"+Integer.toString(pixels.get(i).get_y());
-        }
-        eq=false;
-        for (int j = 0; j< Line.cordsCode.length; j++){//проверка такого же кода
-            eq=(Code.toString().equals(cordsCode[j].toString()));
-        }
-        if(!eq) {//если линия уникальная по координатам, то отрисовка с запоминанием кода
-
-            String[] newCodes =new String[cordsCode.length+1];
-            for(int a=0;a<cordsCode.length;a++){
-                newCodes[a]=cordsCode[a];
-            }
-            newCodes[cordsCode.length]=Code;
-            cordsCode=newCodes;
-            //
-            CanvasGraph.addLine(this);
-        }
-        //проверю эту строку
-        //System.out.println(Code);
-        //System.out.println(cordsCode[cordsCode.length-1]);
-        //System.out.println(Code.toString().equals(cordsCode[cordsCode.length-1].toString()));
-
-        //this.id=Line.count;
-        //Line.count+=1;*/
         }
         catch (Exception e){};
     }

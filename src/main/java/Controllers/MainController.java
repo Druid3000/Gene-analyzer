@@ -1,5 +1,6 @@
 package Controllers;
 
+import Model.Area;
 import Model.Line;
 import Model.Pixel;
 import Model.Point;
@@ -11,10 +12,11 @@ import java.util.List;
 public class MainController {
 
     //private Line line = new Line();
-    private ArrayList<Line> lineArray;
+    private ArrayList<Line> lineArray= new ArrayList<Line>();
+    private Area area= new Area();
     private File picture;
     public MainController(){
-        lineArray= new ArrayList<Line>();
+        //lineArray= new ArrayList<Line>();
     }
     /*public void setLine(Point point1, Point point2){
         line.setPoint1(point1);
@@ -42,5 +44,9 @@ public class MainController {
 
     public ArrayList<Line> getLines(){
         return lineArray;
+    }
+    public ArrayList<Pixel> getArea(Pixel p){
+        area.setArea(p,picture);
+        return area.getAreaPerimetr();
     }
 }
