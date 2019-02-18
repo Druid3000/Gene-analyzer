@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public  class CanvasLine extends JComponent{
     private File file;
     private static int height=1000, weight=1000;
-    private ArrayList<Pixel> pixelArray = new ArrayList<Pixel>();
+    //private ArrayList<Pixel> pixelArray = new ArrayList<Pixel>();
 
     public void drawPicture(File f){//отрисовка изображения
         try {

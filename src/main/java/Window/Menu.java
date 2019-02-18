@@ -12,14 +12,18 @@ import java.io.File;
 public class Menu {
     private MainController mainController;
     private CanvasLine canvasLine;
+    private CanvasArea canvasArea;
     private GraphController graphController;
     private GraphWindow graphWindow;
     private JMenuBar menuBar;
     private File picture;
-    public Menu(MainController mc, GraphWindow gw, final CanvasLine cl){//, MouseLocation open, MouseLocation coord){//MainController mc, File pict){
+    private MouseLocation mouseLocation;
+    public Menu(MainController mc, GraphWindow gw, CanvasLine cl, CanvasArea ca, MouseLocation ml){//, MouseLocation open, MouseLocation coord){//MainController mc, File pict){
             mainController=mc;
             graphWindow =gw;
             canvasLine=cl;
+            canvasArea=ca;
+            mouseLocation=ml;
         //picture = pict;
         //TO DO
 
@@ -52,7 +56,8 @@ public class Menu {
                         picture = fileopen.getSelectedFile();
                         mainController.setPicture(picture);
                         canvasLine.drawPicture(picture);
-                        canvasLine.setVisible(true);
+                        canvasArea.drawPicture(picture);
+                        //canvasLine.setVisible(true);
                         //label.setText(file.getName());
                     }
 
@@ -124,9 +129,29 @@ public class Menu {
             JMenu editMenu = new JMenu("Edit");
             editMenu.setFont(font);
 
-            JMenuItem drawItem = new JMenuItem("Draw line");
-            drawItem.setFont(font);
-            editMenu.add(drawItem);
+            JMenuItem drawLineItem = new JMenuItem("Draw line");
+            drawLineItem.setFont(font);
+            editMenu.add(drawLineItem);
+            drawLineItem.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    canvasArea.setVisible(false);
+                    canvasArea.removeMouseListener(mouseLocation);
+                    canvasLine.addMouseListener(mouseLocation);
+                    canvasLine.setVisible(true);
+                }
+            });
+
+            JMenuItem drawAreaItem = new JMenuItem("Choose area");
+            drawAreaItem.setFont(font);
+            editMenu.add(drawAreaItem);
+            drawAreaItem.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    canvasLine.setVisible(false);
+                    canvasLine.removeMouseListener(mouseLocation);
+                    canvasArea.addMouseListener(mouseLocation);
+                    canvasArea.setVisible(true);
+                }
+            });
 
             final JMenuItem graphItem = new JMenuItem("Get graph");
             graphItem.setFont(font);

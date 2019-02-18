@@ -16,12 +16,13 @@ public class MainWindow extends JFrame {
     private GraphWindow graphWindow = new GraphWindow(mainController);
     private AboutWindow aboutWindow = new AboutWindow();
     private CanvasLine canvasLine = new CanvasLine();
+    private CanvasArea canvasArea = new CanvasArea();
     //private File picture;
     private MouseLocation mouseLocation;
     private int xBorder=0, yBorder=0;
     //private static boolean pos=true;//true = 1 точка. false = 2 точка
     //private MouseLocation coordinates = new MouseLocation();
-    private Menu menu = new Menu(mainController, graphWindow, canvasLine);
+    private Menu menu = new Menu(mainController, graphWindow, canvasLine, canvasArea, mouseLocation);
 
 
     public MainWindow(){
