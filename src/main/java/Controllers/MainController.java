@@ -24,8 +24,6 @@ public class MainController {
     }*/
     public void addLine(Pixel p1, Pixel p2){
         Line l = new Line(p1, p2, picture);
-        //l.setPoint1(p1);
-        //l.setPoint2(p2);
         lineArray.add(l);
 
     }

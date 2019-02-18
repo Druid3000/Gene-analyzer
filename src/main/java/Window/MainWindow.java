@@ -15,14 +15,14 @@ public class MainWindow extends JFrame {
     private MainController mainController = new MainController();
     private GraphWindow graphWindow = new GraphWindow(mainController);
     private AboutWindow aboutWindow = new AboutWindow();
-    private CanvasLine canvasLine = new CanvasLine();
+    private CanvasLine canvasLine = new CanvasLine(mainController);
     //private CanvasArea canvasArea = new CanvasArea();
     //private File picture;
-    private MouseLocation mouseLocation;
+    //private MouseLocation mouseLocation;
     private int xBorder=0, yBorder=0;
     //private static boolean pos=true;//true = 1 точка. false = 2 точка
     //private MouseLocation coordinates = new MouseLocation();
-    private Menu menu = new Menu(mainController, graphWindow, canvasLine,/* canvasArea, */mouseLocation);
+    private Menu menu = new Menu(mainController, graphWindow, canvasLine);
 
 
     public MainWindow(){
@@ -35,42 +35,12 @@ public class MainWindow extends JFrame {
         //xBorder=getInsets().left;
         System.out.println(xBorder+":"+yBorder);
 
-        addListener();
-        //canvasLine.addMouseListener(mouseLocation);
-        /*this.addMouseListener(new MouseLocation(){
-            @Override
-            public void mousePressed (MouseEvent Event)
-            {
-                onMouseClick(Event);
-            }
-        });*/
-        //setLayout(null);
-        //canvasLine.setLocation(0, 0);
-        //JPanel panel = new JPanel();
-        //panel.setLayout(null);
-        //panel.setLocation(xBorder,yBorder);
-        //panel.add(canvasLine);
-        //panel.setPreferredSize(new Dimension());
-        //this.add(new JPanel());
-        //panel.add(canvasLine);
-        //setContentPane(panel);
-        //canvasLine.setVisible(true);
-        //canvasArea.setVisible(false);
         add(canvasLine);
-        //add(canvasArea);
         pack();
-        //canvasArea.setVisible(false);
-
-        //System.out.println(menu.get_menuBar().getHeight());
-
-        //System.out.println(canvasLine.getLocation().x+""+canvasLine.getLocation().y);
-
-        //onMenuOpenPicture(); в меню есть слушатель на это дело
-        //onMouseClick();
         onMenuOpenGraphWindow();
     }
 
-    private void addListener(){
+    /*private void addListener(){
         addMouseListener(mouseLocation = new MouseLocation(){
 
             private boolean pos=true;//true = 1 точка. false = 2 точка
@@ -106,7 +76,7 @@ public class MainWindow extends JFrame {
             {
                 //System.out.println("mouseClicked");
 
-                onMouseClick();
+                //onMouseClick();
             }
             public void mouseEntered (MouseEvent Event)
             {
@@ -132,7 +102,7 @@ public class MainWindow extends JFrame {
                         yPosition2 = Event.getY();
                     }
                     xPositionNow=Event.getX();
-                    yPositionNow=Event.getX();
+                    yPositionNow=Event.getY();
                     pos = !pos;
                 //}
 
@@ -154,8 +124,8 @@ public class MainWindow extends JFrame {
         });
         canvasLine.addMouseListener(mouseLocation);
         //canvasArea.addMouseListener(mouseLocation);
-    }
-
+    }*/
+    /*
     private void onMouseClick(){
 
         System.out.println("onMouseClick");
@@ -193,6 +163,7 @@ public class MainWindow extends JFrame {
 //        System.out.println(picture.getPath());
     }
 
+    */
     /*private void onMenuOpenPicture(){
 
         this.add(canvasLine);
@@ -207,27 +178,3 @@ public class MainWindow extends JFrame {
         //aboutWindow.drawLine(controller.getLine());
     }
 }
-/*
-public class MainWindow extends JFrame {
-    public static File picture;
-    private MainController mainController = new MainController();
-    public MainWindow(){
-        super("Gene Analyzer");//Old: Определение оптической плотности
-        super.setMinimumSize(new Dimension(1000,1000));
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-
-        final JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-
-        new Menu(mainController);//создаем меню
-        //накидываем кнопки в меню с помощью методов класса Menu
-
-        pack();
-        setLocationRelativeTo(null);
-        setVisible(true);
-
-    }
-
-}
-*/

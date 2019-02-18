@@ -32,10 +32,9 @@ public class Line {
         try {
             image = ImageIO.read(f);
             int h = image.getHeight(), w = image.getWidth(), R, G, B;
-            //int weight = w;
-            //int height = h;
+
             Pixel[][] all_pxls = new Pixel[w][h];
-            Color c = new Color(image.getRGB(100, 100));
+            Color c;
             for (int i = 0; i < w; i++) {
                 for (int j = 0; j < h; j++) {
                     c = new Color(image.getRGB(i, j));
@@ -70,7 +69,8 @@ public class Line {
                     y = k * x + b;
                     //g2d.drawLine((int) x, (int) y, (int) x, (int) y);
                     pixels.add(all_pxls[(int) x][(int) y]); //pxls[i] = all_pxls[(int) x][(int) y];//заполняю массив пикселей на отрезке
-                    x++;
+                    if (x1 < x2)x++;
+                    else x--;
                 }
             }
             //pixels = p;

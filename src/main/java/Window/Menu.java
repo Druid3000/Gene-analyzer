@@ -13,17 +13,17 @@ public class Menu {
     private MainController mainController;
     private CanvasLine canvasLine;
     //private CanvasArea canvasArea;
-    private GraphController graphController;
+    //private GraphController graphController;
     private GraphWindow graphWindow;
     private JMenuBar menuBar;
     private File picture;
-    private MouseLocation mouseLocation;
-    public Menu(MainController mc, GraphWindow gw, CanvasLine cl, MouseLocation ml){//, MouseLocation open, MouseLocation coord){//MainController mc, File pict){
+    //private MouseLocation mouseLocation;
+    public Menu(MainController mc, GraphWindow gw, CanvasLine cl){//, MouseLocation open, MouseLocation coord){//MainController mc, File pict){
             mainController=mc;
             graphWindow =gw;
             canvasLine=cl;
            // canvasArea=ca;
-            mouseLocation=ml;
+            //mouseLocation=ml;
         //picture = pict;
         //TO DO
 

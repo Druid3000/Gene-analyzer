@@ -1,11 +1,13 @@
 package Window;
 
+import Controllers.MainController;
 import Model.Line;
 import Model.Pixel;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -16,9 +18,14 @@ public  class CanvasLine extends JComponent{
     private File file;
     private ArrayList<Line> lines = new ArrayList<Line>();
     private ArrayList<Pixel> pixelArray = new ArrayList<Pixel>();
+    private MainController mainController;
     //private static int height=1000, weight=1000;
     private boolean mode=true;  //true - линии, false - области
     //private ArrayList<Pixel> pixelArray = new ArrayList<Pixel>();
+    public CanvasLine(MainController mc){
+        addListener();
+        mainController=mc;
+    }
     public void setMode(boolean m){
         mode = m;
     }
@@ -101,28 +108,6 @@ public  class CanvasLine extends JComponent{
         //try {
             super.paintComponents(g);
             Graphics2D g2d=(Graphics2D)g;
-
-            //g2d.setColor(Color.black);
-            /*if(file==null)
-            {
-                //("C:\\practice\\src\\photo1.jpg");
-                file=new File("image.png");
-                BufferedImage png = new BufferedImage(400,367,1);//ImageIO.read(file);
-                Color color = new Color(0, 0, 0);
-                png.setRGB(2, 2, color.getRGB());
-                ImageIO.write(png, "png", file);
-                file.createNewFile();
-                /*
-                FileOutputStream f = new FileOutputStream("\\image.png");
-                f.write(12);
-                f.close();
-
-
-            }*/
-            //else file= MainWindow.picture;
-            //BufferedImage image= ImageIO.read(this.file);
-            //отрисовка изображения
-            //g2d.drawImage(image, 0, 0, this);
             drawPicture(g2d);
             if(mode)drawLines(g2d);
             else drawArea();
@@ -132,5 +117,113 @@ public  class CanvasLine extends JComponent{
         //} //catch (IOException ex) {
             // handle exception...
         //}
+    }
+
+
+    private void addListener(){
+        addMouseListener(new MouseLocation(){
+
+            private boolean pos=true;//true = 1 точка. false = 2 точка
+            private int xPosition1=0;
+            private int yPosition1=0;
+            private int xPosition2=1;
+            private int yPosition2=1;
+            private int xPositionNow;
+            private int yPositionNow;
+            public int getxPosition1(){
+                return xPosition1;
+            }
+            public int getxPosition2(){
+                return xPosition2;
+            }
+            public int getyPosition1(){
+                return yPosition1;
+            }
+            public boolean getPos(){return pos;}
+            public int getyPosition2(){
+                return yPosition2;
+            }
+            public int getxPositionNow(){
+                return xPositionNow;
+            }
+            public int getyPositionNow(){
+                return yPositionNow;
+            }
+            public void setPos(boolean p){
+                pos=p;
+            }
+            public void mouseClicked (MouseEvent Event)
+            {
+                //System.out.println("mouseClicked");
+
+                //onMouseClick();
+            }
+            public void mouseEntered (MouseEvent Event)
+            {
+                //System.out.println("mouseEntered");
+            }
+            public void mouseExited (MouseEvent Event)
+            {
+                //System.out.println("mouseExited");
+            }
+            public void mousePressed (MouseEvent Event)
+            {
+                //System.out.println("mousePressed");
+                xPositionNow=Event.getX();
+                yPositionNow=Event.getY();
+                if (pos) {
+                    xPosition1 = Event.getX();
+                    yPosition1 = Event.getY();
+                } else {
+                    xPosition2 = Event.getX();
+                    yPosition2 = Event.getY();
+
+                    /////////метод из мэйнвиндоу//////////
+                    //оставил работу с геттерами а не с полями напрямую для того, чтоб потом вынести
+                    // слушатель в контроллер при желании
+                    if(getxPositionNow()<getWidth()&getyPositionNow()<getHeight()) {
+                        if (mode) {
+                            if ( file != null) {
+                                int x1 = getxPosition1();
+                                int y1 = getyPosition1();
+                                Pixel p1 = new Pixel();
+                                p1.set_x(x1);
+                                p1.set_y(y1);
+                                int x2 = getxPosition2() ;
+                                int y2 = getyPosition2() ;
+                                Pixel p2 = new Pixel();
+                                p2.set_x(x2);
+                                p2.set_y(y2);
+                                System.out.println(p1 + "" + p2);
+                                if (!(x1 == x2 & y1 == y2)) {
+                                    mainController.addLine(p1, p2);
+                                    //System.out.println(mainController.getLines());
+                                    setLines(mainController.getLines());
+                                    //canvasLine.drawLines();
+                                    //System.out.println(mouseLocation.getPos());
+                                }
+                            }
+                        } else {
+                            int x = getxPositionNow(), y = getyPositionNow();
+                            Pixel p = new Pixel();
+                            p.set_x(x);
+                            p.set_y(y);
+                            setArea(mainController.getArea(p));
+                        }
+                    }
+                    System.out.println(getPos());
+                }
+                pos = !pos;
+
+
+                System.out.println("");
+            }
+            public void mouseReleased (MouseEvent Event)
+            {
+                //xPosition2 = Event.getX() ;
+                //yPosition2 = Event.getY() ;
+                //pos=true;
+            }
+        });
     }
 }
