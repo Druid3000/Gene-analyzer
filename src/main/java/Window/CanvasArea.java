@@ -52,27 +52,6 @@ public  class CanvasArea extends JComponent{
             super.paintComponents(g);
             Graphics2D g2d=(Graphics2D)g;
 
-            /*g2d.setColor(Color.black);
-            if(file==null)
-            {
-                //("C:\\practice\\src\\photo1.jpg");
-                file=new File("image.png");
-                BufferedImage png = new BufferedImage(400,367,1);//ImageIO.read(file);
-                Color color = new Color(0, 0, 0);
-                png.setRGB(2, 2, color.getRGB());
-                ImageIO.write(png, "png", file);
-                file.createNewFile();
-                /*
-                FileOutputStream f = new FileOutputStream("\\image.png");
-                f.write(12);
-                f.close();
-
-
-            }
-            //else file= MainWindow.picture;
-            //BufferedImage image= ImageIO.read(this.file);
-            //отрисовка изображения
-            //g2d.drawImage(image, 0, 0, this);*/
             drawPicture();
             drawArea();
             super.repaint();

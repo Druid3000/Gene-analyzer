@@ -18,16 +18,11 @@ public class Menu {
     private JMenuBar menuBar;
     private File picture;
     private AboutWindow aboutWindow;
-    //private MouseLocation mouseLocation;
-    public Menu(AboutWindow aw, MainController mc, GraphWindow gw, CanvasLine cl){//, MouseLocation open, MouseLocation coord){//MainController mc, File pict){
+    public Menu(AboutWindow aw, MainController mc, GraphWindow gw, CanvasLine cl){
             mainController=mc;
             graphWindow =gw;
             canvasLine=cl;
             aboutWindow=aw;
-           // canvasArea=ca;
-            //mouseLocation=ml;
-        //picture = pict;
-        //TO DO
 
             final Font font = new Font("Verdana", Font.PLAIN, 14); //стиль менюшных строк
             menuBar = new JMenuBar();                          //меню-строка
@@ -144,14 +139,6 @@ public class Menu {
 
             graphItem.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    //final GraphWindow graphWindow = new GraphWindow();
-                    //final CanvasGraph canvGraph = new CanvasGraph();
-                    //canvGraph.setPreferredSize(new Dimension(500,500));
-                    //panel.add(canvGraph);
-                    //MainWindow.revalidate();
-                    //canvGraph.setFont(new Font("Verdana",font.PLAIN,11));
-                    //graphWindow.add(canvGraph);
-                    //graphWindow.setVisible(true);
                     graphWindow.setVisible(true);
                     closeItem.addActionListener(new ActionListener() {
                         public void actionPerformed(ActionEvent e) {

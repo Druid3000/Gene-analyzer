@@ -5,14 +5,12 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class Line {
     public static String[] cordsCode=new String[0];
     //private ArrayList<Color> colors=new ArrayList<Color>();
     private static int id=1;
     private int idThis;
-    //private Pixel[] pixels;
     private double maxDensity;
     private Color color;
     private Point point1;
