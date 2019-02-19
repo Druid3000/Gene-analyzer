@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /* Класс с отрисовкой отрезка и заполнением массива пикселей */
 class CanvasGraph extends JComponent{
-    private final int height=500, weight=600,intensity=256,xBorder=50, yBorder=50,graphHeight=400,graphWeight=400;
+    private final int height=500, weight=600,intensity=256,xBorder=50, yBorder=50,graphHeight=400,graphWeight=400;//размеры окна
     //private double maxDensity=1;
     //private ArrayList<Line> lines=new ArrayList<Line>();
     private MainController mainController;
@@ -20,6 +20,10 @@ class CanvasGraph extends JComponent{
     }
 
     public void drawCoordinateAxes(Graphics2D g){//отрисовка осей координат
+
+        g.setColor(Color.white);
+        Rectangle r = new Rectangle(xBorder, yBorder,graphWeight, graphHeight );
+        g.fill(r);
         g.setColor(Color.BLACK);
         g.drawLine(xBorder, graphHeight+yBorder, xBorder, yBorder);
         g.drawLine(xBorder, graphHeight+yBorder, graphWeight+xBorder, graphHeight+yBorder);
@@ -29,20 +33,29 @@ class CanvasGraph extends JComponent{
 
         if(mainController.getLines()!=null) {
             g.setColor(Color.BLACK);
-            int n = 20;   //n делений по оси ординат
+            int n = 10;   //n делений по оси ординат
             //int l=(int)maxDensity+1;    //максимальное значение оси ординат
             //maxDensity=l;
 
             g.drawString(Double.toString(0), xBorder / 2, (height - yBorder));
             for (int i = 1; i < n + 1; i++) {
                 g.drawString(Double.toString((double) maxDensity() * i / n), xBorder / 2, (height - yBorder) - i * graphHeight / n);//высота графика 800px
-            }
 
-            n = 10;       //n делений по оси абсцисс
+
+            }
+            for (int i = 1; i < n + 1; i++) {
+                g.setPaint(Color.GRAY);
+                g.drawLine(xBorder / 2 + 20, (height - yBorder) - i * graphHeight / n, graphWeight + 50, (height - yBorder) - i * graphHeight / n);
+                g.drawLine(xBorder + i * graphWeight / n, (height - yBorder / 2) - 20, xBorder + i * graphWeight / n, yBorder);
+            }
             maxLengthX();        //поиск максимального значение оси абсцисс (без нормирования всегда graphWeight
             g.drawString(Double.toString(0), xBorder, (height - yBorder / 2));
             for (int i = 1; i < n + 1; i++) {
+                g.setPaint(Color.black);
                 g.drawString(Integer.toString((int) graphWeight * i / n), xBorder + i * graphWeight / n, (height - yBorder / 2));//ширина графика 800px
+
+
+
             }
         }
     }
