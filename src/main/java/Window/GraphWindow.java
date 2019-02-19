@@ -18,6 +18,6 @@ public class GraphWindow extends JFrame {
         canvasGraph = new CanvasGraph(mainController);
         add(canvasGraph);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setSize(700,550);
+        setSize(550,550);
     }
 }

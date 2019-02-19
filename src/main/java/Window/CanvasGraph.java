@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 /* Класс с отрисовкой отрезка и заполнением массива пикселей */
 class CanvasGraph extends JComponent{
-    private final int height=500, weight=600,intensity=256,xBorder=50, yBorder=50,graphHeight=400,graphWeight=400;//размеры окна
+    private final int height=500, weight=450,intensity=256,xBorder=50, yBorder=50,graphHeight=400,graphWeight=400;//размеры окна
     //private double maxDensity=1;
     //private ArrayList<Line> lines=new ArrayList<Line>();
     private MainController mainController;
