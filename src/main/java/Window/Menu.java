@@ -156,7 +156,7 @@ public class Menu {
     }
 
     //TO DO (create methods for creating menu and sub-menu buttons
-    private JMenuBar get_menuBar() {
+    public JMenuBar get_menuBar() {
         return menuBar;
     }
 }

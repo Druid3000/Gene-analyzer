@@ -88,6 +88,9 @@ public class CanvasLine extends JComponent {
             }
         }
     }
+    public void setMode(boolean m){
+        mode=m;
+    }
 
     /*Метод, перерисовывающий элемент внутри окна
      *при обновлении*/
