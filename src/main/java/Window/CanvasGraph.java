@@ -40,7 +40,6 @@ class CanvasGraph extends JComponent{
             g.drawString(Double.toString(0), xBorder / 2, (height - yBorder));
             for (int i = 1; i < n + 1; i++) {
                 g.drawString(Double.toString((double) maxDensity() * i / n), xBorder / 2, (height - yBorder) - i * graphHeight / n);//высота графика 800px
-
             }
             for (int i = 1; i < n + 1; i++) {
                 g.setPaint(Color.GRAY);
