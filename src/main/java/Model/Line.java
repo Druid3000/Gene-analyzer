@@ -8,105 +8,106 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Line {
-    public static String[] cordsCode=new String[0];
+    public static String[] cordsCode = new String[0];
     private static final AtomicInteger id = new AtomicInteger(0);
     private int idThis;
     private double maxDensity;
     private Color color;
     private Point point1;
     private Point point2;
-    private ArrayList<Pixel> pixels= new ArrayList<Pixel>();
-    public Line(Pixel p1, Pixel p2, BufferedImage image){
-        int x1=p1.get_x(), x2=p2.get_x(),y1=p1.get_y(),y2=p2.get_y();
+    private ArrayList<Pixel> pixels = new ArrayList<Pixel>();
+
+    public Line(Pixel p1, Pixel p2, BufferedImage image) {
+        int x1 = p1.get_x(), x2 = p2.get_x(), y1 = p1.get_y(), y2 = p2.get_y();
         double k, b;
-        k=(double)(y1-y2)/(x1-x2);
-        b=y1-k*x1;
-        int length=Math.max(Math.abs(x1-x2),(Math.abs(y1-y2)));//длина отрезка (кол-во пикселей)
+        k = (double) (y1 - y2) / (x1 - x2);
+        b = y1 - k * x1;
+        int length = Math.max(Math.abs(x1 - x2), (Math.abs(y1 - y2)));//длина отрезка (кол-во пикселей)
         //создаю массив пикселей всего изображения
         //BufferedImage image=im;
         //try {
         //    image = ImageIO.read(f);
-            int h = image.getHeight(), w = image.getWidth(), R, G, B;
+        int h = image.getHeight(), w = image.getWidth(), R, G, B;
 
-            Pixel[][] all_pxls = new Pixel[w][h];
-            Color c;
-            for (int i = 0; i < w; i++) {
-                for (int j = 0; j < h; j++) {
-                    c = new Color(image.getRGB(i, j));
-                    R = c.getRed();
-                    G = c.getGreen();
-                    B = c.getBlue();
-                    Pixel p = new Pixel();
-                    p.set_x(i);
-                    p.set_y(j);
-                    p.set_R(R);
-                    p.set_G(G);
-                    p.set_B(B);
-                    all_pxls[i][j] = p;
-                }
+        Pixel[][] all_pxls = new Pixel[w][h];
+        Color c;
+        for (int i = 0; i < w; i++) {
+            for (int j = 0; j < h; j++) {
+                c = new Color(image.getRGB(i, j));
+                R = c.getRed();
+                G = c.getGreen();
+                B = c.getBlue();
+                Pixel p = new Pixel();
+                p.set_x(i);
+                p.set_y(j);
+                p.set_R(R);
+                p.set_G(G);
+                p.set_B(B);
+                all_pxls[i][j] = p;
             }
+        }
 
 
-            // заполнение
-            if (Math.abs(k) >= 1) {
-                double x, y = y1;
-                for (int i = 0; i < length; i++) {
-                    x = (y - b) / k;
-                    //g2d.drawLine((int) x, (int) y, (int) x, (int) y);
-                    pixels.add(all_pxls[(int)x][(int)y]); //pxls[i]=all_pxls[(int)x][(int)y];//заполняю массив пикселей на отрезке
-                    //System.out.println(x+":"+y);
-                    if (y1 < y2) y++;
-                    else y--;
-                }
-            } else {
-                double x = x1, y;
-                for (int i = 0; i < length; i++) {
-                    y = k * x + b;
-                    //g2d.drawLine((int) x, (int) y, (int) x, (int) y);
-                    pixels.add(all_pxls[(int) x][(int) y]); //pxls[i] = all_pxls[(int) x][(int) y];//заполняю массив пикселей на отрезке
-                    if (x1 < x2)x++;
-                    else x--;
-                }
+        // заполнение
+        if (Math.abs(k) >= 1) {
+            double x, y = y1;
+            for (int i = 0; i < length; i++) {
+                x = (y - b) / k;
+                //g2d.drawLine((int) x, (int) y, (int) x, (int) y);
+                pixels.add(all_pxls[(int) x][(int) y]); //pxls[i]=all_pxls[(int)x][(int)y];//заполняю массив пикселей на отрезке
+                //System.out.println(x+":"+y);
+                if (y1 < y2) y++;
+                else y--;
             }
-            //pixels = p;
-            idThis = id.incrementAndGet();
-            //System.out.println(idThis+"   "+Line.id);
-
-            switch (idThis%10) {
-                case 1:
-                    color = Color.BLACK;
-                    break;
-                case 2:
-                    color = Color.BLUE;
-                    break;
-                case 3:
-                    color = Color.CYAN;
-                    break;
-                case 4:
-                    color = Color.GREEN;
-                    break;
-                case 5:
-                    color = Color.MAGENTA;
-                    break;
-                case 6:
-                    color = Color.ORANGE;
-                    break;
-                case 7:
-                    color = Color.PINK;
-                    break;
-                case 8:
-                    color = Color.RED;
-                    break;
-                case 9:
-                    color = Color.WHITE;
-                    break;
-                case 0:
-                    color = Color.YELLOW;
-                    break;
-                default:
-                    color = Color.YELLOW;
-
+        } else {
+            double x = x1, y;
+            for (int i = 0; i < length; i++) {
+                y = k * x + b;
+                //g2d.drawLine((int) x, (int) y, (int) x, (int) y);
+                pixels.add(all_pxls[(int) x][(int) y]); //pxls[i] = all_pxls[(int) x][(int) y];//заполняю массив пикселей на отрезке
+                if (x1 < x2) x++;
+                else x--;
             }
+        }
+        //pixels = p;
+        idThis = id.incrementAndGet();
+        //System.out.println(idThis+"   "+Line.id);
+
+        switch (idThis % 10) {
+            case 1:
+                color = Color.BLACK;
+                break;
+            case 2:
+                color = Color.BLUE;
+                break;
+            case 3:
+                color = Color.CYAN;
+                break;
+            case 4:
+                color = Color.GREEN;
+                break;
+            case 5:
+                color = Color.MAGENTA;
+                break;
+            case 6:
+                color = Color.ORANGE;
+                break;
+            case 7:
+                color = Color.PINK;
+                break;
+            case 8:
+                color = Color.RED;
+                break;
+            case 9:
+                color = Color.WHITE;
+                break;
+            case 0:
+                color = Color.YELLOW;
+                break;
+            default:
+                color = Color.YELLOW;
+
+        }
     }
 
     public Point getPoint1() {
@@ -120,36 +121,43 @@ public class Line {
     public Point getPoint2() {
         return point2;
     }
+
     public void setPoint2(Point point2) {
         this.point2 = point2;
     }
-    public int getId(){
+
+    public int getId() {
         return idThis;
     }
 
-    public double getMaxDensity(int intensity){
-        for(int a=0;a<pixels.size();a++){
-            if (pixels.get(a).get_intensity()<=1){
-                maxDensity=2.9;
+    public double getMaxDensity(double intensity) {
+        for (int a = 0; a < pixels.size(); a++) {
+            if (pixels.get(a).get_intensity() <= 1) {
+                maxDensity = 2.9;
                 break;
-            }
-            else if (Math.log10((double)intensity/pixels.get(a).get_intensity())>maxDensity) maxDensity=Math.log10((double)intensity/pixels.get(a).get_intensity());
+            } else if (Math.log10( intensity / pixels.get(a).get_intensity()) > maxDensity)
+                maxDensity = Math.log10(intensity / pixels.get(a).get_intensity());
         }
         return maxDensity;
     }
-    public int getLengthX(){
-        return pixels.get(pixels.size()-1).get_x()-pixels.get(0).get_x();
+
+    public int getLengthX() {
+        return pixels.get(pixels.size() - 1).get_x() - pixels.get(0).get_x();
     }
-    public int getLength(){
+
+    public int getLength() {
         return pixels.size();
     }
-    public ArrayList<Pixel> getArray(){
+
+    public ArrayList<Pixel> getArray() {
         return pixels;
     }
-    public double getPxlIntensity(int id){
+
+    public double getPxlIntensity(int id) {
         return pixels.get(id).get_intensity();
     }
-    public Color getColor(){
+
+    public Color getColor() {
         return color;
     }
 }
