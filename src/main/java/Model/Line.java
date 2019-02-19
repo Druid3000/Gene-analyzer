@@ -72,7 +72,7 @@ public class Line {
             idThis = id.incrementAndGet();
             //System.out.println(idThis+"   "+Line.id);
 
-            switch (idThis) {
+            switch (idThis%10) {
                 case 1:
                     color = Color.BLACK;
                     break;
@@ -100,7 +100,7 @@ public class Line {
                 case 9:
                     color = Color.WHITE;
                     break;
-                case 10:
+                case 0:
                     color = Color.YELLOW;
                     break;
                 default:
