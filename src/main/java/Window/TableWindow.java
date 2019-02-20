@@ -1,3 +1,8 @@
+package Window;
+
+import Controllers.TableController;
+import Model.RtModel;
+
 import javax.swing.*;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
