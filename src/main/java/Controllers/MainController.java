@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
+///
 public class MainController {
 
     private ArrayList<Line> lineArray = new ArrayList<Line>();//массив всех линий
