@@ -52,7 +52,7 @@ class CanvasGraph extends JComponent {
 
             n = labelX;   //n делений по абсциссе
             for (int i = 1; i < n + 1; i++) {
-                g.drawString(Integer.toString( graphWeight * i / n), xBorder + i * graphWeight / n, (height - yBorder / 2));//ширина графика 800px
+                g.drawString(Integer.toString(graphWeight * i / n), xBorder + i * graphWeight / n, (height - yBorder / 2));//ширина графика 800px
             }
         }
     }

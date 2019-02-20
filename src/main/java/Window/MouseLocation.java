@@ -26,41 +26,28 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         return yPosition1;
     }
 
-    public boolean getPos() {
-        return pos;
-    }
-
     public int getyPosition2() {
         return yPosition2;
     }
 
     public int getxPositionNow() {
-        return yPosition1;
+        return xPositionNow;
     }
 
     public int getyPositionNow() {
-        return yPosition2;
-    }
-
-    public void setPos(boolean p) {
-        pos = p;
+        return yPositionNow;
     }
 
     public void mouseClicked(MouseEvent Event) {
-        //System.out.println("mouseClicked");
     }
 
     public void mouseEntered(MouseEvent Event) {
-        //System.out.println("mouseEntered");
     }
 
     public void mouseExited(MouseEvent Event) {
-        //System.out.println("mouseExited");
     }
 
     public void mousePressed(MouseEvent Event) {
-        //System.out.println("mousePressed");
-        //if((Event.getX() < CanvasLine.weight)&(Event.getY()< CanvasLine.height)) {
         if (pos) {
             xPosition1 = Event.getX();
             yPosition1 = Event.getY();
@@ -69,25 +56,16 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
             yPosition2 = Event.getY();
         }
         pos = !pos;
-        //System.out.println("x " + xPosition1);
-        //System.out.println("y " + yPosition1);
-        //}
     }
 
     public void mouseReleased(MouseEvent Event) {
-        //xPosition2 = Event.getX() ;
-        //yPosition2 = Event.getY() ;
-        //pos=true;
     }
 
-    //@Override
     public void mouseMoved(MouseEvent e) {
         xPositionNow = e.getPoint().x;
         yPositionNow = e.getPoint().y;
     }
 
-    //@Override
     public void mouseDragged(MouseEvent e) {
-        //
     }
 }

@@ -12,7 +12,6 @@ import java.io.File;
 public class Menu {
     private MainController mainController;
     private CanvasLine canvasLine;
-    //private GraphController graphController;
     private GraphWindow graphWindow;
     private JMenuBar menuBar;
     private File picture;

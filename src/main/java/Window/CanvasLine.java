@@ -88,8 +88,9 @@ public class CanvasLine extends JComponent {
             }
         }
     }
-    public void setMode(boolean m){
-        mode=m;
+
+    public void setMode(boolean m) {
+        mode = m;
     }
 
     /*Метод, перерисовывающий элемент внутри окна
@@ -101,7 +102,6 @@ public class CanvasLine extends JComponent {
         drawPicture(g2d);
         if (mode) drawLines(g2d);
         else {
-            //drawArea(g2d);
             drawAreaPerimetr(g2d);//или drawArea(g2d) - закрасит область
         }
         super.repaint();
@@ -131,10 +131,6 @@ public class CanvasLine extends JComponent {
                 return yPosition1;
             }
 
-            public boolean getPos() {
-                return pos;
-            }
-
             public int getyPosition2() {
                 return yPosition2;
             }
@@ -147,27 +143,17 @@ public class CanvasLine extends JComponent {
                 return yPositionNow;
             }
 
-            public void setPos(boolean p) {
-                pos = p;
-            }
-
             public void mouseClicked(MouseEvent Event) {
-                //System.out.println("mouseClicked");
-
-                //onMouseClick();
             }
 
             public void mouseEntered(MouseEvent Event) {
-                //System.out.println("mouseEntered");
             }
 
             public void mouseExited(MouseEvent Event) {
-                //System.out.println("mouseExited");
             }
 
             public void mousePressed(MouseEvent Event) {
                 if (Event.getButton() == MouseEvent.BUTTON1) {
-                    //System.out.println("mousePressed");
                     xPositionNow = Event.getX();
                     yPositionNow = Event.getY();
                     if (pos) {
@@ -199,13 +185,12 @@ public class CanvasLine extends JComponent {
                                             JOptionPane.showMessageDialog(null, "Удалите хотя бы одну линию, чтобы добавить новую!");
                                         else
                                             mainController.addLine(p1, p2);
-                                        lines=mainController.getLines();
+                                        lines = mainController.getLines();
                                     }
                                 }
                             }
 
                         }
-                        //System.out.println(getPos());
                     }
                     if (!mode) {
                         int x = getxPositionNow(), y = getyPositionNow();
@@ -216,22 +201,15 @@ public class CanvasLine extends JComponent {
                         p.set_G((new Color(picture.getRGB(x, y)).getGreen()));
                         p.set_B((new Color(picture.getRGB(x, y)).getBlue()));
                         mainController.setArea(p);
-                        //System.out.println(p.get_R()+" "+p.get_G()+" "+p.get_B());
-                        //System.out.println(p.get_x()+":"+p.get_y());
-                        //setArea(mainController.getAreaPerimetr(p));
-                        //repaint();
                     }
 
                     pos = !pos;
 
 
-                }//System.out.println("");
+                }
             }
 
             public void mouseReleased(MouseEvent Event) {
-                //xPosition2 = Event.getX() ;
-                //yPosition2 = Event.getY() ;
-                //pos=true;
             }
         });
     }
@@ -257,15 +235,11 @@ public class CanvasLine extends JComponent {
     }
 
     private void reloadJPopMenu() {
-        /*for (int i=0;i<popupMenu.getSubElements().length;i++)
-            popupMenu.remove(i);
-        popupMenu.updateUI();*/
         popupMenu = new JPopupMenu();
         for (int i = 0; i < lines.size(); i++) {
             JMenuItem cutMenuItem = new JMenuItem("Удалить линию номер" + lines.get(i).getId());
             cutMenuItem.addActionListener(new JPopMenuListener(i) {
                 public void actionPerformed(ActionEvent e) {
-                    //System.out.println(popupMenu.getSubElements().length);
                     lines.remove(this.id);
                 }
             });
@@ -276,7 +250,6 @@ public class CanvasLine extends JComponent {
         JMenuItem deleteAll = new JMenuItem("Удалить все линии");
         deleteAll.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //System.out.println(popupMenu.getSubElements().length);
                 lines.clear();
             }
         });

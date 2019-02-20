@@ -5,13 +5,11 @@ import Controllers.MainController;
 import javax.swing.*;
 
 public class GraphWindow extends JFrame {
-    //private GraphController graphController=new GraphController();
     private MainController mainController;
     private CanvasGraph canvasGraph;
 
     public GraphWindow(MainController mc) {
         setTitle("Графики оптической плотности");
-        //graphController.setLines(l);
         mainController = mc;
         canvasGraph = new CanvasGraph(mainController);
         add(canvasGraph);
