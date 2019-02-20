@@ -4,7 +4,6 @@ package Controllers;
 import Model.Area;
 import Model.Line;
 import Model.Pixel;
-import Model.Point;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -13,9 +12,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-///
 public class MainController {
-
     private ArrayList<Line> lineArray = new ArrayList<Line>();//массив всех линий
     private ArrayList<Pixel> graphPixels = new ArrayList<Pixel>();//массив пикселей для отрисовки графиков
     private Area area = new Area();
@@ -45,7 +42,7 @@ public class MainController {
         try {
             picture = ImageIO.read(f);
         } catch (IOException ex) {
-            // handle exception...
+            //
         }
     }
 
@@ -58,12 +55,10 @@ public class MainController {
     }
 
     public ArrayList<Pixel> getArea() {
-        //area.setArea(p,picture);
         return area.getArea();
     }
 
     public ArrayList<Pixel> getAreaPerimetr() {
-        //area.setArea(p,picture);
         return area.getAreaPerimetr();
     }
 
@@ -77,7 +72,7 @@ public class MainController {
         return maxDensity;
     }
 
-    public void setBackgroundIntensity(Pixel p) {
+    public void setBackgroundIntensity(Pixel p) {   //для установки по желанию интенсивности пикселя за интенсивность фона
         backgroundIntensity = p.get_intensity();
     }
 

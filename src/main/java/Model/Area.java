@@ -1,9 +1,7 @@
 package Model;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.ArrayList;
 
 public class Area {
@@ -18,10 +16,9 @@ public class Area {
         int x = pixel.get_x(), y = pixel.get_y();
         double intensity = pixel.get_intensity();
         if (intensity == 0) intensity = 0.000001;
-        //System.out.println(intensity + " это интенсивность первого пикселя");
         pixels.add(pixel);
         all_pxls[x][y].set_R(1000000);
-        checkNear(all_pxls, x, y, intensity);
+        checkNear(all_pxls, x, y, intensity,0);
 
     }
 
@@ -33,69 +30,55 @@ public class Area {
         return perimetr;
     }
 
-    private void checkNear(Pixel[][] all_pxls, int x, int y, double intensity) {
-
-//        System.out.println("checkNear"+Integer.toString(pixels.size()));
-
+    private void checkNear(Pixel[][] all_pxls, int x, int y, double intensity,int side) {//side - показывает, откуда пришла проверка
+        //side = 0 - начало; 1 - слева; 2 - справа; 3 - сверху; 4 - снизу.
         double newIntensity;
-        if (x - 1 >= 0)//слева от пикселя
+        if ((x - 1 >= 0)&side!=1)//слева от пикселя
         {
             newIntensity = all_pxls[x - 1][y].get_intensity();
             if (newIntensity == 0) newIntensity = 0.000001;
-            //System.out.println(pixels.size()+ "слева от пикселя " + (x-1)+y);
             if ((Math.abs(newIntensity - intensity) / (intensity)) <= delta) {
                 pixels.add(all_pxls[x - 1][y]);
                 all_pxls[x - 1][y].set_R(1000000);
-                //System.out.println(pixels.size()+ "слева от пикселя " + (x-1)+y);
-                checkNear(all_pxls, x - 1, y, intensity);
-                //System.out.println(x+":"+y);
+                checkNear(all_pxls, x - 1, y, intensity,2);
             } else if (all_pxls[x - 1][y].get_intensity() < 256) perimetr.add(all_pxls[x - 1][y]);
         }
-        if (x + 1 < all_pxls.length)//cправа от пикселя
+        if (x + 1 < all_pxls.length&side!=2)//cправа от пикселя
         {
             newIntensity = all_pxls[x + 1][y].get_intensity();
             if (newIntensity == 0) newIntensity = 0.000001;
-            //System.out.println(pixels.size()+ "справа от пикселя " + (x+1)+y);
             if ((Math.abs(newIntensity - (intensity)) / (intensity)) <= delta) {
                 pixels.add(all_pxls[x + 1][y]);
                 all_pxls[x + 1][y].set_R(1000000);
-                //System.out.println(pixels.size()+ "справа от пикселя " + (x+1)+y);
-                checkNear(all_pxls, x + 1, y, intensity);
+                checkNear(all_pxls, x + 1, y, intensity,1);
             } else if (all_pxls[x + 1][y].get_intensity() < 256) perimetr.add(all_pxls[x + 1][y]);
         }
-        if (y - 1 >= 0)//сверху от пикселя
+        if (y - 1 >= 0&side!=3)//сверху от пикселя
         {
             newIntensity = all_pxls[x][y - 1].get_intensity();
             if (newIntensity == 0) newIntensity = 0.000001;
-            //System.out.println(pixels.size()+ "сверху от пикселя " + (x)+(y-1));
             if ((Math.abs(newIntensity - (intensity)) / (intensity)) <= delta) {
                 pixels.add(all_pxls[x][y - 1]);
                 all_pxls[x][y - 1].set_R(1000000);
-                //System.out.println(pixels.size());
-                checkNear(all_pxls, x, y - 1, intensity);
+                checkNear(all_pxls, x, y - 1, intensity,4);
             } else if (all_pxls[x][y - 1].get_intensity() < 256) perimetr.add(all_pxls[x][y - 1]);
         }
-        if (y + 1 < all_pxls[0].length)//снизу от пикселя
+        if (y + 1 < all_pxls[0].length&side!=4)//снизу от пикселя
         {
             newIntensity = all_pxls[x][y + 1].get_intensity();
             if (newIntensity == 0) newIntensity = 0.000001;
-            //System.out.println(pixels.size()+ "снизу от пикселя " + (x)+(y+1));
             if ((Math.abs(newIntensity - (intensity)) / (intensity)) <= delta) {
                 pixels.add(all_pxls[x][y + 1]);
                 all_pxls[x][y + 1].set_R(1000000);
-                //System.out.println(pixels.size()+ "снизу от пикселя " + (x)+(y+1));
-                checkNear(all_pxls, x, y + 1, intensity);
+                checkNear(all_pxls, x, y + 1, intensity,3);
             } else if (all_pxls[x][y + 1].get_intensity() < 256) perimetr.add(all_pxls[x][y + 1]);
         }
     }
 
     private Pixel[][] arrayFromPicture(BufferedImage image) {
         Pixel[][] all_pxls;
-        //try {
-        //BufferedImage image =im;
         int h = image.getHeight(), w = image.getWidth(), R, G, B;
         all_pxls = new Pixel[w][h];
-        //System.out.println(w+" and "+h);
         Color c;
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
@@ -113,8 +96,6 @@ public class Area {
             }
         }
 
-        //}
-        //catch (Exception e){};
         return all_pxls;
     }
 }

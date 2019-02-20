@@ -117,7 +117,7 @@ public class Line {
             if (pixels.get(a).get_intensity() <= 1) {
                 maxDensity = 2.9;
                 break;
-            } else if (Math.log10( intensity / pixels.get(a).get_intensity()) > maxDensity)
+            } else if (Math.log10(intensity / pixels.get(a).get_intensity()) > maxDensity)
                 maxDensity = Math.log10(intensity / pixels.get(a).get_intensity());
         }
         return maxDensity;

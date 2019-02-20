@@ -63,7 +63,7 @@ public class Pixel {
 
     @Override
     public String toString() {
-        return "Point{" +
+        return "PIxel{" +
                 "x=" + x +
                 ", y=" + y +
                 ", color=" + R + "," + G + "" + B +
