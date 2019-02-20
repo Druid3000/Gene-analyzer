@@ -13,8 +13,6 @@ public class Line {
     private int idThis;
     private double maxDensity;
     private Color color;
-    private Point point1;
-    private Point point2;
     private ArrayList<Pixel> pixels = new ArrayList<Pixel>();
 
     public Line(Pixel p1, Pixel p2, BufferedImage image) {
@@ -110,22 +108,6 @@ public class Line {
         }
     }
 
-    public Point getPoint1() {
-        return point1;
-    }
-
-    public void setPoint1(Point point1) {
-        this.point1 = point1;
-    }
-
-    public Point getPoint2() {
-        return point2;
-    }
-
-    public void setPoint2(Point point2) {
-        this.point2 = point2;
-    }
-
     public int getId() {
         return idThis;
     }
@@ -141,7 +123,7 @@ public class Line {
         return maxDensity;
     }
 
-    public int getLengthX() {
+    public int getLengthX() {   //метод для масштабирования по оси абсцисс
         return pixels.get(pixels.size() - 1).get_x() - pixels.get(0).get_x();
     }
 
