@@ -1,6 +1,12 @@
+package Window;
+
+import Controllers.TableController;
+import Model.RtModel;
+
 import javax.swing.*;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
+
 
 //класс является View в модели MVC и представляет взаимодействие пользователя или программы с моделью Таблицы
 public class TableWindow extends JFrame {

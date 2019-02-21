@@ -1,3 +1,5 @@
+package Model;
+
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 
@@ -76,9 +78,9 @@ public class RtModel extends AbstractTableModel {
         for (int i=0; i < new_data.length; i++){
             row[2]=+ new_data[i];
         }
-        row[1] = (double)row[2]/(int)row[3];
+        /*row[1] = (double)row[2]/(int)row[3];
         row[1] = Math.log((int)row[4]/(double)row[1]);
-        row[2] = Math.log((int)row[4]/(double)row[2]);
+        row[2] = Math.log((int)row[4]/(double)row[2]);*/
         return row;
     }
 
@@ -90,7 +92,7 @@ public class RtModel extends AbstractTableModel {
     }
 
     //удаление строки с заданным индексом
-    public void deleteValueAt(int id){
+    /*public void deleteValueAt(int id){
         for (int i=0; i<data.size();i++){
             if ((int)data.get(i)[0] == id){
                 data.remove(i);
@@ -99,5 +101,5 @@ public class RtModel extends AbstractTableModel {
             }
         }
         fireTableDataChanged();
-    }
+    }*/
 }

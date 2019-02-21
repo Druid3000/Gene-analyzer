@@ -1,3 +1,7 @@
+package Controllers;
+
+
+import Model.RtModel;
 
 //класс Контроллера для связи модели таблицы и интерфейса пользователя
 public class TableController {
@@ -30,7 +34,7 @@ public class TableController {
 
     //метод для передачи индекса удаляемой ячейки
     public void TransferDeleteData(int id_row){
-        tm.deleteValueAt(id_row);
+        //tm.deleteValueAt(id_row);
     }
 
 
