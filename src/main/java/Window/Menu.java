@@ -31,9 +31,22 @@ public class Menu {
         JMenu newMenu = new JMenu("New");                       //под-меню в меню "file"
         newMenu.setFont(font);
         fileMenu.add(newMenu);
-        JMenuItem txtFileItem = new JMenuItem("Text file");
-        txtFileItem.setFont(font);
-        newMenu.add(txtFileItem);
+        /*Аня: я переименовала один из пунктов подменю "New" в "Table", оно служит для отображения таблицы
+          с результатами оптических плотностей*/
+        JMenuItem TableItem = new JMenuItem("Table");
+        TableItem.setFont(font);
+        newMenu.add(TableItem);
+        TableItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //canvasArea.setVisible(false);
+                //canvasArea.removeMouseListener(mouseLocation);
+                //canvasLine.addMouseListener(mouseLocation);
+                TableWindow tableWindow = new TableWindow();
+                TableWindow.be = true;
+            }
+        });
+
+
         JMenuItem imgFileItem = new JMenuItem("Image file");
         imgFileItem.setFont(font);
         newMenu.add(imgFileItem);

@@ -80,7 +80,7 @@ public class MainController {
         backgroundIntensity = p.get_intensity();
     }
 
-    private double getBackgroundIntensity() {
+    public double getBackgroundIntensity() {
         return backgroundIntensity;
     }
 

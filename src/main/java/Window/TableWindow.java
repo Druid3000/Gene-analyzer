@@ -1,11 +1,13 @@
 package Window;
 
 import Controllers.TableController;
+import Model.Pixel;
 import Model.RtModel;
 
 import javax.swing.*;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
+import java.util.ArrayList;
 
 
 //класс является View в модели MVC и представляет взаимодействие пользователя или программы с моделью Таблицы
@@ -15,11 +17,13 @@ public class TableWindow extends JFrame {
     //---------------------------------------
 
     //поле контроллера (для работы с классом модели)
-    private TableController table_controller;
+    private static TableController table_controller;
     //поля, содержащее таблицу
     private JTable results_table;
     //поле модели столбца
     private TableColumnModel tcm;
+    //поле существования данного окна
+    public static boolean be = false;
 
 
 
@@ -35,7 +39,7 @@ public class TableWindow extends JFrame {
         //установка иконки для окна
         setIconImage(getToolkit().getImage("iconTable.gif"));
         //действие при закрытии окна
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
         //создаем таблицу
         CreateTable();
         //видимость окна
@@ -43,7 +47,7 @@ public class TableWindow extends JFrame {
     }
 
     //конструктор для создания класса с заполнением первой строки таблицы
-    public TableWindow(Double[] new_data, int number_area, int bi){
+    public TableWindow(ArrayList<Pixel> area, double bi){
         super("Table of the optical density");
         //установка диспетчера компоновки
         getContentPane().setLayout(new FlowLayout());
@@ -54,7 +58,7 @@ public class TableWindow extends JFrame {
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         //создаем таблицу
         CreateTable();
-        AddData(new_data, number_area, bi);
+        AddData(area,bi);
         setVisible(true);
     }
 
@@ -100,8 +104,12 @@ public class TableWindow extends JFrame {
     }
 
     //метод для добавления информации (строки) в таблицу
-    public void AddData(Double[] new_data, int number_area, int bi){
-        table_controller.TransferAddData(new_data, number_area, bi);
+    public static void AddData(ArrayList<Pixel> area, double bi){
+        Double[] new_data = new Double[area.size()];
+        for (int i=0; i<area.size();i++){
+            new_data[i] = area.get(i).get_intensity();
+        }
+        table_controller.TransferAddData(new_data, bi);
     }
 
     //метод для удаления указанной строки из таблицы

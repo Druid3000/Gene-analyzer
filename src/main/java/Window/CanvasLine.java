@@ -220,6 +220,10 @@ public class CanvasLine extends JComponent {
                         //System.out.println(p.get_x()+":"+p.get_y());
                         //setArea(mainController.getAreaPerimetr(p));
                         //repaint();
+                        //Аня: проверяем открыта ли таблица, если да, то передаем область в обработку
+                        if (TableWindow.be){
+                            TableWindow.AddData(mainController.getArea(), mainController.getBackgroundIntensity());
+                        }
                     }
 
                     pos = !pos;

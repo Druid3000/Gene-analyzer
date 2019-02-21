@@ -14,6 +14,8 @@ public class RtModel extends AbstractTableModel {
     private ArrayList<Object[]> data = new ArrayList<Object[]>();
     //поле с количеством строк
     private byte numRows = 0;
+    //поле номера строки в таблице
+    private byte number_area = 1;
 
 
 
@@ -26,9 +28,10 @@ public class RtModel extends AbstractTableModel {
     }
 
     //конструктор с заполнением первой строки
-    public RtModel(Double[] data, int number_area, int bi){
-        this.data.add(setData(data, number_area, bi));
+    public RtModel(Double[] data, double bi){
+        this.data.add(setData(data, bi));
         numRows++;
+        number_area++;
     }
 
 
@@ -70,24 +73,31 @@ public class RtModel extends AbstractTableModel {
     }
 
     //получение входных данных и их преобразование к табличным значениям
-    public Object[] setData(Double[] new_data, int number_area, int bi) {
-        Object row[] = new Object[5];
-        row[0] = number_area;
-        row[3] = new_data.length;
-        row[4] = bi;
-        for (int i=0; i < new_data.length; i++){
-            row[2]=+ new_data[i];
+    public Object[] setData(Double[] new_data, double bi) {
+        byte r0 = number_area;
+        double r1 = 0, r2 = 0, r4;
+        int r3;
+        //находим Average OD
+        for (int i=0; i<new_data.length;i++){
+            r1 += new_data[i];
         }
-        /*row[1] = (double)row[2]/(int)row[3];
-        row[1] = Math.log((int)row[4]/(double)row[1]);
-        row[2] = Math.log((int)row[4]/(double)row[2]);*/
+        r1 = Math.log(bi/(r1/new_data.length));
+        //находим Total OD
+        for (int i=0; i<new_data.length;i++){
+            r2 += Math.log(bi/new_data[i]);
+        }
+        r3 = new_data.length;
+        r4 = bi;
+
+        Object[] row = {r0, r1, r2, r3, r4};
         return row;
     }
 
     //добавление новой строки
-    public void setValueAt(Double[] new_data, int number_area, int bi){
-        data.add(setData(new_data, number_area, bi));
+    public void setValueAt(Double[] new_data, double bi){
+        data.add(setData(new_data, bi));
         numRows++;
+        number_area++;
         fireTableDataChanged();
     }
 
