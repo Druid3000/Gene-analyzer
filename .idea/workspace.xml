@@ -2,22 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd0d623b-9178-44d7-b489-3545daf2ac00" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/MainController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/TableController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/TableController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Model/RtModel.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Model/RtModel.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Window/CanvasLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Window/CanvasLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Window/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Window/Menu.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Window/TableWindow.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Window/TableWindow.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$7$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -33,7 +21,7 @@
           <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Model/RtModel.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="239">
@@ -60,8 +48,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/TableController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="238">
-              <caret line="31" column="36" lean-forward="true" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
+            <state relative-caret-position="34">
+              <caret line="2" selection-start-line="2" selection-end-line="2" />
               <folding>
                 <element signature="e#630#631#0" expanded="true" />
                 <element signature="e#686#687#0" expanded="true" />
@@ -70,13 +58,12 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/main/java/Window/TableWindow.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="45" column="25" lean-forward="true" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
+            <state relative-caret-position="-1518">
+              <caret line="4" selection-start-line="4" selection-end-line="4" />
               <folding>
-                <element signature="imports" expanded="true" />
                 <element signature="e#3963#3964#0" expanded="true" />
                 <element signature="e#4022#4023#0" expanded="true" />
               </folding>
@@ -145,11 +132,11 @@
         <option value="$PROJECT_DIR$/src/TableDirectory/Main" />
         <option value="$PROJECT_DIR$/src/main/java/Main.java" />
         <option value="$PROJECT_DIR$/src/main/java/Controllers/MainController.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Controllers/TableController.java" />
         <option value="$PROJECT_DIR$/src/main/java/Window/CanvasLine.java" />
-        <option value="$PROJECT_DIR$/src/main/java/Window/TableWindow.java" />
         <option value="$PROJECT_DIR$/src/main/java/Window/Menu.java" />
         <option value="$PROJECT_DIR$/src/main/java/Model/RtModel.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Controllers/TableController.java" />
+        <option value="$PROJECT_DIR$/src/main/java/Window/TableWindow.java" />
       </list>
     </option>
   </component>
@@ -196,38 +183,6 @@
               <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
               <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Gene-analyzer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="Gene-analyzer" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Controllers" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Gene-analyzer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="Gene-analyzer" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="helloworld" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Gene-analyzer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="Gene-analyzer" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Model" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Gene-analyzer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="Gene-analyzer" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="Window" type="9f88c78c:ScopeViewTreeModel$FileNode" />
             </path>
           </expand>
           <select />
@@ -437,29 +392,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/TableController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="238">
-          <caret line="31" column="36" lean-forward="true" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
-          <folding>
-            <element signature="e#630#631#0" expanded="true" />
-            <element signature="e#686#687#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Window/TableWindow.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="45" column="25" lean-forward="true" selection-start-line="45" selection-start-column="25" selection-end-line="45" selection-end-column="25" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#3963#3964#0" expanded="true" />
-            <element signature="e#4022#4023#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Window/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-136">
@@ -509,6 +441,28 @@
           <caret line="89" column="16" lean-forward="true" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
           <folding>
             <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/TableController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="34">
+          <caret line="2" selection-start-line="2" selection-end-line="2" />
+          <folding>
+            <element signature="e#630#631#0" expanded="true" />
+            <element signature="e#686#687#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Window/TableWindow.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1518">
+          <caret line="4" selection-start-line="4" selection-end-line="4" />
+          <folding>
+            <element signature="e#3963#3964#0" expanded="true" />
+            <element signature="e#4022#4023#0" expanded="true" />
           </folding>
         </state>
       </provider>

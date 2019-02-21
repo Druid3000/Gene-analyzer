@@ -1,6 +1,5 @@
 package Controllers;
 
-
 import Model.RtModel;
 
 //класс Контроллера для связи модели таблицы и интерфейса пользователя
