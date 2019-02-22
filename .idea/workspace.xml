@@ -2,47 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="bd0d623b-9178-44d7-b489-3545daf2ac00" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/Gene-analyzer.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/iconTable.gif" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Controllers/TableController.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Model/RtModel.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/Window/TableWindow.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/Controllers/TableController.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/Main.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/Model/Point.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/Model/RtModel.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/Window/Menu$8$1.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/Window/Menu$8.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/Window/TableWindow.class" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/target/classes/helloworld/First.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Controllers/MainController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Controllers/MainController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Window/CanvasLine.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Window/CanvasLine.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Window/Menu.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Window/Menu.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Controllers/MainController.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Controllers/MainController.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Area.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Area.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Line.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Line.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Model/Pixel.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Model/Pixel.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/CanvasLine$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/CanvasLine$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/CanvasLine$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/CanvasLine$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/CanvasLine$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/CanvasLine$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/CanvasLine$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/CanvasLine$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/CanvasLine.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/CanvasLine.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/GraphWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/GraphWindow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/JPopMenuListener.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/JPopMenuListener.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/MainWindow.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/MainWindow.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$1.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu$1.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$2.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu$2.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$3.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu$3.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$4.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu$4.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$5.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu$5.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$6.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu$6.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$7$1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu$7.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu$7.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/Menu.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/Menu.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Window/MouseLocation.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Window/MouseLocation.class" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/target/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -52,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Window/Main.java">
           <provider selected="true" editor-type-id="text-editor">
@@ -62,7 +23,7 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="170">
@@ -71,13 +32,18 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="142">
-              <caret line="462" column="16" selection-start-line="462" selection-start-column="16" selection-end-line="462" selection-end-column="16" />
+            <state relative-caret-position="7514">
+              <caret line="442" column="16" selection-start-line="442" selection-start-column="16" selection-end-line="442" selection-end-column="16" />
             </state>
           </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.gitignore">
+          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -92,7 +58,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/Window/Menu.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2049">
+            <state relative-caret-position="68">
               <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
             </state>
           </provider>
@@ -153,6 +119,35 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scope">
+        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
+          <expand>
+            <path>
+              <item name="Gene-analyzer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="Gene-analyzer" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+            </path>
+            <path>
+              <item name="Gene-analyzer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="Gene-analyzer" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Gene-analyzer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="Gene-analyzer" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+            <path>
+              <item name="Gene-analyzer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
+              <item name="Gene-analyzer" type="2674bda8:ScopeViewTreeModel$GroupNode" />
+              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
       <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
@@ -212,35 +207,6 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope">
-        <subPane subId="Scope 'Project Files'; set:Project Files; class com.intellij.psi.search.scope.ProjectFilesScope">
-          <expand>
-            <path>
-              <item name="Gene-analyzer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="Gene-analyzer" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-            </path>
-            <path>
-              <item name="Gene-analyzer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="Gene-analyzer" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Gene-analyzer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="Gene-analyzer" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-            <path>
-              <item name="Gene-analyzer" type="3d21c010:ScopeViewTreeModel$ProjectNode" />
-              <item name="Gene-analyzer" type="2674bda8:ScopeViewTreeModel$GroupNode" />
-              <item name="src" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="main" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-              <item name="java" type="9f88c78c:ScopeViewTreeModel$FileNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -248,7 +214,8 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/Gene-analyzer.iml" />
     <property name="project.structure.last.edited" value="Project" />
     <property name="project.structure.proportion" value="0.0" />
-    <property name="project.structure.side.proportion" value="0.0" />
+    <property name="project.structure.side.proportion" value="0.2" />
+    <property name="settings.editor.selected.configurable" value="reference.settings.ide.settings.notifications" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -312,9 +279,8 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-7" y="-7" width="1550" height="838" extended-state="6" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.24966443" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25302014" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -323,7 +289,7 @@
       <window_info id="Favorites" order="6" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.3286119" />
+      <window_info anchor="bottom" id="Run" order="2" weight="0.3286119" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
@@ -331,7 +297,7 @@
       <window_info anchor="bottom" id="Terminal" order="7" />
       <window_info anchor="bottom" id="Event Log" order="8" side_tool="true" weight="0.3286119" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.34135976" />
-      <window_info anchor="bottom" id="Messages" order="10" weight="0.3286119" />
+      <window_info anchor="bottom" id="Messages" order="10" visible="true" weight="0.3286119" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -414,13 +380,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/MainController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="85">
-          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Window/MainWindow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="149">
@@ -449,6 +408,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Window/AboutWindow.java">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Model/RtModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="239">
+          <caret line="89" column="16" lean-forward="true" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/Window/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="119">
+          <caret line="7" column="1" selection-start-line="7" selection-start-column="1" selection-end-line="7" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7514">
+          <caret line="442" column="16" selection-start-line="442" selection-start-column="16" selection-end-line="442" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Window/TableWindow.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="102">
@@ -458,13 +447,10 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Window/Menu.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2049">
+        <state relative-caret-position="68">
           <caret line="11" column="13" selection-start-line="11" selection-start-column="13" selection-end-line="11" selection-end-column="13" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Window/AboutWindow.java">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/Window/CanvasLine.java">
       <provider selected="true" editor-type-id="text-editor">
@@ -473,13 +459,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/Model/RtModel.java">
+    <entry file="file://$PROJECT_DIR$/src/main/java/Controllers/MainController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="89" column="16" lean-forward="true" selection-start-line="89" selection-start-column="16" selection-end-line="89" selection-end-column="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="85">
+          <caret line="14" column="13" selection-start-line="14" selection-start-column="13" selection-end-line="14" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="170">
+          <caret line="10" selection-start-line="10" selection-end-line="10" />
         </state>
       </provider>
     </entry>
@@ -523,7 +513,7 @@
       </state>
       <state key="JdkListConfigurable.UI">
         <settings>
-          <last-edited>11</last-edited>
+          <last-edited>11 (4)</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -535,6 +525,19 @@
       </state>
       <state key="ModuleStructureConfigurable.UI">
         <settings>
+          <last-edited>Gene-analyzer</last-edited>
+          <splitter-proportions>
+            <option name="proportions">
+              <list>
+                <option value="0.2" />
+                <option value="0.6" />
+              </list>
+            </option>
+          </splitter-proportions>
+        </settings>
+      </state>
+      <state key="ProjectLibrariesConfigurable.UI">
+        <settings>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -544,7 +547,7 @@
           </splitter-proportions>
         </settings>
       </state>
-      <state key="ProjectLibrariesConfigurable.UI">
+      <state key="ScopeChooserConfigurable.UI">
         <settings>
           <splitter-proportions>
             <option name="proportions">
