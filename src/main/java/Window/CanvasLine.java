@@ -201,6 +201,11 @@ public class CanvasLine extends JComponent {
                         p.set_G((new Color(picture.getRGB(x, y)).getGreen()));
                         p.set_B((new Color(picture.getRGB(x, y)).getBlue()));
                         mainController.setArea(p);
+
+                        //Аня: проверяем открыта ли таблица, если да, то передаем область в обработку
+                        if (TableWindow.be){
+                            TableWindow.AddData(mainController.getArea(), mainController.getBackgroundIntensity());
+                        }
                     }
 
                     pos = !pos;
