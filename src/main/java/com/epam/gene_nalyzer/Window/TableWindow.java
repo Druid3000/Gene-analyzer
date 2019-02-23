@@ -1,18 +1,13 @@
-package Window;
+package com.epam.gene_nalyzer.Window;
 
-import Controllers.MainController;
-import Controllers.TableController;
-import Model.Pixel;
-import Model.RtModel;
+import com.epam.gene_nalyzer.Controllers.MainController;
+import com.epam.gene_nalyzer.Model.RtModel;
 
 import javax.swing.*;
 import javax.swing.event.TableModelEvent;
 import javax.swing.event.TableModelListener;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
-import java.util.ArrayList;
-
-import static com.sun.java.accessibility.util.SwingEventMonitor.addTableModelListener;
 
 
 //класс является View в модели MVC и представляет взаимодействие пользователя или программы с моделью Таблицы
@@ -36,7 +31,7 @@ public class TableWindow extends JFrame {
     //---------------------------------------
 
     //конструктор для создания класса без заполнения первой строки таблицы // не используется
-    /*public TableWindow(MainController mc){
+    /*public TableWindow(com.epam.gene_nalyzer.Controllers.MainController mc){
         super("Table of the optical density");
         mainController = mc;
         //установка диспетчера компоновки

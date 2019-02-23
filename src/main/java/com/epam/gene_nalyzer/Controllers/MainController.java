@@ -1,10 +1,8 @@
+package com.epam.gene_nalyzer.Controllers;
 
-package Controllers;
-
-import Model.*;
+import com.epam.gene_nalyzer.Model.*;
 
 import javax.imageio.ImageIO;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;

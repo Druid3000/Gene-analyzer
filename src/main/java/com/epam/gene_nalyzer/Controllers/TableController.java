@@ -1,6 +1,6 @@
-package Controllers;
+package com.epam.gene_nalyzer.Controllers;
 
-import Model.RtModel;
+import com.epam.gene_nalyzer.Model.RtModel;
 
 //класс Контроллера для связи модели таблицы и интерфейса пользователя
 public class TableController {

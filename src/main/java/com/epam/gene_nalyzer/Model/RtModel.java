@@ -1,4 +1,4 @@
-package Model;
+package com.epam.gene_nalyzer.Model;
 
 import javax.swing.table.AbstractTableModel;
 import javax.swing.table.DefaultTableModel;
