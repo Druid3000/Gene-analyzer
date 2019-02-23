@@ -1,9 +1,4 @@
-package Controllers;
-
-import Model.Line;
-import com.sun.corba.se.impl.orbutil.graph.Graph;
-
-import java.util.ArrayList;
+package com.epam.gene_nalyzer.Controllers;
 
 public class GraphController {
     private boolean visible = false;
