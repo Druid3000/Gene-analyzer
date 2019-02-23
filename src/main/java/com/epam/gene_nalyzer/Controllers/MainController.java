@@ -1,9 +1,9 @@
 
-package Controllers;
+package com.epam.gene_nalyzer.Controllers;
 
-import Model.Area;
-import Model.Line;
-import Model.Pixel;
+import com.epam.gene_nalyzer.Model.Area;
+import com.epam.gene_nalyzer.Model.Line;
+import com.epam.gene_nalyzer.Model.Pixel;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

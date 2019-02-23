@@ -1,4 +1,4 @@
-package Window;
+package com.epam.gene_nalyzer.Window;
 
 import javax.swing.*;
 

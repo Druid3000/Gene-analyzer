@@ -1,6 +1,6 @@
-package Window;
+package com.epam.gene_nalyzer.Window;
 
-import Controllers.MainController;
+import com.epam.gene_nalyzer.Controllers.MainController;
 
 
 import javax.swing.*;

@@ -1,8 +1,7 @@
-package Window;
+package com.epam.gene_nalyzer.Window;
 
-import Controllers.MainController;
-import Model.Line;
-import Model.Pixel;
+import com.epam.gene_nalyzer.Controllers.MainController;
+import com.epam.gene_nalyzer.Model.Pixel;
 
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +18,6 @@ class CanvasGraph extends JComponent {
     }
 
     private void drawCoordinateAxes(Graphics2D g) {//отрисовка осей координат
-
         g.setColor(Color.white);
         Rectangle r = new Rectangle(xBorder, yBorder, graphWeight, graphHeight);
         g.fill(r);
