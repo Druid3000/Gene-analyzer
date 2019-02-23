@@ -27,10 +27,10 @@ public class TableController {
     //----------------------------------------
 
     //метод для передачи добавляемых данных
-    public void TransferAddData(Double[] new_data, double bi){
+    /*public void TransferAddData(Double[] new_data, double bi){
         tm.setValueAt(new_data, bi);
     }
-
+    */
     //метод для передачи индекса удаляемой ячейки
     public void TransferDeleteData(int id_row){
         //tm.deleteValueAt(id_row);

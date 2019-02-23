@@ -12,8 +12,9 @@ public class MainWindow extends JFrame {
     private MainController mainController = new MainController();
     private GraphWindow graphWindow = new GraphWindow(mainController);
     private AboutWindow aboutWindow = new AboutWindow();
+    private TableWindow tableWindow = new TableWindow(mainController);
     private CanvasLine canvasLine = new CanvasLine(mainController);
-    private Menu menu = new Menu(aboutWindow, mainController, graphWindow, canvasLine);
+    private Menu menu = new Menu(aboutWindow, tableWindow, mainController, graphWindow, canvasLine);
 
 
     public MainWindow() {

@@ -1,9 +1,10 @@
 package Model;
 
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
-public class RtModel extends AbstractTableModel {
+public class RtModel extends AbstractTableModel/*, DefaultTableModel*/ {
 
     //ПОЛЯ МОДЕЛИ таблицы
     //---------------------------------------
@@ -14,26 +15,24 @@ public class RtModel extends AbstractTableModel {
     private ArrayList<Object[]> data = new ArrayList<Object[]>();
     //поле с количеством строк
     private byte numRows = 0;
-    //поле номера строки в таблице
+    //поле номера строки в таблице//отключил, т.к. используется номер области
     private byte number_area = 1;
-
 
 
     //КОНСТРУКТОРЫ МОДЕЛИ таблицы
     //---------------------------------------
 
     //конструктор без заполнения первой строки
-    public RtModel(){
+    public RtModel() {
         super();
     }
 
     //конструктор с заполнением первой строки
-    public RtModel(Double[] data, double bi){
+    /*public RtModel(Double[] data, double bi) {
         this.data.add(setData(data, bi));
         numRows++;
         number_area++;
-    }
-
+    }*/
 
 
     //МЕТОДЫ МОДЕЛИ таблицы
@@ -57,12 +56,18 @@ public class RtModel extends AbstractTableModel {
     // тип данных, хранимых в столбце
     public Class getColumnClass(int column) {
         switch (column) {
-            case 0: return Byte.class;
-            case 1: return Double.class;
-            case 2: return Double.class;
-            case 3: return Integer.class;
-            case 4: return Integer.class;
-            default: return Object.class;
+            case 0:
+                return Byte.class;
+            case 1:
+                return Double.class;
+            case 2:
+                return Double.class;
+            case 3:
+                return Integer.class;
+            case 4:
+                return Integer.class;
+            default:
+                return Object.class;
         }
     }
 
@@ -73,18 +78,18 @@ public class RtModel extends AbstractTableModel {
     }
 
     //получение входных данных и их преобразование к табличным значениям
-    public Object[] setData(Double[] new_data, double bi) {
-        byte r0 = number_area;
+    public Object[] setData(int id, Double[] new_data, double bi) {
+        byte r0 = (byte) id;
         double r1 = 0, r2 = 0, r4;
         int r3;
         //находим Average OD
-        for (int i=0; i<new_data.length;i++){
+        for (int i = 0; i < new_data.length; i++) {
             r1 += new_data[i];
         }
-        r1 = Math.log(bi/(r1/new_data.length));
+        r1 = Math.log10(bi / (r1 / new_data.length));
         //находим Total OD
-        for (int i=0; i<new_data.length;i++){
-            r2 += Math.log(bi/new_data[i]);
+        for (int i = 0; i < new_data.length; i++) {
+            r2 += Math.log10(bi / new_data[i]);
         }
         r3 = new_data.length;
         r4 = bi;
@@ -94,17 +99,17 @@ public class RtModel extends AbstractTableModel {
     }
 
     //добавление новой строки
-    public void setValueAt(Double[] new_data, double bi){
-        data.add(setData(new_data, bi));
+    public void setValueAt(int id, Double[] new_data, double bi) {
+        data.add(setData(id, new_data, bi));
         numRows++;
         number_area++;
-        fireTableDataChanged();
+        //fireTableDataChanged();
     }
 
     //удаление строки с заданным индексом
-    /*public void deleteValueAt(int id){
+    /*private void deleteValueAt(int id){
         for (int i=0; i<data.size();i++){
-            if ((int)data.get(i)[0] == id){
+            if ((data.get(i)[0].toString()) == Integer.toString(id)){
                 data.remove(i);
                 numRows--;
                 break;
@@ -112,4 +117,23 @@ public class RtModel extends AbstractTableModel {
         }
         fireTableDataChanged();
     }*/
+    public void removeRows() {
+        if (data.size() > 0)
+            data.clear();
+        /*
+        for (int i = 0; i < data.size(); i++) {
+
+            System.out.println("data "+(data.get(i-1)[0].toString()));
+            System.out.println("int "+Integer.toString(i));
+            //if ((data.get(i)[0].toString()) == Integer.toString(i)+1) {
+                data.remove(i);
+                numRows--;
+                //break;
+                //}
+            //}
+        }*/
+        number_area = (byte) ((int) number_area - (int) numRows);
+        numRows = 0;
+        //number_area=
+    }
 }

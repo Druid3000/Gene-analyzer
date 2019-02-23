@@ -1,13 +1,18 @@
 package Window;
 
+import Controllers.MainController;
 import Controllers.TableController;
 import Model.Pixel;
 import Model.RtModel;
 
 import javax.swing.*;
+import javax.swing.event.TableModelEvent;
+import javax.swing.event.TableModelListener;
 import javax.swing.table.TableColumnModel;
 import java.awt.*;
 import java.util.ArrayList;
+
+import static com.sun.java.accessibility.util.SwingEventMonitor.addTableModelListener;
 
 
 //класс является View в модели MVC и представляет взаимодействие пользователя или программы с моделью Таблицы
@@ -17,64 +22,64 @@ public class TableWindow extends JFrame {
     //---------------------------------------
 
     //поле контроллера (для работы с классом модели)
-    private static TableController table_controller;
+    //private static TableController table_controller;
     //поля, содержащее таблицу
     private JTable results_table;
     //поле модели столбца
     private TableColumnModel tcm;
+    private MainController mainController;
     //поле существования данного окна
-    public static boolean be = false;
-
+    public boolean be = false;
 
 
     //КОНСТРУКТОРЫ МОДЕЛИ таблицы
     //---------------------------------------
 
-    //конструктор для создания класса без заполнения первой строки таблицы
-    public TableWindow(){
+    //конструктор для создания класса без заполнения первой строки таблицы // не используется
+    /*public TableWindow(MainController mc){
         super("Table of the optical density");
+        mainController = mc;
         //установка диспетчера компоновки
         getContentPane().setLayout(new FlowLayout());
         setBounds(600, 200, 600,400);
         //установка иконки для окна
         setIconImage(getToolkit().getImage("iconTable.gif"));
         //действие при закрытии окна
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
         //создаем таблицу
         CreateTable();
         //видимость окна
-        setVisible(true);
-    }
+        updateData();
+    }*/
 
     //конструктор для создания класса с заполнением первой строки таблицы
-    public TableWindow(ArrayList<Pixel> area, double bi){
+    public TableWindow(MainController mc) {
         super("Table of the optical density");
+        mainController = mc;
         //установка диспетчера компоновки
         getContentPane().setLayout(new FlowLayout());
-        setBounds(600, 200, 600,400);
+        setBounds(600, 200, 600, 400);
         //установка иконки для окна
         setIconImage(getToolkit().getImage("iconTable.gif"));
         //действие при закрытии окна
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
         //создаем таблицу
         CreateTable();
-        AddData(area,bi);
-        setVisible(true);
+        //updateData();
     }
-
 
 
     //МЕТОДЫ КЛАССА
     //----------------------------------------
 
     //метод создания таблицы
-    private void CreateTable(){
+    private void CreateTable() {
         //создание таблицы
-        RtModel tm = new RtModel();
+        RtModel tm = mainController.getTable();
         results_table = new JTable(tm);
-        table_controller = new TableController(tm);
+        //table_controller = new TableController(tm);
         //включение таблицы в состав панели с прокруткой
-        JScrollPane scrollPane = new JScrollPane(results_table);
+        final JScrollPane scrollPane = new JScrollPane(results_table);
         //установка размера области просмотра для прокрутки
         results_table.setPreferredScrollableViewportSize(new Dimension(550, 320));
         //добавление полосы прокрутки с таблицей в главное окно
@@ -100,27 +105,39 @@ public class TableWindow extends JFrame {
         //установка максимального значения для первого и последнего столбцов
         tcm.getColumn(0).setMaxWidth(50);
         tcm.getColumn(4).setMaxWidth(100);
-
+        results_table.getModel().addTableModelListener(
+                new TableModelListener() {
+                    public void tableChanged(TableModelEvent evt) {
+                        scrollPane.updateUI();
+                    }
+                });
     }
 
     //метод для добавления информации (строки) в таблицу
-    public static void AddData(ArrayList<Pixel> area, double bi){
-        Double[] new_data = new Double[area.size()];
-        for (int i=0; i<area.size();i++){
-            new_data[i] = area.get(i).get_intensity();
+    private void updateData() {
+
+        /*int num = results_table.getRowCount();
+        int size = mainController.getAreas().size();
+        if (num != size) {
+            results_table.setModel(mainController.getTable());
         }
-        table_controller.TransferAddData(new_data, bi);
+        updateData();*/
+        mainController.updateData();
+
     }
 
-    //метод для удаления указанной строки из таблицы
-    public void DeleteData(int id_row){
-        table_controller.TransferDeleteData(id_row);
+
+    //метод для удаления указанной строки из таблицы (удалит область)
+    public void DeleteData(int id_row) {
+        mainController.TransferDeleteData(id_row);
     }
 
     //метод для сортировки таблицы
-    public void SortData(String colomn_name){}
+    public void SortData(String colomn_name) {
+    }
 
     //метод для сохранения информации (таблицы)
-    public  void SaveData(){}
+    public void SaveData() {
+    }
 
 }

@@ -13,13 +13,15 @@ public class Menu {
     private MainController mainController;
     private CanvasLine canvasLine;
     private GraphWindow graphWindow;
+    private TableWindow tableWindow;
     private JMenuBar menuBar;
     private File picture;
     private AboutWindow aboutWindow;
 
-    public Menu(AboutWindow aw, MainController mc, GraphWindow gw, CanvasLine cl) {
+    public Menu(AboutWindow aw, TableWindow tw, MainController mc, GraphWindow gw, CanvasLine cl) {
         mainController = mc;
         graphWindow = gw;
+        tableWindow = tw;
         canvasLine = cl;
         aboutWindow = aw;
 
@@ -40,8 +42,8 @@ public class Menu {
                 //canvasArea.setVisible(false);
                 //canvasArea.removeMouseListener(mouseLocation);
                 //canvasLine.addMouseListener(mouseLocation);
-                TableWindow tableWindow = new TableWindow();
-                TableWindow.be = true;
+                tableWindow.setVisible(true);
+                tableWindow.be = true;
             }
         });
 
@@ -168,7 +170,7 @@ public class Menu {
     }
 
     //TO DO (create methods for creating menu and sub-menu buttons
-    public JMenuBar get_menuBar() {
+    protected JMenuBar get_menuBar() {
         return menuBar;
     }
 }
