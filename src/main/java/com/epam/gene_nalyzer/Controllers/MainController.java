@@ -101,7 +101,7 @@ public class MainController {
             Color c = getLines().get(t).getColor();
             double pxlIntensity;
             int x = xBorder, y, x_past, y_past;
-            pxlIntensity = getLines().get(t).getPxlIntensity(0);
+            pxlIntensity = getLines().get(t).getPixelIntensity(0);
             if (pxlIntensity > 2)
                 y = height - yBorder - (int) ((graphHeight * Math.log10(getBackgroundIntensity() / pxlIntensity)) / (getMaxDensity()));//нормирование
             else y = yBorder;
@@ -131,7 +131,7 @@ public class MainController {
                     }
                 }
                 y_past = y;
-                pxlIntensity = getLines().get(t).getPxlIntensity(i);
+                pxlIntensity = getLines().get(t).getPixelIntensity(i);
                 x = i + xBorder;
                 if (pxlIntensity > 2)
                     y = height - yBorder - (int) ((graphHeight * Math.log10(getBackgroundIntensity() / pxlIntensity)) / (getMaxDensity()));

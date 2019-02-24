@@ -25,7 +25,7 @@ public class Line {
         //    image = ImageIO.read(f);
         int h = image.getHeight(), w = image.getWidth(), R, G, B;
 
-        Pixel[][] all_pxls = new Pixel[w][h];
+        Pixel[][] allPixels = new Pixel[w][h];
         Color c;
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
@@ -39,7 +39,7 @@ public class Line {
                 p.setR(R);
                 p.setG(G);
                 p.setB(B);
-                all_pxls[i][j] = p;
+                allPixels[i][j] = p;
             }
         }
 
@@ -50,7 +50,7 @@ public class Line {
             for (int i = 0; i < length; i++) {
                 x = (y - b) / k;
                 //g2d.drawLine((int) x, (int) y, (int) x, (int) y);
-                pixels.add(all_pxls[(int) x][(int) y]); //pxls[i]=all_pxls[(int)x][(int)y];//заполняю массив пикселей на отрезке
+                pixels.add(allPixels[(int) x][(int) y]); //pxls[i]=allPixels[(int)x][(int)y];//заполняю массив пикселей на отрезке
                 //System.out.println(x+":"+y);
                 if (y1 < y2) y++;
                 else y--;
@@ -60,7 +60,7 @@ public class Line {
             for (int i = 0; i < length; i++) {
                 y = k * x + b;
                 //g2d.drawLine((int) x, (int) y, (int) x, (int) y);
-                pixels.add(all_pxls[(int) x][(int) y]); //pxls[i] = all_pxls[(int) x][(int) y];//заполняю массив пикселей на отрезке
+                pixels.add(allPixels[(int) x][(int) y]); //pxls[i] = allPixels[(int) x][(int) y];//заполняю массив пикселей на отрезке
                 if (x1 < x2) x++;
                 else x--;
             }
@@ -133,7 +133,7 @@ public class Line {
         return pixels;
     }
 
-    public double getPxlIntensity(int id) {
+    public double getPixelIntensity(int id) {
         return pixels.get(id).getIntensity();
     }
 
