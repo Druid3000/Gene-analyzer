@@ -271,8 +271,7 @@ public class CanvasLine extends JComponent {
             });
             popupMenu.add(deleteAll);
             setComponentPopupMenu(popupMenu);
-        }
-        else {
+        } else {
             popupMenu = new JPopupMenu();
             for (int i = 0; i < mainController.getAreas().size(); i++) {
                 JMenuItem cutMenuItem = new JMenuItem("Удалить область номер " + mainController.getArea(i).getId());
