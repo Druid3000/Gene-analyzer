@@ -9,31 +9,29 @@ public class TableController {
     //---------------------------------------
 
     //поле модели таблицы
-    private RtModel tm;
-
+    private RtModel rtModel;
 
 
     //КОНСТРУКТОРЫ МОДЕЛИ таблицы
     //---------------------------------------
 
     //конструктор с получением модели
-    public TableController(RtModel tm){
-        this.tm = tm;
+    public TableController(RtModel rtModel) {
+        this.rtModel = rtModel;
     }
-
 
 
     //МЕТОДЫ КЛАССА
     //----------------------------------------
 
     //метод для передачи добавляемых данных
-    /*public void TransferAddData(Double[] new_data, double bi){
-        tm.setValueAt(new_data, bi);
+    /*public void transferAddData(Double[] new_data, double bi){
+        rtModel.setValueAt(new_data, bi);
     }
     */
     //метод для передачи индекса удаляемой ячейки
-    public void TransferDeleteData(int id_row){
-        //tm.deleteValueAt(id_row);
+    public void transferDeleteData(int idRow) {
+        //rtModel.deleteValueAt(idRow);
     }
 
 
