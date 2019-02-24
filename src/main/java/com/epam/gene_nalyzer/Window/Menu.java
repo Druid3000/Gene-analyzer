@@ -12,13 +12,15 @@ public class Menu {
     private MainController mainController;
     private CanvasLine canvasLine;
     private GraphWindow graphWindow;
+    private TableWindow tableWindow;
     private JMenuBar menuBar;
     private File picture;
     private AboutWindow aboutWindow;
 
-    public Menu(AboutWindow aw, MainController mc, GraphWindow gw, CanvasLine cl) {
+    public Menu(AboutWindow aw, TableWindow tw, MainController mc, GraphWindow gw, CanvasLine cl) {
         mainController = mc;
         graphWindow = gw;
+        tableWindow = tw;
         canvasLine = cl;
         aboutWindow = aw;
 
@@ -29,9 +31,22 @@ public class Menu {
         JMenu newMenu = new JMenu("New");                       //под-меню в меню "file"
         newMenu.setFont(font);
         fileMenu.add(newMenu);
-        JMenuItem txtFileItem = new JMenuItem("Text file");
-        txtFileItem.setFont(font);
-        newMenu.add(txtFileItem);
+        /*Аня: я переименовала один из пунктов подменю "New" в "Table", оно служит для отображения таблицы
+          с результатами оптических плотностей*/
+        JMenuItem TableItem = new JMenuItem("Table");
+        TableItem.setFont(font);
+        newMenu.add(TableItem);
+        TableItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                //canvasArea.setVisible(false);
+                //canvasArea.removeMouseListener(mouseLocation);
+                //canvasLine.addMouseListener(mouseLocation);
+                tableWindow.setVisible(true);
+                tableWindow.be = true;
+            }
+        });
+
+
         JMenuItem imgFileItem = new JMenuItem("Image file");
         imgFileItem.setFont(font);
         newMenu.add(imgFileItem);
@@ -154,7 +169,7 @@ public class Menu {
     }
 
     //TO DO (create methods for creating menu and sub-menu buttons
-    public JMenuBar get_menuBar() {
+    protected JMenuBar get_menuBar() {
         return menuBar;
     }
 }

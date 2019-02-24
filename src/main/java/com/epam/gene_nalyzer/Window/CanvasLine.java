@@ -65,26 +65,35 @@ public class CanvasLine extends JComponent {
 
     }
 
-    private void drawArea(Graphics2D g) {
-        if (picture != null & mainController.getArea() != null) {
-            //Graphics2D g = (Graphics2D) this.getGraphics();
-            g.setColor(Color.RED);//цвет для области
-            //System.out.println(pixelArray.size());
-            for (int i = 0; i < mainController.getArea().size(); i++) {
-                g.drawLine(mainController.getArea().get(i).get_x(), mainController.getArea().get(i).get_y(), mainController.getArea().get(i).get_x(), mainController.getArea().get(i).get_y());
-                //System.out.println(i+"  "+mainController.getArea().get(i).get_x()+":"+ mainController.getArea().get(i).get_y());
+    private void drawAreas(Graphics2D g) {// отрисовка всех областей
+        if (picture != null & mainController.getArea(0) != null) {
+            for (int n = 0; n < mainController.getAreas().size(); n++) {
+                //Graphics2D g = (Graphics2D) this.getGraphics();
+                g.setColor(Color.RED);//цвет для области
+                //System.out.println(pixelArray.size());
+                for (int i = 0; i < mainController.getAreas().get(n).getArea().size(); i++) {
+                    g.drawLine(mainController.getAreas().get(n).getArea().get(i).get_x(), mainController.getAreas().get(n).getArea().get(i).get_y(), mainController.getAreas().get(n).getArea().get(i).get_x(), mainController.getAreas().get(n).getArea().get(i).get_y());
+                    //System.out.println(i+"  "+mainController.getArea().get(i).get_x()+":"+ mainController.getArea().get(i).get_y());
+                }
+                g.setFont(new Font("Verdana", Font.PLAIN, 18));//номер области
+                g.setColor(Color.WHITE);
+                g.drawString(Integer.toString(mainController.getAreas().get(n).getId()), mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).get_x(), mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).get_y());
             }
         }
     }
 
     private void drawAreaPerimetr(Graphics2D g) {
-        if (picture != null & mainController.getAreaPerimetr() != null) {
-            //Graphics2D g = (Graphics2D) this.getGraphics();
-            g.setColor(Color.red);//цвет для области
-            //System.out.println(pixelArray.size());
-            for (int i = 0; i < mainController.getAreaPerimetr().size(); i++) {
-                g.drawLine(mainController.getAreaPerimetr().get(i).get_x(), mainController.getAreaPerimetr().get(i).get_y(), mainController.getAreaPerimetr().get(i).get_x(), mainController.getAreaPerimetr().get(i).get_y());
-                //System.out.println(i+"  "+mainController.getArea().get(i).get_x()+":"+ mainController.getArea().get(i).get_y());
+        if (picture != null & mainController.getAreaPerimetr(0) != null) {
+            for (int n = 0; n < mainController.getAreas().size(); n++) {
+                //Graphics2D g = (Graphics2D) this.getGraphics();
+                g.setColor(Color.red);//цвет для области
+                //System.out.println(pixelArray.size());
+                for (int i = 0; i < mainController.getAreaPerimetr(n).size(); i++) {
+                    g.drawLine(mainController.getAreaPerimetr(n).get(i).get_x(), mainController.getAreaPerimetr(n).get(i).get_y(), mainController.getAreaPerimetr(n).get(i).get_x(), mainController.getAreaPerimetr(n).get(i).get_y());
+                    //System.out.println(i+"  "+mainController.getArea().get(i).get_x()+":"+ mainController.getArea().get(i).get_y());
+                }
+                g.setFont(new Font("Verdana", Font.PLAIN, 18));//номер области
+                g.drawString(Integer.toString(mainController.getAreas().get(n).getId()), mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).get_x(), mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).get_y());
             }
         }
     }
@@ -200,7 +209,15 @@ public class CanvasLine extends JComponent {
                         p.set_R((new Color(picture.getRGB(x, y)).getRed()));
                         p.set_G((new Color(picture.getRGB(x, y)).getGreen()));
                         p.set_B((new Color(picture.getRGB(x, y)).getBlue()));
-                        mainController.setArea(p);
+                        mainController.addArea(p);//set -> add (в массив)
+
+                        //Аня: проверяем открыта ли таблица, если да, то передаем область в обработку
+                        //UPD (Макс): теперь области автоматом будут в таблицу попадать, это нам не нужно
+                        /*
+                        if (TableWindow.be){
+                            TableWindow.AddData(mainController.getArea(), mainController.getBackgroundIntensity());
+                        }
+                        */
                     }
 
                     pos = !pos;
@@ -235,26 +252,52 @@ public class CanvasLine extends JComponent {
     }
 
     private void reloadJPopMenu() {
-        popupMenu = new JPopupMenu();
-        for (int i = 0; i < lines.size(); i++) {
-            JMenuItem cutMenuItem = new JMenuItem("Удалить линию номер" + lines.get(i).getId());
-            cutMenuItem.addActionListener(new JPopMenuListener(i) {
+        if (mode) {
+            popupMenu = new JPopupMenu();
+            for (int i = 0; i < lines.size(); i++) {
+                JMenuItem cutMenuItem = new JMenuItem("Удалить линию номер" + lines.get(i).getId());
+                cutMenuItem.addActionListener(new JPopMenuListener(i) {
+                    public void actionPerformed(ActionEvent e) {
+                        lines.remove(this.id);
+                    }
+                });
+                popupMenu.add(cutMenuItem);
+            }
+            popupMenu.addSeparator();
+
+            JMenuItem deleteAll = new JMenuItem("Удалить все линии");
+            deleteAll.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    lines.remove(this.id);
+                    lines.clear();
                 }
             });
-            popupMenu.add(cutMenuItem);
-        }
-        popupMenu.addSeparator();
+            popupMenu.add(deleteAll);
+            setComponentPopupMenu(popupMenu);
+        } else {
 
-        JMenuItem deleteAll = new JMenuItem("Удалить все линии");
-        deleteAll.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                lines.clear();
+            popupMenu = new JPopupMenu();
+            for (int i = 0; i < mainController.getAreas().size(); i++) {
+                JMenuItem cutMenuItem = new JMenuItem("Удалить область номер" + mainController.getArea(i).getId());
+                cutMenuItem.addActionListener(new JPopMenuListener(mainController.getArea(i).getId()) {
+                    public void actionPerformed(ActionEvent e) {
+
+                        mainController.removeArea(this.id);
+                        mainController.updateData();
+                    }
+                });
+                popupMenu.add(cutMenuItem);
             }
-        });
-        popupMenu.add(deleteAll);
-        setComponentPopupMenu(popupMenu);
+            popupMenu.addSeparator();
 
+            JMenuItem deleteAll = new JMenuItem("Удалить все области");
+            deleteAll.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    mainController.removeAreas();
+                    mainController.updateData();
+                }
+            });
+            popupMenu.add(deleteAll);
+            setComponentPopupMenu(popupMenu);
+        }
     }
 }

@@ -1,9 +1,6 @@
-
 package com.epam.gene_nalyzer.Controllers;
 
-import com.epam.gene_nalyzer.Model.Area;
-import com.epam.gene_nalyzer.Model.Line;
-import com.epam.gene_nalyzer.Model.Pixel;
+import com.epam.gene_nalyzer.Model.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;
@@ -15,10 +12,11 @@ import java.util.ArrayList;
 public class MainController {
     private ArrayList<Line> lineArray = new ArrayList<Line>();//массив всех линий
     private ArrayList<Pixel> graphPixels = new ArrayList<Pixel>();//массив пикселей для отрисовки графиков
-    private Area area = new Area();
+    private ArrayList<Area> areaArray = new ArrayList<Area>();//массив всех областей
     private BufferedImage picture;
     private int numberOfLinesOld = 0;
     private double backgroundIntensity = 255.0;
+    private RtModel tm = new RtModel();//таблица областей
 
     public MainController() {
     }
@@ -50,16 +48,25 @@ public class MainController {
         return lineArray;
     }
 
-    public void setArea(Pixel p) {
+    public void addArea(Pixel p) {
+        Area area = new Area();
         area.setArea(p, picture);
+        areaArray.add(area);
+        updateData();
     }
 
-    public ArrayList<Pixel> getArea() {
-        return area.getArea();
+    public Area getArea(int id) {
+        return areaArray.get(id);
     }
 
-    public ArrayList<Pixel> getAreaPerimetr() {
-        return area.getAreaPerimetr();
+    public ArrayList<Area> getAreas() {
+        return areaArray;
+    }
+
+    public ArrayList<Pixel> getAreaPerimetr(int id) {
+        if (areaArray.size() > 0)
+            return areaArray.get(id).getAreaPerimetr();
+        else return null;
     }
 
     public double getMaxDensity() {//поиск максимальной плотности D
@@ -139,4 +146,49 @@ public class MainController {
 
         return graphPixels;
     }
+
+    public RtModel getTable() {
+        return tm;
+    }
+
+    public void removeAreas() {
+        areaArray.clear();
+        updateData();
+    }
+
+    public void removeArea(int id) {
+        for (int i = 0; i < areaArray.size(); i++)
+            if (areaArray.get(i).getId() == id) {
+                areaArray.remove(i);
+                break;
+
+            }
+        updateData();
+    }
+    //
+    // методы из контроллера таблиц (переделано)
+    //
+
+    //метод для передачи добавляемых данных
+    public void updateData() {
+        //tm=new RtModel();
+        tm.removeRows();
+        Double[] new_data;
+        for (int n = 0; n < areaArray.size(); n++) {
+            new_data = new Double[areaArray.get(n).getArea().size()];
+            for (int i = 0; i < areaArray.get(n).getArea().size(); i++) {
+                new_data[i] = areaArray.get(n).getArea().get(i).get_intensity();
+            }
+            tm.setValueAt(areaArray.get(n).getId(), new_data, backgroundIntensity);
+            //int a = tm.getRowCount();
+            //System.out.println(a);
+        }
+        tm.fireTableDataChanged();
+    }
+
+    //метод для передачи индекса удаляемой ячейки
+    public void TransferDeleteData(int id_row) {
+        //tm.deleteValueAt(id_row);
+    }
+
 }
