@@ -112,11 +112,11 @@ public class Line {
 
     public double getMaxDensity(double intensity) {
         for (int a = 0; a < pixels.size(); a++) {
-            if (pixels.get(a).get_intensity() <= 1) {
+            if (pixels.get(a).getIntensity() <= 1) {
                 maxDensity = 2.9;
                 break;
-            } else if (Math.log10(intensity / pixels.get(a).get_intensity()) > maxDensity)
-                maxDensity = Math.log10(intensity / pixels.get(a).get_intensity());
+            } else if (Math.log10(intensity / pixels.get(a).getIntensity()) > maxDensity)
+                maxDensity = Math.log10(intensity / pixels.get(a).getIntensity());
         }
         return maxDensity;
     }
@@ -134,7 +134,7 @@ public class Line {
     }
 
     public double getPxlIntensity(int id) {
-        return pixels.get(id).get_intensity();
+        return pixels.get(id).getIntensity();
     }
 
     public Color getColor() {

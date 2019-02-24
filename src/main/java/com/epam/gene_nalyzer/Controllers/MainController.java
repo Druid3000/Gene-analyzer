@@ -65,7 +65,7 @@ public class MainController {
 
     public ArrayList<Pixel> getAreaPerimeter(int id) {
         if (areaArray.size() > 0)
-            return areaArray.get(id).getAreaPerimetr();
+            return areaArray.get(id).getAreaPerimeter();
         else return null;
     }
 
@@ -80,7 +80,7 @@ public class MainController {
     }
 
     public void setBackgroundIntensity(Pixel p) {   //для установки по желанию интенсивности пикселя за интенсивность фона
-        backgroundIntensity = p.get_intensity();
+        backgroundIntensity = p.getIntensity();
     }
 
     private double getBackgroundIntensity() {
@@ -177,7 +177,7 @@ public class MainController {
         for (int n = 0; n < areaArray.size(); n++) {
             new_data = new Double[areaArray.get(n).getArea().size()];
             for (int i = 0; i < areaArray.get(n).getArea().size(); i++) {
-                new_data[i] = areaArray.get(n).getArea().get(i).get_intensity();
+                new_data[i] = areaArray.get(n).getArea().get(i).getIntensity();
             }
             tm.setValueAt(areaArray.get(n).getId(), new_data, backgroundIntensity);
             //int a = tm.getRowCount();

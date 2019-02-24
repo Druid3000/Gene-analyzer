@@ -7,22 +7,22 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class Area {
     private ArrayList<Pixel> pixels;
-    private ArrayList<Pixel> perimetr;
+    private ArrayList<Pixel> perimeter;
     private final double delta = 0.1;
     private static final AtomicInteger id = new AtomicInteger(0);
     private int idThis = 1;
 
-    public void setArea(Pixel pixel, BufferedImage im) {
+    public void setArea(Pixel pixel, BufferedImage image) {
         pixels = new ArrayList<Pixel>();
-        perimetr = new ArrayList<Pixel>();
-        Pixel[][] all_pxls = arrayFromPicture(im);
-        Pixel[][] all_pxls_unchanged = arrayFromPicture(im);
+        perimeter = new ArrayList<Pixel>();
+        Pixel[][] allPixels = arrayFromPicture(image);
+        Pixel[][] allPixelsUnchanged = arrayFromPicture(image);
         int x = pixel.getX(), y = pixel.getY();
-        double intensity = pixel.get_intensity();
+        double intensity = pixel.getIntensity();
         if (intensity == 0) intensity = 0.000001;
         pixels.add(pixel);
-        all_pxls[x][y].setR(1000000);
-        checkNear(all_pxls,all_pxls_unchanged, x, y, intensity, 0);
+        allPixels[x][y].setR(1000000);
+        checkNear(allPixels, allPixelsUnchanged, x, y, intensity, 0);
         idThis = id.incrementAndGet();
 
     }
@@ -31,61 +31,61 @@ public class Area {
         return pixels;
     }
 
-    public ArrayList<Pixel> getAreaPerimetr() {
-        return perimetr;
+    public ArrayList<Pixel> getAreaPerimeter() {
+        return perimeter;
     }
 
-    private void checkNear(Pixel[][] all_pxls,Pixel[][]all_pxls_unchanged, int x, int y, double intensity, int side) {//side - показывает, откуда пришла проверка
+    private void checkNear(Pixel[][] allPixels, Pixel[][] allPixelsUnchanged, int x, int y, double intensity, int side) {//side - показывает, откуда пришла проверка
         //side = 0 - начало; 1 - слева; 2 - справа; 3 - сверху; 4 - снизу.
         double newIntensity;
         if ((x - 1 >= 0) & side != 1)//слева от пикселя
         {
-            newIntensity = all_pxls[x - 1][y].get_intensity();
+            newIntensity = allPixels[x - 1][y].getIntensity();
             if (newIntensity == 0) newIntensity = 0.000001;
             if ((Math.abs(newIntensity - intensity) / (intensity)) <= delta) {
-                pixels.add(all_pxls_unchanged[x - 1][y]);
-                all_pxls[x - 1][y].setR(1000000);
-                checkNear(all_pxls,all_pxls_unchanged, x - 1, y, intensity, 2);
-            } else if (all_pxls[x - 1][y].get_intensity() < 256) {
-                perimetr.add(all_pxls_unchanged[x - 1][y]);
+                pixels.add(allPixelsUnchanged[x - 1][y]);
+                allPixels[x - 1][y].setR(1000000);
+                checkNear(allPixels, allPixelsUnchanged, x - 1, y, intensity, 2);
+            } else if (allPixels[x - 1][y].getIntensity() < 256) {
+                perimeter.add(allPixelsUnchanged[x - 1][y]);
             }
         }
-        if (x + 1 < all_pxls.length & side != 2)//cправа от пикселя
+        if (x + 1 < allPixels.length & side != 2)// справа от пикселя
         {
-            newIntensity = all_pxls[x + 1][y].get_intensity();
+            newIntensity = allPixels[x + 1][y].getIntensity();
             if (newIntensity == 0) newIntensity = 0.000001;
             if ((Math.abs(newIntensity - (intensity)) / (intensity)) <= delta) {
-                pixels.add(all_pxls_unchanged[x + 1][y]);
-                all_pxls[x + 1][y].setR(1000000);
-                checkNear(all_pxls,all_pxls_unchanged, x + 1, y, intensity, 1);
-            } else if (all_pxls[x + 1][y].get_intensity() < 256) perimetr.add(all_pxls_unchanged[x + 1][y]);
+                pixels.add(allPixelsUnchanged[x + 1][y]);
+                allPixels[x + 1][y].setR(1000000);
+                checkNear(allPixels, allPixelsUnchanged, x + 1, y, intensity, 1);
+            } else if (allPixels[x + 1][y].getIntensity() < 256) perimeter.add(allPixelsUnchanged[x + 1][y]);
         }
         if (y - 1 >= 0 & side != 3)//сверху от пикселя
         {
-            newIntensity = all_pxls[x][y - 1].get_intensity();
+            newIntensity = allPixels[x][y - 1].getIntensity();
             if (newIntensity == 0) newIntensity = 0.000001;
             if ((Math.abs(newIntensity - (intensity)) / (intensity)) <= delta) {
-                pixels.add(all_pxls_unchanged[x][y - 1]);
-                all_pxls[x][y - 1].setR(1000000);
-                checkNear(all_pxls,all_pxls_unchanged, x, y - 1, intensity, 4);
-            } else if (all_pxls[x][y - 1].get_intensity() < 256) perimetr.add(all_pxls_unchanged[x][y - 1]);
+                pixels.add(allPixelsUnchanged[x][y - 1]);
+                allPixels[x][y - 1].setR(1000000);
+                checkNear(allPixels, allPixelsUnchanged, x, y - 1, intensity, 4);
+            } else if (allPixels[x][y - 1].getIntensity() < 256) perimeter.add(allPixelsUnchanged[x][y - 1]);
         }
-        if (y + 1 < all_pxls[0].length & side != 4)//снизу от пикселя
+        if (y + 1 < allPixels[0].length & side != 4)//снизу от пикселя
         {
-            newIntensity = all_pxls[x][y + 1].get_intensity();
+            newIntensity = allPixels[x][y + 1].getIntensity();
             if (newIntensity == 0) newIntensity = 0.000001;
             if ((Math.abs(newIntensity - (intensity)) / (intensity)) <= delta) {
-                pixels.add(all_pxls_unchanged[x][y + 1]);
-                all_pxls[x][y + 1].setR(1000000);
-                checkNear(all_pxls, all_pxls_unchanged, x, y + 1, intensity, 3);
-            } else if (all_pxls[x][y + 1].get_intensity() < 256) perimetr.add(all_pxls_unchanged[x][y + 1]);
+                pixels.add(allPixelsUnchanged[x][y + 1]);
+                allPixels[x][y + 1].setR(1000000);
+                checkNear(allPixels, allPixelsUnchanged, x, y + 1, intensity, 3);
+            } else if (allPixels[x][y + 1].getIntensity() < 256) perimeter.add(allPixelsUnchanged[x][y + 1]);
         }
     }
 
     private Pixel[][] arrayFromPicture(BufferedImage image) {
-        Pixel[][] all_pxls;
+        Pixel[][] allPixels;
         int h = image.getHeight(), w = image.getWidth(), R, G, B;
-        all_pxls = new Pixel[w][h];
+        allPixels = new Pixel[w][h];
         Color c;
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
@@ -99,11 +99,10 @@ public class Area {
                 p.setR(R);
                 p.setG(G);
                 p.setB(B);
-                all_pxls[i][j] = p;
+                allPixels[i][j] = p;
             }
         }
-
-        return all_pxls;
+        return allPixels;
     }
 
     public int getId() {

@@ -7,7 +7,7 @@ public class Pixel {
     private int y;
     private int R = 0, G = 0, B = 0;
 
-    public double get_intensity() {
+    public double getIntensity() {
         if ((double) R * 0.3 + (double) G * 0.59 + (double) B * 0.11 > 0)
             return ((double) R * 0.3 + (double) G * 0.59 + (double) B * 0.11);
         else
