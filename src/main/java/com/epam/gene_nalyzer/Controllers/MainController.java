@@ -109,7 +109,7 @@ public class MainController {
             Pixel p = new Pixel();
             p.setX(x);
             p.setY(y);
-            p.set_Color(c);
+            p.setColor(c);
             graphPixels.add(p);
             for (int i = 1; i < getLines().get(t).getLength(); i++) {
                 if (Math.abs(y - y_past) > 1) { //если по ординате большая разница - просто отрисовка прямой от точки к точке
@@ -119,13 +119,13 @@ public class MainController {
                             p = new Pixel();
                             p.setX(i - 1 + xBorder);
                             p.setY(y_past + j);
-                            p.set_Color(c);
+                            p.setColor(c);
                             graphPixels.add(p);
                         } else {
                             p = new Pixel();
                             p.setX(i - 1 + xBorder);
                             p.setY(y_past - j);
-                            p.set_Color(c);
+                            p.setColor(c);
                             graphPixels.add(p);
                         }
                     }
@@ -139,7 +139,7 @@ public class MainController {
                 p = new Pixel();
                 p.setX(x);
                 p.setY(y);
-                p.set_Color(c);
+                p.setColor(c);
                 graphPixels.add(p);
             }
         }

@@ -22,15 +22,15 @@ public class Pixel {
         return y;
     }
 
-    public int get_R() {
+    public int getR() {
         return R;
     }
 
-    public int get_G() {
+    public int getG() {
         return G;
     }
 
-    public int get_B() {
+    public int getB() {
         return B;
     }
 
@@ -54,19 +54,19 @@ public class Pixel {
         B = b;
     }
 
-    public void set_Color(Color c) {
+    public void setColor(Color c) {
         R = c.getRed();
         G = c.getGreen();
         B = c.getBlue();
     }
 
-    public Color get_Color() {
+    public Color getColor() {
         return new Color(R, G, B);
     }
 
     @Override
     public String toString() {
-        return "PIxel{" +
+        return "Pixel{" +
                 "x=" + x +
                 ", y=" + y +
                 ", color=" + R + "," + G + "" + B +

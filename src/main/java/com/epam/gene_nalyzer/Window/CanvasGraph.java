@@ -58,7 +58,7 @@ class CanvasGraph extends JComponent {
     private void drawGraph(Graphics2D g) {//отрисовка графика линий
         ArrayList<Pixel> pixels = mainController.getGraphics(graphHeight, height, xBorder, yBorder);
         for (int i = 0; i < pixels.size(); i++) {
-            g.setColor(pixels.get(i).get_Color());
+            g.setColor(pixels.get(i).getColor());
             int x = pixels.get(i).getX();
             int y = pixels.get(i).getY();
             g.drawLine(x, y, x, y);
