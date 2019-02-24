@@ -169,7 +169,7 @@ public class Menu {
     }
 
     //TO DO (create methods for creating menu and sub-menu buttons
-    protected JMenuBar get_menuBar() {
+    protected JMenuBar getMenuBar() {
         return menuBar;
     }
 }
