@@ -8,10 +8,9 @@ public class GraphController {
     }
 
     public void drawCoordinateAxes() {
-
     }
 
     public void drawCoordinateLabels() {
-
     }
+    
 }
