@@ -16,7 +16,7 @@ public class MainController {
     private BufferedImage picture;
     private int numberOfLinesOld = 0;
     private double backgroundIntensity = 255.0;
-    private RtModel tm = new RtModel();//таблица областей
+    private RtModel rtModel = new RtModel();//таблица областей
 
     public MainController() {
     }
@@ -99,42 +99,42 @@ public class MainController {
         graphPixels.clear();
         for (int t = 0; t < lineArray.size(); t++) {
             Color c = getLines().get(t).getColor();
-            double pxlIntensity;
-            int x = xBorder, y, x_past, y_past;
-            pxlIntensity = getLines().get(t).getPixelIntensity(0);
-            if (pxlIntensity > 2)
-                y = height - yBorder - (int) ((graphHeight * Math.log10(getBackgroundIntensity() / pxlIntensity)) / (getMaxDensity()));//нормирование
+            double pixelIntensity;
+            int x = xBorder, y, xPast, yPast;
+            pixelIntensity = getLines().get(t).getPixelIntensity(0);
+            if (pixelIntensity > 2)
+                y = height - yBorder - (int) ((graphHeight * Math.log10(getBackgroundIntensity() / pixelIntensity)) / (getMaxDensity()));//нормирование
             else y = yBorder;
-            y_past = y;
+            yPast = y;
             Pixel p = new Pixel();
             p.setX(x);
             p.setY(y);
             p.setColor(c);
             graphPixels.add(p);
             for (int i = 1; i < getLines().get(t).getLength(); i++) {
-                if (Math.abs(y - y_past) > 1) { //если по ординате большая разница - просто отрисовка прямой от точки к точке
-                    for (int j = 1; j < Math.abs(y - y_past); j++) {
-                        if (y_past < y) {
-                            //g.drawLine(i - 1 + xBorder, y_past + j, i - 1 + 50, y_past + j);
+                if (Math.abs(y - yPast) > 1) { //если по ординате большая разница - просто отрисовка прямой от точки к точке
+                    for (int j = 1; j < Math.abs(y - yPast); j++) {
+                        if (yPast < y) {
+                            //g.drawLine(i - 1 + xBorder, yPast + j, i - 1 + 50, yPast + j);
                             p = new Pixel();
                             p.setX(i - 1 + xBorder);
-                            p.setY(y_past + j);
+                            p.setY(yPast + j);
                             p.setColor(c);
                             graphPixels.add(p);
                         } else {
                             p = new Pixel();
                             p.setX(i - 1 + xBorder);
-                            p.setY(y_past - j);
+                            p.setY(yPast - j);
                             p.setColor(c);
                             graphPixels.add(p);
                         }
                     }
                 }
-                y_past = y;
-                pxlIntensity = getLines().get(t).getPixelIntensity(i);
+                yPast = y;
+                pixelIntensity = getLines().get(t).getPixelIntensity(i);
                 x = i + xBorder;
-                if (pxlIntensity > 2)
-                    y = height - yBorder - (int) ((graphHeight * Math.log10(getBackgroundIntensity() / pxlIntensity)) / (getMaxDensity()));
+                if (pixelIntensity > 2)
+                    y = height - yBorder - (int) ((graphHeight * Math.log10(getBackgroundIntensity() / pixelIntensity)) / (getMaxDensity()));
                 else y = yBorder;
                 p = new Pixel();
                 p.setX(x);
@@ -148,7 +148,7 @@ public class MainController {
     }
 
     public RtModel getTable() {
-        return tm;
+        return rtModel;
     }
 
     public void removeAreas() {
@@ -171,24 +171,24 @@ public class MainController {
 
     //метод для передачи добавляемых данных
     public void updateData() {
-        //tm=new RtModel();
-        tm.removeRows();
-        Double[] new_data;
+        //rtModel=new RtModel();
+        rtModel.removeRows();
+        Double[] newData;
         for (int n = 0; n < areaArray.size(); n++) {
-            new_data = new Double[areaArray.get(n).getArea().size()];
+            newData = new Double[areaArray.get(n).getArea().size()];
             for (int i = 0; i < areaArray.get(n).getArea().size(); i++) {
-                new_data[i] = areaArray.get(n).getArea().get(i).getIntensity();
+                newData[i] = areaArray.get(n).getArea().get(i).getIntensity();
             }
-            tm.setValueAt(areaArray.get(n).getId(), new_data, backgroundIntensity);
-            //int a = tm.getRowCount();
+            rtModel.setValueAt(areaArray.get(n).getId(), newData, backgroundIntensity);
+            //int a = rtModel.getRowCount();
             //System.out.println(a);
         }
-        tm.fireTableDataChanged();
+        rtModel.fireTableDataChanged();
     }
 
     //метод для передачи индекса удаляемой ячейки
-    public void TransferDeleteData(int id_row) {
-        //tm.deleteValueAt(id_row);
+    public void transferDeleteData(int idRow) {
+        //rtModel.deleteValueAt(idRow);
     }
 
 }

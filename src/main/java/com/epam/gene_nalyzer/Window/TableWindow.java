@@ -124,7 +124,7 @@ public class TableWindow extends JFrame {
 
     //метод для удаления указанной строки из таблицы (удалит область)
     public void DeleteData(int id_row) {
-        mainController.TransferDeleteData(id_row);
+        mainController.transferDeleteData(id_row);
     }
 
     //метод для сортировки таблицы
