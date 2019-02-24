@@ -14,11 +14,11 @@ public class Pixel {
             return 0.000000001;
     }
 
-    public int get_x() {
+    public int getX() {
         return x;
     }
 
-    public int get_y() {
+    public int getY() {
         return y;
     }
 
@@ -34,23 +34,23 @@ public class Pixel {
         return B;
     }
 
-    public void set_x(int xx) {
+    public void setX(int xx) {
         x = xx;
     }
 
-    public void set_y(int yy) {
+    public void setY(int yy) {
         y = yy;
     }
 
-    public void set_R(int r) {
+    public void setR(int r) {
         R = r;
     }
 
-    public void set_G(int g) {
+    public void setG(int g) {
         G = g;
     }
 
-    public void set_B(int b) {
+    public void setB(int b) {
         B = b;
     }
 

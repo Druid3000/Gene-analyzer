@@ -14,7 +14,7 @@ public class Line {
     private ArrayList<Pixel> pixels = new ArrayList<Pixel>();
 
     public Line(Pixel p1, Pixel p2, BufferedImage image) {
-        int x1 = p1.get_x(), x2 = p2.get_x(), y1 = p1.get_y(), y2 = p2.get_y();
+        int x1 = p1.getX(), x2 = p2.getX(), y1 = p1.getY(), y2 = p2.getY();
         double k, b;
         k = (double) (y1 - y2) / (x1 - x2);
         b = y1 - k * x1;
@@ -34,11 +34,11 @@ public class Line {
                 G = c.getGreen();
                 B = c.getBlue();
                 Pixel p = new Pixel();
-                p.set_x(i);
-                p.set_y(j);
-                p.set_R(R);
-                p.set_G(G);
-                p.set_B(B);
+                p.setX(i);
+                p.setY(j);
+                p.setR(R);
+                p.setG(G);
+                p.setB(B);
                 all_pxls[i][j] = p;
             }
         }
@@ -122,7 +122,7 @@ public class Line {
     }
 
     public int getLengthX() {   //метод для масштабирования по оси абсцисс
-        return pixels.get(pixels.size() - 1).get_x() - pixels.get(0).get_x();
+        return pixels.get(pixels.size() - 1).getX() - pixels.get(0).getX();
     }
 
     public int getLength() {

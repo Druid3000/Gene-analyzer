@@ -59,8 +59,8 @@ class CanvasGraph extends JComponent {
         ArrayList<Pixel> pixels = mainController.getGraphics(graphHeight, height, xBorder, yBorder);
         for (int i = 0; i < pixels.size(); i++) {
             g.setColor(pixels.get(i).get_Color());
-            int x = pixels.get(i).get_x();
-            int y = pixels.get(i).get_y();
+            int x = pixels.get(i).getX();
+            int y = pixels.get(i).getY();
             g.drawLine(x, y, x, y);
         }
     }

@@ -17,11 +17,11 @@ public class Area {
         perimetr = new ArrayList<Pixel>();
         Pixel[][] all_pxls = arrayFromPicture(im);
         Pixel[][] all_pxls_unchanged = arrayFromPicture(im);
-        int x = pixel.get_x(), y = pixel.get_y();
+        int x = pixel.getX(), y = pixel.getY();
         double intensity = pixel.get_intensity();
         if (intensity == 0) intensity = 0.000001;
         pixels.add(pixel);
-        all_pxls[x][y].set_R(1000000);
+        all_pxls[x][y].setR(1000000);
         checkNear(all_pxls,all_pxls_unchanged, x, y, intensity, 0);
         idThis = id.incrementAndGet();
 
@@ -44,7 +44,7 @@ public class Area {
             if (newIntensity == 0) newIntensity = 0.000001;
             if ((Math.abs(newIntensity - intensity) / (intensity)) <= delta) {
                 pixels.add(all_pxls_unchanged[x - 1][y]);
-                all_pxls[x - 1][y].set_R(1000000);
+                all_pxls[x - 1][y].setR(1000000);
                 checkNear(all_pxls,all_pxls_unchanged, x - 1, y, intensity, 2);
             } else if (all_pxls[x - 1][y].get_intensity() < 256) {
                 perimetr.add(all_pxls_unchanged[x - 1][y]);
@@ -56,7 +56,7 @@ public class Area {
             if (newIntensity == 0) newIntensity = 0.000001;
             if ((Math.abs(newIntensity - (intensity)) / (intensity)) <= delta) {
                 pixels.add(all_pxls_unchanged[x + 1][y]);
-                all_pxls[x + 1][y].set_R(1000000);
+                all_pxls[x + 1][y].setR(1000000);
                 checkNear(all_pxls,all_pxls_unchanged, x + 1, y, intensity, 1);
             } else if (all_pxls[x + 1][y].get_intensity() < 256) perimetr.add(all_pxls_unchanged[x + 1][y]);
         }
@@ -66,7 +66,7 @@ public class Area {
             if (newIntensity == 0) newIntensity = 0.000001;
             if ((Math.abs(newIntensity - (intensity)) / (intensity)) <= delta) {
                 pixels.add(all_pxls_unchanged[x][y - 1]);
-                all_pxls[x][y - 1].set_R(1000000);
+                all_pxls[x][y - 1].setR(1000000);
                 checkNear(all_pxls,all_pxls_unchanged, x, y - 1, intensity, 4);
             } else if (all_pxls[x][y - 1].get_intensity() < 256) perimetr.add(all_pxls_unchanged[x][y - 1]);
         }
@@ -76,7 +76,7 @@ public class Area {
             if (newIntensity == 0) newIntensity = 0.000001;
             if ((Math.abs(newIntensity - (intensity)) / (intensity)) <= delta) {
                 pixels.add(all_pxls_unchanged[x][y + 1]);
-                all_pxls[x][y + 1].set_R(1000000);
+                all_pxls[x][y + 1].setR(1000000);
                 checkNear(all_pxls, all_pxls_unchanged, x, y + 1, intensity, 3);
             } else if (all_pxls[x][y + 1].get_intensity() < 256) perimetr.add(all_pxls_unchanged[x][y + 1]);
         }
@@ -94,11 +94,11 @@ public class Area {
                 G = c.getGreen();
                 B = c.getBlue();
                 Pixel p = new Pixel();
-                p.set_x(i);
-                p.set_y(j);
-                p.set_R(R);
-                p.set_G(G);
-                p.set_B(B);
+                p.setX(i);
+                p.setY(j);
+                p.setR(R);
+                p.setG(G);
+                p.setB(B);
                 all_pxls[i][j] = p;
             }
         }

@@ -14,27 +14,27 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
     private int xPositionNow;
     private int yPositionNow;
 
-    public int getxPosition1() {
+    public int getXPosition1() {
         return xPosition1;
     }
 
-    public int getxPosition2() {
+    public int getXPosition2() {
         return xPosition2;
     }
 
-    public int getyPosition1() {
+    public int getYPosition1() {
         return yPosition1;
     }
 
-    public int getyPosition2() {
+    public int getYPosition2() {
         return yPosition2;
     }
 
-    public int getxPositionNow() {
+    public int getXPositionNow() {
         return xPositionNow;
     }
 
-    public int getyPositionNow() {
+    public int getYPositionNow() {
         return yPositionNow;
     }
 

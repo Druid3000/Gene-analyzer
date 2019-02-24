@@ -63,7 +63,7 @@ public class MainController {
         return areaArray;
     }
 
-    public ArrayList<Pixel> getAreaPerimetr(int id) {
+    public ArrayList<Pixel> getAreaPerimeter(int id) {
         if (areaArray.size() > 0)
             return areaArray.get(id).getAreaPerimetr();
         else return null;
@@ -107,8 +107,8 @@ public class MainController {
             else y = yBorder;
             y_past = y;
             Pixel p = new Pixel();
-            p.set_x(x);
-            p.set_y(y);
+            p.setX(x);
+            p.setY(y);
             p.set_Color(c);
             graphPixels.add(p);
             for (int i = 1; i < getLines().get(t).getLength(); i++) {
@@ -117,14 +117,14 @@ public class MainController {
                         if (y_past < y) {
                             //g.drawLine(i - 1 + xBorder, y_past + j, i - 1 + 50, y_past + j);
                             p = new Pixel();
-                            p.set_x(i - 1 + xBorder);
-                            p.set_y(y_past + j);
+                            p.setX(i - 1 + xBorder);
+                            p.setY(y_past + j);
                             p.set_Color(c);
                             graphPixels.add(p);
                         } else {
                             p = new Pixel();
-                            p.set_x(i - 1 + xBorder);
-                            p.set_y(y_past - j);
+                            p.setX(i - 1 + xBorder);
+                            p.setY(y_past - j);
                             p.set_Color(c);
                             graphPixels.add(p);
                         }
@@ -137,8 +137,8 @@ public class MainController {
                     y = height - yBorder - (int) ((graphHeight * Math.log10(getBackgroundIntensity() / pxlIntensity)) / (getMaxDensity()));
                 else y = yBorder;
                 p = new Pixel();
-                p.set_x(x);
-                p.set_y(y);
+                p.setX(x);
+                p.setY(y);
                 p.set_Color(c);
                 graphPixels.add(p);
             }
