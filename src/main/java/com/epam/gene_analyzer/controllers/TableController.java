@@ -29,10 +29,9 @@ public class TableController {
         rtModel.setValueAt(new_data, bi);
     }
     */
+
     //метод для передачи индекса удаляемой ячейки
     public void transferDeleteData(int idRow) {
         //rtModel.deleteValueAt(idRow);
     }
-
-
 }
