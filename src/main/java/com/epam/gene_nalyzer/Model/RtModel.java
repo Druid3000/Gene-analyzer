@@ -1,7 +1,6 @@
 package com.epam.gene_nalyzer.Model;
 
 import javax.swing.table.AbstractTableModel;
-import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
 
 public class RtModel extends AbstractTableModel/*, DefaultTableModel*/ {
@@ -16,7 +15,7 @@ public class RtModel extends AbstractTableModel/*, DefaultTableModel*/ {
     //поле с количеством строк
     private byte numRows = 0;
     //поле номера строки в таблице//отключил, т.к. используется номер области
-    private byte number_area = 1;
+    private byte numberArea = 1;
 
 
     //КОНСТРУКТОРЫ МОДЕЛИ таблицы
@@ -31,7 +30,7 @@ public class RtModel extends AbstractTableModel/*, DefaultTableModel*/ {
     /*public RtModel(Double[] data, double bi) {
         this.data.add(setData(data, bi));
         numRows++;
-        number_area++;
+        numberArea++;
     }*/
 
 
@@ -78,20 +77,20 @@ public class RtModel extends AbstractTableModel/*, DefaultTableModel*/ {
     }
 
     //получение входных данных и их преобразование к табличным значениям
-    public Object[] setData(int id, Double[] new_data, double bi) {
+    private Object[] setData(int id, Double[] newData, double bi) {
         byte r0 = (byte) id;
         double r1 = 0, r2 = 0, r4;
         int r3;
         //находим Average OD
-        for (int i = 0; i < new_data.length; i++) {
-            r1 += new_data[i];
+        for (int i = 0; i < newData.length; i++) {
+            r1 += newData[i];
         }
-        r1 = Math.log10(bi / (r1 / new_data.length));
+        r1 = Math.log10(bi / (r1 / newData.length));
         //находим Total OD
-        for (int i = 0; i < new_data.length; i++) {
-            r2 += Math.log10(bi / new_data[i]);
+        for (int i = 0; i < newData.length; i++) {
+            r2 += Math.log10(bi / newData[i]);
         }
-        r3 = new_data.length;
+        r3 = newData.length;
         r4 = bi;
 
         Object[] row = {r0, r1, r2, r3, r4};
@@ -99,10 +98,10 @@ public class RtModel extends AbstractTableModel/*, DefaultTableModel*/ {
     }
 
     //добавление новой строки
-    public void setValueAt(int id, Double[] new_data, double bi) {
-        data.add(setData(id, new_data, bi));
+    public void setValueAt(int id, Double[] newData, double bi) {
+        data.add(setData(id, newData, bi));
         numRows++;
-        number_area++;
+        numberArea++;
         //fireTableDataChanged();
     }
 
@@ -132,8 +131,8 @@ public class RtModel extends AbstractTableModel/*, DefaultTableModel*/ {
                 //}
             //}
         }*/
-        number_area = (byte) ((int) number_area - (int) numRows);
+        numberArea = (byte) ((int) numberArea - (int) numRows);
         numRows = 0;
-        //number_area=
+        //numberArea=
     }
 }

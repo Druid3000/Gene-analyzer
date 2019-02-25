@@ -33,10 +33,10 @@ public class Menu {
         fileMenu.add(newMenu);
         /*Аня: я переименовала один из пунктов подменю "New" в "Table", оно служит для отображения таблицы
           с результатами оптических плотностей*/
-        JMenuItem TableItem = new JMenuItem("Table");
-        TableItem.setFont(font);
-        newMenu.add(TableItem);
-        TableItem.addActionListener(new ActionListener() {
+        JMenuItem tableItem = new JMenuItem("Table");
+        tableItem.setFont(font);
+        newMenu.add(tableItem);
+        tableItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 //canvasArea.setVisible(false);
                 //canvasArea.removeMouseListener(mouseLocation);
@@ -60,10 +60,10 @@ public class Menu {
 
         openItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JFileChooser fileopen = new JFileChooser();
-                int ret = fileopen.showDialog(null, "Открыть файл");
+                JFileChooser fileOpen = new JFileChooser();
+                int ret = fileOpen.showDialog(null, "Открыть файл");
                 if (ret == JFileChooser.APPROVE_OPTION) {
-                    picture = fileopen.getSelectedFile();
+                    picture = fileOpen.getSelectedFile();
                     mainController.setPicture(picture);
                     //canvasLine.setPicture(picture);
                     canvasLine.setVisible(true);
@@ -169,7 +169,7 @@ public class Menu {
     }
 
     //TO DO (create methods for creating menu and sub-menu buttons
-    protected JMenuBar get_menuBar() {
+    protected JMenuBar getMenuBar() {
         return menuBar;
     }
 }

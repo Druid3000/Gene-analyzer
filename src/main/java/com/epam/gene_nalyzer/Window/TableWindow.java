@@ -18,13 +18,9 @@ public class TableWindow extends JFrame {
 
     //поле контроллера (для работы с классом модели)
     //private static TableController table_controller;
-    //поля, содержащее таблицу
-    private JTable results_table;
-    //поле модели столбца
-    private TableColumnModel tcm;
     private MainController mainController;
     //поле существования данного окна
-    public boolean be = false;
+    protected boolean be = false;
 
 
     //КОНСТРУКТОРЫ МОДЕЛИ таблицы
@@ -70,37 +66,37 @@ public class TableWindow extends JFrame {
     //метод создания таблицы
     private void CreateTable() {
         //создание таблицы
-        RtModel tm = mainController.getTable();
-        results_table = new JTable(tm);
-        //table_controller = new TableController(tm);
+        RtModel tableModel = mainController.getTable();
+        JTable resultsTable = new JTable(tableModel);
+        //table_controller = new TableController(tableModel);
         //включение таблицы в состав панели с прокруткой
-        final JScrollPane scrollPane = new JScrollPane(results_table);
+        final JScrollPane scrollPane = new JScrollPane(resultsTable);
         //установка размера области просмотра для прокрутки
-        results_table.setPreferredScrollableViewportSize(new Dimension(550, 320));
+        resultsTable.setPreferredScrollableViewportSize(new Dimension(550, 320));
         //добавление полосы прокрутки с таблицей в главное окно
         getContentPane().add(scrollPane);
         //допускается выбор одного элемента
-        results_table.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
+        resultsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         //запретить выбор строк
-        results_table.setRowSelectionAllowed(false);
+        resultsTable.setRowSelectionAllowed(false);
         //разрешить выбор столбцов
-        results_table.setColumnSelectionAllowed(true);
+        resultsTable.setColumnSelectionAllowed(true);
         //получение ссылки на модель таблицы
-        //tm = results_table.getModel();
+        //tableModel = resultsTable.getModel();
         //получение ссылки на модель столбцов
-        tcm = results_table.getColumnModel();
+        TableColumnModel tableColumnModel = resultsTable.getColumnModel();
         //изменение размера первого столбца (по модели)
-        tcm.getColumn(0).setPreferredWidth(30);
+        tableColumnModel.getColumn(0).setPreferredWidth(30);
         //установка минимальных значений ширины столбцов
-        tcm.getColumn(0).setMinWidth(20);
-        tcm.getColumn(1).setMinWidth(75);
-        tcm.getColumn(2).setMinWidth(55);
-        tcm.getColumn(3).setMinWidth(40);
-        tcm.getColumn(4).setMinWidth(75);
+        tableColumnModel.getColumn(0).setMinWidth(20);
+        tableColumnModel.getColumn(1).setMinWidth(75);
+        tableColumnModel.getColumn(2).setMinWidth(55);
+        tableColumnModel.getColumn(3).setMinWidth(40);
+        tableColumnModel.getColumn(4).setMinWidth(75);
         //установка максимального значения для первого и последнего столбцов
-        tcm.getColumn(0).setMaxWidth(50);
-        tcm.getColumn(4).setMaxWidth(100);
-        results_table.getModel().addTableModelListener(
+        tableColumnModel.getColumn(0).setMaxWidth(50);
+        tableColumnModel.getColumn(4).setMaxWidth(100);
+        resultsTable.getModel().addTableModelListener(
                 new TableModelListener() {
                     public void tableChanged(TableModelEvent evt) {
                         scrollPane.updateUI();
@@ -111,10 +107,10 @@ public class TableWindow extends JFrame {
     //метод для добавления информации (строки) в таблицу
     private void updateData() {
 
-        /*int num = results_table.getRowCount();
+        /*int num = resultsTable.getRowCount();
         int size = mainController.getAreas().size();
         if (num != size) {
-            results_table.setModel(mainController.getTable());
+            resultsTable.setModel(mainController.getTable());
         }
         updateData();*/
         mainController.updateData();
@@ -123,16 +119,16 @@ public class TableWindow extends JFrame {
 
 
     //метод для удаления указанной строки из таблицы (удалит область)
-    public void DeleteData(int id_row) {
-        mainController.TransferDeleteData(id_row);
+    public void deleteData(int idRow) {
+        mainController.transferDeleteData(idRow);
     }
 
     //метод для сортировки таблицы
-    public void SortData(String colomn_name) {
+    public void sortData(String colomn_name) {
     }
 
     //метод для сохранения информации (таблицы)
-    public void SaveData() {
+    public void saveData() {
     }
 
 }

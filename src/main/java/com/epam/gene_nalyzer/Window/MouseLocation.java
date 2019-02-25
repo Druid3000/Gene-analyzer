@@ -6,7 +6,7 @@ import java.awt.event.MouseMotionListener;
 
 
 public class MouseLocation implements MouseListener, MouseMotionListener {
-    private boolean pos = true;//true = 1 точка. false = 2 точка
+    private boolean position = true;//true = 1 точка. false = 2 точка
     private int xPosition1 = 0;
     private int yPosition1 = 0;
     private int xPosition2 = 1;
@@ -14,58 +14,58 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
     private int xPositionNow;
     private int yPositionNow;
 
-    public int getxPosition1() {
+    public int getXPosition1() {
         return xPosition1;
     }
 
-    public int getxPosition2() {
+    public int getXPosition2() {
         return xPosition2;
     }
 
-    public int getyPosition1() {
+    public int getYPosition1() {
         return yPosition1;
     }
 
-    public int getyPosition2() {
+    public int getYPosition2() {
         return yPosition2;
     }
 
-    public int getxPositionNow() {
+    public int getXPositionNow() {
         return xPositionNow;
     }
 
-    public int getyPositionNow() {
+    public int getYPositionNow() {
         return yPositionNow;
     }
 
-    public void mouseClicked(MouseEvent Event) {
+    public void mouseClicked(MouseEvent event) {
     }
 
-    public void mouseEntered(MouseEvent Event) {
+    public void mouseEntered(MouseEvent event) {
     }
 
-    public void mouseExited(MouseEvent Event) {
+    public void mouseExited(MouseEvent event) {
     }
 
-    public void mousePressed(MouseEvent Event) {
-        if (pos) {
-            xPosition1 = Event.getX();
-            yPosition1 = Event.getY();
+    public void mousePressed(MouseEvent event) {
+        if (position) {
+            xPosition1 = event.getX();
+            yPosition1 = event.getY();
         } else {
-            xPosition2 = Event.getX();
-            yPosition2 = Event.getY();
+            xPosition2 = event.getX();
+            yPosition2 = event.getY();
         }
-        pos = !pos;
+        position = !position;
     }
 
-    public void mouseReleased(MouseEvent Event) {
+    public void mouseReleased(MouseEvent event) {
     }
 
-    public void mouseMoved(MouseEvent e) {
-        xPositionNow = e.getPoint().x;
-        yPositionNow = e.getPoint().y;
+    public void mouseMoved(MouseEvent event) {
+        xPositionNow = event.getPoint().x;
+        yPositionNow = event.getPoint().y;
     }
 
-    public void mouseDragged(MouseEvent e) {
+    public void mouseDragged(MouseEvent event) {
     }
 }

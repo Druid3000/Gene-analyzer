@@ -6,7 +6,7 @@ import java.awt.event.ActionListener;
 public class JPopMenuListener implements ActionListener {
     protected int id;
 
-    public JPopMenuListener(int i) {
+    protected JPopMenuListener(int i) {
         this.id = i;
     }
 
