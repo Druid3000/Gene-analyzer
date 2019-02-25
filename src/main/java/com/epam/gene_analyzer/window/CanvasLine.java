@@ -11,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
@@ -23,14 +24,15 @@ public class CanvasLine extends JComponent {
     private JPopupMenu popupMenu;//=new JPopupMenu();
     private MainController mainController;
     private boolean mode = true;  //true - линии, false - области
+    private boolean position = true;//true = 1 точка. false = 2 точка
+    private MouseLocation mouseLocation;
 
-
-    protected CanvasLine(MainController mainController) {
+    CanvasLine(MainController mc) {
+        mainController = mc;
+        setVisible(true);
         addListener();
         addJPopMenu();
-        this.mainController = mainController;
     }
-
 
     private void drawPicture(Graphics2D graphics2D) {//отрисовка изображения
         picture = mainController.getPicture();
@@ -100,9 +102,6 @@ public class CanvasLine extends JComponent {
         }
     }
 
-    protected void setMode(boolean m) {
-        mode = m;
-    }
 
     /*Метод, перерисовывающий элемент внутри окна
      *при обновлении*/
@@ -111,6 +110,7 @@ public class CanvasLine extends JComponent {
         reloadJPopMenu();
         Graphics2D graphics2D = (Graphics2D) graphics;
         drawPicture(graphics2D);
+        drawCurrentLine(graphics2D);
         if (mode) drawLines(graphics2D);
         else {
             drawAreaPerimeter(graphics2D);//или drawArea(graphics2D) - закрасит область
@@ -119,108 +119,9 @@ public class CanvasLine extends JComponent {
     }
 
     private void addListener() {
-        addMouseListener(new MouseLocation() {
-
-            private boolean position = true;//true = 1 точка. false = 2 точка
-            private int xPosition1 = 0;
-            private int yPosition1 = 0;
-            private int xPosition2 = 1;
-            private int yPosition2 = 1;
-            private int xPositionNow;
-            private int yPositionNow;
-
-            public int getXPosition1() {
-                return xPosition1;
-            }
-
-            public int getXPosition2() {
-                return xPosition2;
-            }
-
-            public int getYPosition1() {
-                return yPosition1;
-            }
-
-            public int getYPosition2() {
-                return yPosition2;
-            }
-
-            public int getXPositionNow() {
-                return xPositionNow;
-            }
-
-            public int getYPositionNow() {
-                return yPositionNow;
-            }
-
-            public void mouseClicked(MouseEvent event) {
-            }
-
-            public void mouseEntered(MouseEvent event) {
-            }
-
-            public void mouseExited(MouseEvent event) {
-            }
-
-            public void mousePressed(MouseEvent event) {
-                if (event.getButton() == MouseEvent.BUTTON1) {
-                    xPositionNow = event.getX();
-                    yPositionNow = event.getY();
-                    if (position) {
-                        xPosition1 = event.getX();
-                        yPosition1 = event.getY();
-                    } else {
-                        xPosition2 = event.getX();
-                        yPosition2 = event.getY();
-
-                        /////////метод из мэйнвиндоу//////////
-                        //оставил работу с геттерами а не с полями напрямую для того, чтоб потом вынести
-                        // слушатель в контроллер при желании
-                        if (getXPositionNow() < getWidth() & getYPositionNow() < getHeight()) {
-                            if (mode) {
-                                if (picture != null) {
-                                    int x1 = getXPosition1();
-                                    int y1 = getYPosition1();
-                                    Pixel p1 = new Pixel();
-                                    p1.setX(x1);
-                                    p1.setY(y1);
-                                    int x2 = getXPosition2();
-                                    int y2 = getYPosition2();
-                                    Pixel p2 = new Pixel();
-                                    p2.setX(x2);
-                                    p2.setY(y2);
-                                    if (!(x1 == x2 & y1 == y2)) {
-                                        if (mainController.getLines().size() == 10)
-                                            JOptionPane.showMessageDialog(null, "Удалите хотя бы одну линию, чтобы добавить новую!");
-                                        else
-                                            mainController.addLine(p1, p2);
-                                        lines = mainController.getLines();
-                                    }
-                                }
-                            }
-
-                        }
-                    }
-                    if (!mode) {
-                        int x = getXPositionNow(), y = getYPositionNow();
-                        Pixel p = new Pixel();
-                        p.setX(x);
-                        p.setY(y);
-                        p.setR((new Color(picture.getRGB(x, y)).getRed()));
-                        p.setG((new Color(picture.getRGB(x, y)).getGreen()));
-                        p.setB((new Color(picture.getRGB(x, y)).getBlue()));
-                        mainController.addArea(p);//set -> add (в массив)
-
-                        //Аня: проверяем открыта ли таблица, если да, то передаем область в обработку
-                        //UPD (Макс): теперь области автоматом будут в таблицу попадать, это нам не нужно
-                    }
-                    position = !position;
-                }
-            }
-
-            public void mouseReleased(MouseEvent event) {
-            }
-        });
+        mouseLocation = new MouseLocation(this, mainController);
+        addMouseListener(mouseLocation);
+        addMouseMotionListener(mouseLocation);
     }
 
     private void addJPopMenu() {
@@ -288,4 +189,37 @@ public class CanvasLine extends JComponent {
             setComponentPopupMenu(popupMenu);
         }
     }
+
+    private void drawCurrentLine(Graphics2D graphics2D) {
+        int x1 = mouseLocation.getXPosition1();
+        int y1 = mouseLocation.getYPosition1();
+
+        if (mode & !position & picture != null) {
+            int x2 = mouseLocation.getXPositionNow();
+            int y2 = mouseLocation.getYPositionNow();
+            graphics2D.setColor(Color.red);
+            graphics2D.drawLine(x1, y1, x2, y2);
+        }
+    }
+
+    protected boolean getPosition() {
+        return position;
+    }
+
+    protected void setMode(boolean m) {
+        mode = m;
+    }
+
+    protected void changePosition() {
+        position = !position;
+    }
+
+    protected boolean getMode() {
+        return mode;
+    }
+
+    protected void setLines(ArrayList<Line> lines) {
+        this.lines = lines;
+    }
+
 }

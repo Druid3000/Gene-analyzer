@@ -18,8 +18,6 @@ public class MainController {
     private double backgroundIntensity = 255.0;
     private RtModel rtModel = new RtModel();//таблица областей
 
-    public MainController() {
-    }
 
     public void addLine(Pixel p1, Pixel p2) {
         Line l = new Line(p1, p2, picture);
@@ -29,7 +27,6 @@ public class MainController {
 
     public Line getLine(int id) {
         return lineArray.get(id);
-
     }
 
     public BufferedImage getPicture() {
@@ -45,7 +42,8 @@ public class MainController {
     }
 
     public ArrayList<Line> getLines() {
-        return lineArray;
+        if (lineArray != null) return lineArray;
+        else return null;
     }
 
     public void addArea(Pixel p) {

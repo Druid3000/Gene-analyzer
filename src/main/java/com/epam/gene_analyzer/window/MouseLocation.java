@@ -1,57 +1,49 @@
 package com.epam.gene_analyzer.window;
 
+import com.epam.gene_analyzer.controllers.MainController;
+import com.epam.gene_analyzer.model.Pixel;
+
+import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
 
-public class MouseLocation implements MouseListener, MouseMotionListener {
-    private boolean position = true;//true = 1 точка. false = 2 точка
+public class MouseLocation implements MouseListener, MouseMotionListener {//private
     private int xPosition1 = 0;
     private int yPosition1 = 0;
     private int xPosition2 = 1;
     private int yPosition2 = 1;
     private int xPositionNow;
     private int yPositionNow;
+    private CanvasLine canvasLine;
+    private MainController mainController;
 
-    public int getXPosition1() {
+    MouseLocation(CanvasLine cl, MainController ml) {
+        canvasLine = cl;
+        mainController = ml;
+    }
+
+    protected int getXPosition1() {
         return xPosition1;
     }
 
-    public int getXPosition2() {
+    private int getXPosition2() {
         return xPosition2;
     }
 
-    public int getYPosition1() {
+    protected int getYPosition1() {
         return yPosition1;
     }
 
-    public int getYPosition2() {
+    private int getYPosition2() {
         return yPosition2;
     }
 
-    public int getXPositionNow() {
+    protected int getXPositionNow() {
         return xPositionNow;
     }
 
-    public int getYPositionNow() {
+    protected int getYPositionNow() {
         return yPositionNow;
-    }
-
-    public void mousePressed(MouseEvent event) {
-        if (position) {
-            xPosition1 = event.getX();
-            yPosition1 = event.getY();
-        } else {
-            xPosition2 = event.getX();
-            yPosition2 = event.getY();
-        }
-        position = !position;
-    }
-
-    public void mouseMoved(MouseEvent event) {
-        xPositionNow = event.getPoint().x;
-        yPositionNow = event.getPoint().y;
-    }
-
-    public void mouseDragged(MouseEvent event) {
     }
 
     public void mouseClicked(MouseEvent event) {
@@ -63,6 +55,61 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
     public void mouseExited(MouseEvent event) {
     }
 
+    public void mousePressed(MouseEvent event) {
+        if (event.getButton() == MouseEvent.BUTTON1) {
+            if (canvasLine.getPosition()) {
+                xPosition1 = event.getX();
+                yPosition1 = event.getY();
+            } else {
+                xPosition2 = event.getX();
+                yPosition2 = event.getY();
+
+                if (getXPositionNow() < canvasLine.getWidth() & getYPositionNow() < canvasLine.getHeight()) {
+                    if (canvasLine.getMode()) {
+                        if (mainController.getPicture() != null) {
+                            int x1 = getXPosition1();
+                            int y1 = getYPosition1();
+                            Pixel p1 = new Pixel();
+                            p1.setX(x1);
+                            p1.setY(y1);
+                            int x2 = getXPosition2();
+                            int y2 = getYPosition2();
+                            Pixel p2 = new Pixel();
+                            p2.setX(x2);
+                            p2.setY(y2);
+                            if (!(x1 == x2 & y1 == y2)) {
+                                //if (mainController.getLines() != null) {
+                                if (mainController.getLines().size() == 10)
+                                    JOptionPane.showMessageDialog(null, "Удалите хотя бы одну линию, чтобы добавить новую!");
+                                else
+                                    mainController.addLine(p1, p2);
+                                canvasLine.setLines(mainController.getLines());
+                            }
+                        }
+                    }
+
+                }
+            }
+            if (!canvasLine.getMode()) {
+                int x = getXPositionNow(), y = getYPositionNow();
+                Pixel p = new Pixel();
+                p.setX(x);
+                p.setY(y);
+                p.setColor(new Color(mainController.getPicture().getRGB(x, y)));
+                mainController.addArea(p);//set -> add (в массив)
+            }
+            canvasLine.changePosition();
+        }
+    }
+
+    public void mouseMoved(MouseEvent event) {
+        xPositionNow = event.getPoint().x;
+        yPositionNow = event.getPoint().y;
+    }
+
     public void mouseReleased(MouseEvent event) {
+    }
+
+    public void mouseDragged(MouseEvent event) {
     }
 }
