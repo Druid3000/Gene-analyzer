@@ -1,4 +1,4 @@
-package com.epam.gene_analyzer.window;
+package com.epam.gene_analyzer.windows;
 
 import java.awt.event.*;
 
