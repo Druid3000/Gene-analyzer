@@ -8,14 +8,20 @@ import java.awt.*;
 
 public class MainWindow extends JFrame {
 
+    private CanvasLine canvasLine;
+    private Menu menu;
+
     public MainWindow() {
         MainController mainController = new MainController();
         GraphWindow graphWindow = new GraphWindow(mainController);
         AboutWindow aboutWindow = new AboutWindow();
         TableWindow tableWindow = new TableWindow(mainController);
-        CanvasLine canvasLine = new CanvasLine(mainController);
-        Menu menu = new Menu(aboutWindow, tableWindow, mainController, graphWindow, canvasLine);
 
+        canvasLine = new CanvasLine(mainController);
+        menu = new Menu(aboutWindow, tableWindow, mainController, graphWindow, canvasLine);
+    }
+
+    public void showWindow(){
         setVisible(true);
         setTitle("Определение оптической плотности");
         setPreferredSize(new Dimension(1000, 1000));
@@ -24,5 +30,4 @@ public class MainWindow extends JFrame {
         add(canvasLine);
         pack();
     }
-
 }
