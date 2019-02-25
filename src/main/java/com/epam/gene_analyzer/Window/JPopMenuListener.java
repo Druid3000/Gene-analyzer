@@ -4,12 +4,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class JPopMenuListener implements ActionListener {
-    protected int id;
+    int id;
 
-    protected JPopMenuListener(int i) {
+    JPopMenuListener(int i) {
         this.id = i;
     }
 
+    //Этот метод должен быть, так как без него не работает. Вопросы к Максиму
     public void actionPerformed(ActionEvent e) {
 
     }
