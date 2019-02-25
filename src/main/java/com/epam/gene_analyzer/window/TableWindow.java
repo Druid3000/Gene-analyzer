@@ -1,7 +1,7 @@
-package com.epam.gene_analyzer.Window;
+package com.epam.gene_analyzer.window;
 
-import com.epam.gene_analyzer.Controllers.MainController;
-import com.epam.gene_analyzer.Model.RtModel;
+import com.epam.gene_analyzer.controllers.MainController;
+import com.epam.gene_analyzer.model.RtModel;
 
 import javax.swing.*;
 import javax.swing.event.TableModelEvent;

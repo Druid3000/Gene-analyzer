@@ -1,4 +1,4 @@
-package com.epam.gene_analyzer.Model;
+package com.epam.gene_analyzer.model;
 
 import java.awt.*;
 

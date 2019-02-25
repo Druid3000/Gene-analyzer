@@ -1,4 +1,4 @@
-package com.epam.gene_analyzer.Window;
+package com.epam.gene_analyzer.window;
 
 import javax.swing.*;
 

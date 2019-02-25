@@ -1,6 +1,6 @@
 package com.epam.gene_analyzer;
 
-import com.epam.gene_analyzer.Window.MainWindow;
+import com.epam.gene_analyzer.window.MainWindow;
 
 
 public class Main {

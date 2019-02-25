@@ -1,6 +1,6 @@
-package com.epam.gene_analyzer.Controllers;
+package com.epam.gene_analyzer.controllers;
 
-import com.epam.gene_analyzer.Model.*;
+import com.epam.gene_analyzer.model.*;
 
 import javax.imageio.ImageIO;
 import java.awt.*;

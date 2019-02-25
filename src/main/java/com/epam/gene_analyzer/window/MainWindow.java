@@ -1,6 +1,6 @@
-package com.epam.gene_analyzer.Window;
+package com.epam.gene_analyzer.window;
 
-import com.epam.gene_analyzer.Controllers.MainController;
+import com.epam.gene_analyzer.controllers.MainController;
 
 import javax.swing.*;
 import java.awt.*;
