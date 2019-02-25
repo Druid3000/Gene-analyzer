@@ -1,8 +1,8 @@
-package com.epam.gene_nalyzer.Window;
+package com.epam.gene_analyzer.Window;
 
-import com.epam.gene_nalyzer.Controllers.MainController;
-import com.epam.gene_nalyzer.Model.Line;
-import com.epam.gene_nalyzer.Model.Pixel;
+import com.epam.gene_analyzer.Controllers.MainController;
+import com.epam.gene_analyzer.Model.Line;
+import com.epam.gene_analyzer.Model.Pixel;
 
 import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;

@@ -1,4 +1,4 @@
-package com.epam.gene_nalyzer.Model;
+package com.epam.gene_analyzer.Model;
 
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;

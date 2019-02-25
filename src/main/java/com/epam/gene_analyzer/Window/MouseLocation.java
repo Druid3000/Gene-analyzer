@@ -1,4 +1,4 @@
-package com.epam.gene_nalyzer.Window;
+package com.epam.gene_analyzer.Window;
 
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;

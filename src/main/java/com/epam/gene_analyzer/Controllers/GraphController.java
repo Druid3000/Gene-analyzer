@@ -1,4 +1,4 @@
-package com.epam.gene_nalyzer.Controllers;
+package com.epam.gene_analyzer.Controllers;
 
 public class GraphController {
     private boolean visible = false;
