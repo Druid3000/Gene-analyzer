@@ -1,4 +1,4 @@
-package com.epam.gene_analyzer.window;
+package com.epam.gene_analyzer.windows;
 
 import com.epam.gene_analyzer.controllers.MainController;
 import com.epam.gene_analyzer.model.RtModel;

@@ -1,7 +1,6 @@
 package com.epam.gene_analyzer;
 
-import com.epam.gene_analyzer.window.MainWindow;
-
+import com.epam.gene_analyzer.windows.MainWindow;
 
 public class Main {
     public static void main(String[] args) {
