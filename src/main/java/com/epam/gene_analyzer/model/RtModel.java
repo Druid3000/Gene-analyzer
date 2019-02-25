@@ -3,7 +3,7 @@ package com.epam.gene_analyzer.model;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 
-public class RtModel extends AbstractTableModel/*, DefaultTableModel*/ {
+public class RtModel extends AbstractTableModel {
 
     //ПОЛЯ МОДЕЛИ таблицы
     //---------------------------------------
@@ -25,14 +25,6 @@ public class RtModel extends AbstractTableModel/*, DefaultTableModel*/ {
     public RtModel() {
         super();
     }
-
-    //конструктор с заполнением первой строки
-    /*public RtModel(Double[] data, double bi) {
-        this.data.add(setData(data, bi));
-        numRows++;
-        numberArea++;
-    }*/
-
 
     //МЕТОДЫ МОДЕЛИ таблицы
     //---------------------------------------
@@ -102,7 +94,6 @@ public class RtModel extends AbstractTableModel/*, DefaultTableModel*/ {
         data.add(setData(id, newData, bi));
         numRows++;
         numberArea++;
-        //fireTableDataChanged();
     }
 
     //удаление строки с заданным индексом
@@ -116,23 +107,10 @@ public class RtModel extends AbstractTableModel/*, DefaultTableModel*/ {
         }
         fireTableDataChanged();
     }*/
-    public void removeRows() {
-        if (data.size() > 0)
-            data.clear();
-        /*
-        for (int i = 0; i < data.size(); i++) {
 
-            System.out.println("data "+(data.get(i-1)[0].toString()));
-            System.out.println("int "+Integer.toString(i));
-            //if ((data.get(i)[0].toString()) == Integer.toString(i)+1) {
-                data.remove(i);
-                numRows--;
-                //break;
-                //}
-            //}
-        }*/
+    public void removeRows() {
+        if (data.size() > 0) data.clear();
         numberArea = (byte) ((int) numberArea - (int) numRows);
         numRows = 0;
-        //numberArea=
     }
 }

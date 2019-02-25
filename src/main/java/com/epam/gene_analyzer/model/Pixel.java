@@ -3,9 +3,13 @@ package com.epam.gene_analyzer.model;
 import java.awt.*;
 
 public class Pixel {
+
     private int x;
     private int y;
-    private int R = 0, G = 0, B = 0;
+
+    private int R;
+    private int G;
+    private int B;
 
     public double getIntensity() {
         if ((double) R * 0.3 + (double) G * 0.59 + (double) B * 0.11 > 0)
@@ -22,36 +26,24 @@ public class Pixel {
         return y;
     }
 
-    public int getR() {
-        return R;
+    public void setX(int xCoordinate) {
+        x = xCoordinate;
     }
 
-    public int getG() {
-        return G;
+    public void setY(int yCoordinate) {
+        y = yCoordinate;
     }
 
-    public int getB() {
-        return B;
+    public void setR(int red) {
+        R = red;
     }
 
-    public void setX(int xx) {
-        x = xx;
+    public void setG(int green) {
+        G = green;
     }
 
-    public void setY(int yy) {
-        y = yy;
-    }
-
-    public void setR(int r) {
-        R = r;
-    }
-
-    public void setG(int g) {
-        G = g;
-    }
-
-    public void setB(int b) {
-        B = b;
+    public void setB(int blue) {
+        B = blue;
     }
 
     public void setColor(Color c) {

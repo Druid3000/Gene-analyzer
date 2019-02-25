@@ -15,8 +15,8 @@ public class Area {
     public void setArea(Pixel pixel, BufferedImage image) {
         pixels = new ArrayList<Pixel>();
         perimeter = new ArrayList<Pixel>();
-        Pixel[][] allPixels = arrayFromPicture(image);
-        Pixel[][] allPixelsUnchanged = arrayFromPicture(image);
+        Pixel[][] allPixels = getPixelsArrayFromImage(image);
+        Pixel[][] allPixelsUnchanged = getPixelsArrayFromImage(image);
         int x = pixel.getX(), y = pixel.getY();
         double intensity = pixel.getIntensity();
         if (intensity == 0) intensity = 0.000001;
@@ -24,7 +24,6 @@ public class Area {
         allPixels[x][y].setR(1000000);
         checkNear(allPixels, allPixelsUnchanged, x, y, intensity, 0);
         idThis = id.incrementAndGet();
-
     }
 
     public ArrayList<Pixel> getArea() {
@@ -35,6 +34,11 @@ public class Area {
         return perimeter;
     }
 
+    public int getId() {
+        return idThis;
+    }
+
+    //Логика выделения областей
     private void checkNear(Pixel[][] allPixels, Pixel[][] allPixelsUnchanged, int x, int y, double intensity, int side) {//side - показывает, откуда пришла проверка
         //side = 0 - начало; 1 - слева; 2 - справа; 3 - сверху; 4 - снизу.
         double newIntensity;
@@ -82,7 +86,8 @@ public class Area {
         }
     }
 
-    private Pixel[][] arrayFromPicture(BufferedImage image) {
+    //Создание двумерного массива из картика
+    private Pixel[][] getPixelsArrayFromImage(BufferedImage image) {
         Pixel[][] allPixels;
         int h = image.getHeight(), w = image.getWidth(), R, G, B;
         allPixels = new Pixel[w][h];
@@ -103,9 +108,5 @@ public class Area {
             }
         }
         return allPixels;
-    }
-
-    public int getId() {
-        return idThis;
     }
 }

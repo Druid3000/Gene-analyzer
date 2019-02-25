@@ -6,7 +6,6 @@ import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class Line {
-    public static String[] cordsCode = new String[0];
     private static final AtomicInteger id = new AtomicInteger(0);
     private int idThis;
     private double maxDensity;
@@ -19,10 +18,6 @@ public class Line {
         k = (double) (y1 - y2) / (x1 - x2);
         b = y1 - k * x1;
         int length = Math.max(Math.abs(x1 - x2), (Math.abs(y1 - y2)));//длина отрезка (кол-во пикселей)
-        //создаю массив пикселей всего изображения
-        //BufferedImage image=im;
-        //try {
-        //    image = ImageIO.read(f);
         int h = image.getHeight(), w = image.getWidth(), R, G, B;
 
         Pixel[][] allPixels = new Pixel[w][h];
@@ -43,15 +38,12 @@ public class Line {
             }
         }
 
-
         // заполнение
         if (Math.abs(k) >= 1) {
             double x, y = y1;
             for (int i = 0; i < length; i++) {
                 x = (y - b) / k;
-                //g2d.drawLine((int) x, (int) y, (int) x, (int) y);
                 pixels.add(allPixels[(int) x][(int) y]); //pxls[i]=allPixels[(int)x][(int)y];//заполняю массив пикселей на отрезке
-                //System.out.println(x+":"+y);
                 if (y1 < y2) y++;
                 else y--;
             }
@@ -59,15 +51,13 @@ public class Line {
             double x = x1, y;
             for (int i = 0; i < length; i++) {
                 y = k * x + b;
-                //g2d.drawLine((int) x, (int) y, (int) x, (int) y);
                 pixels.add(allPixels[(int) x][(int) y]); //pxls[i] = allPixels[(int) x][(int) y];//заполняю массив пикселей на отрезке
                 if (x1 < x2) x++;
                 else x--;
             }
         }
-        //pixels = p;
+
         idThis = id.incrementAndGet();
-        //System.out.println(idThis+"   "+Line.id);
 
         switch (idThis % 10) {
             case 1:
