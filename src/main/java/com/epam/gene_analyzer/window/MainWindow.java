@@ -26,7 +26,6 @@ public class MainWindow extends JFrame {
         setPreferredSize(new Dimension(1000, 1000));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setJMenuBar(menu.getMenuBar());
-        canvasLine.setVisible(false);
         add(canvasLine);
         pack();
     }

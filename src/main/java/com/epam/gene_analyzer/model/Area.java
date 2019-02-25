@@ -9,7 +9,7 @@ public class Area {
     private ArrayList<Pixel> pixels;
     private ArrayList<Pixel> perimeter;
     private ArrayList<Pixel> perimetr;
-    private final double delta = 0.4;
+    private final double delta = 0.1;
     private static final AtomicInteger id = new AtomicInteger(0);
     private int idThis = 1;
 
