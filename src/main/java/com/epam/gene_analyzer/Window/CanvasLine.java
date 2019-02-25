@@ -21,7 +21,6 @@ public class CanvasLine extends JComponent {
     private BufferedImage picture;
     private ArrayList<Line> lines = new ArrayList<Line>();
     private JPopupMenu popupMenu;//=new JPopupMenu();
-    // private ArrayList<Pixel> pixelArray = new ArrayList<Pixel>();
     private MainController mainController;
     private boolean mode = true;  //true - линии, false - области
 
@@ -43,14 +42,12 @@ public class CanvasLine extends JComponent {
 
     private void drawLines(Graphics2D graphics2D) {
         if (picture != null) {
-            //Graphics2D graphics2D = (Graphics2D) this.getGraphics();
             graphics2D.setColor(Color.RED); //цвет для графика
             int x1, x2, y1, y2, length; //координаты начала и конца отрезка
             int x_, y_;              //чисто для проверки вхождения пикселей в изображение
             //введение координат отрезка с мышки
             if (lines.size() > 0) {
                 for (int i = 0; i < lines.size(); i++) {
-                    //System.out.println(lines.get(i).getArray().size());
                     graphics2D.setColor(Color.RED);//цвет для графика
                     x1 = lines.get(i).getArray().get(0).getX();
                     x2 = lines.get(i).getArray().get(lines.get(i).getArray().size() - 1).getX();
@@ -60,9 +57,6 @@ public class CanvasLine extends JComponent {
                     graphics2D.setFont(new Font("Verdana", Font.PLAIN, 18));
                     graphics2D.setColor(new Color(144, 9, 9));
                     graphics2D.drawString(Integer.toString(lines.get(i).getId()), x1, y1);//подпись номера линии
-
-                    //System.out.println(x1 + ":" + y1 + "--" + x2 + ":" + y2);
-
                 }
             }
         }
@@ -72,16 +66,18 @@ public class CanvasLine extends JComponent {
     private void drawAreas(Graphics2D graphics2D) {// отрисовка всех областей
         if (picture != null & mainController.getArea(0) != null) {
             for (int n = 0; n < mainController.getAreas().size(); n++) {
-                //Graphics2D graphics2D = (Graphics2D) this.getGraphics();
                 graphics2D.setColor(Color.RED);//цвет для области
-                //System.out.println(pixelArray.size());
                 for (int i = 0; i < mainController.getAreas().get(n).getArea().size(); i++) {
-                    graphics2D.drawLine(mainController.getAreas().get(n).getArea().get(i).getX(), mainController.getAreas().get(n).getArea().get(i).getY(), mainController.getAreas().get(n).getArea().get(i).getX(), mainController.getAreas().get(n).getArea().get(i).getY());
-                    //System.out.println(i+"  "+mainController.getArea().get(i).getX()+":"+ mainController.getArea().get(i).getY());
+                    graphics2D.drawLine(mainController.getAreas().get(n).getArea().get(i).getX(),
+                            mainController.getAreas().get(n).getArea().get(i).getY(),
+                            mainController.getAreas().get(n).getArea().get(i).getX(),
+                            mainController.getAreas().get(n).getArea().get(i).getY());
                 }
                 graphics2D.setFont(new Font("Verdana", Font.PLAIN, 18));//номер области
                 graphics2D.setColor(Color.WHITE);
-                graphics2D.drawString(Integer.toString(mainController.getAreas().get(n).getId()), mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).getX(), mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).getY());
+                graphics2D.drawString(Integer.toString(mainController.getAreas().get(n).getId()),
+                        mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).getX(),
+                        mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).getY());
             }
         }
     }
@@ -89,15 +85,17 @@ public class CanvasLine extends JComponent {
     private void drawAreaPerimeter(Graphics2D graphics2D) {
         if (picture != null & mainController.getAreaPerimeter(0) != null) {
             for (int n = 0; n < mainController.getAreas().size(); n++) {
-                //Graphics2D graphics2D = (Graphics2D) this.getGraphics();
                 graphics2D.setColor(Color.red);//цвет для области
-                //System.out.println(pixelArray.size());
                 for (int i = 0; i < mainController.getAreaPerimeter(n).size(); i++) {
-                    graphics2D.drawLine(mainController.getAreaPerimeter(n).get(i).getX(), mainController.getAreaPerimeter(n).get(i).getY(), mainController.getAreaPerimeter(n).get(i).getX(), mainController.getAreaPerimeter(n).get(i).getY());
-                    //System.out.println(i+"  "+mainController.getArea().get(i).getX()+":"+ mainController.getArea().get(i).getY());
+                    graphics2D.drawLine(mainController.getAreaPerimeter(n).get(i).getX(),
+                            mainController.getAreaPerimeter(n).get(i).getY(),
+                            mainController.getAreaPerimeter(n).get(i).getX(),
+                            mainController.getAreaPerimeter(n).get(i).getY());
                 }
                 graphics2D.setFont(new Font("Verdana", Font.PLAIN, 18));//номер области
-                graphics2D.drawString(Integer.toString(mainController.getAreas().get(n).getId()), mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).getX(), mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).getY());
+                graphics2D.drawString(Integer.toString(mainController.getAreas().get(n).getId()),
+                        mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).getX(),
+                        mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).getY());
             }
         }
     }
@@ -191,7 +189,6 @@ public class CanvasLine extends JComponent {
                                     Pixel p2 = new Pixel();
                                     p2.setX(x2);
                                     p2.setY(y2);
-                                    //System.out.println(p1 + "" + p2);
                                     if (!(x1 == x2 & y1 == y2)) {
                                         if (mainController.getLines().size() == 10)
                                             JOptionPane.showMessageDialog(null, "Удалите хотя бы одну линию, чтобы добавить новую!");
@@ -216,11 +213,6 @@ public class CanvasLine extends JComponent {
 
                         //Аня: проверяем открыта ли таблица, если да, то передаем область в обработку
                         //UPD (Макс): теперь области автоматом будут в таблицу попадать, это нам не нужно
-                        /*
-                        if (TableWindow.be){
-                            TableWindow.AddData(mainController.getArea(), mainController.getBackgroundIntensity());
-                        }
-                        */
                     }
                     position = !position;
                 }
