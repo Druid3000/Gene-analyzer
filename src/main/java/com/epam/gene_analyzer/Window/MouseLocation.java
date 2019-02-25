@@ -1,9 +1,6 @@
 package com.epam.gene_analyzer.Window;
 
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseMotionListener;
-
+import java.awt.event.*;
 
 public class MouseLocation implements MouseListener, MouseMotionListener {
     private boolean position = true;//true = 1 точка. false = 2 точка
@@ -38,15 +35,6 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         return yPositionNow;
     }
 
-    public void mouseClicked(MouseEvent event) {
-    }
-
-    public void mouseEntered(MouseEvent event) {
-    }
-
-    public void mouseExited(MouseEvent event) {
-    }
-
     public void mousePressed(MouseEvent event) {
         if (position) {
             xPosition1 = event.getX();
@@ -58,14 +46,23 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         position = !position;
     }
 
-    public void mouseReleased(MouseEvent event) {
-    }
-
     public void mouseMoved(MouseEvent event) {
         xPositionNow = event.getPoint().x;
         yPositionNow = event.getPoint().y;
     }
 
     public void mouseDragged(MouseEvent event) {
+    }
+
+    public void mouseClicked(MouseEvent event) {
+    }
+
+    public void mouseEntered(MouseEvent event) {
+    }
+
+    public void mouseExited(MouseEvent event) {
+    }
+
+    public void mouseReleased(MouseEvent event) {
     }
 }

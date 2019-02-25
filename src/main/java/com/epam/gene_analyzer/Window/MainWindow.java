@@ -5,7 +5,6 @@ import com.epam.gene_analyzer.Controllers.MainController;
 import javax.swing.*;
 import java.awt.*;
 
-
 public class MainWindow extends JFrame {
 
     private CanvasLine canvasLine;

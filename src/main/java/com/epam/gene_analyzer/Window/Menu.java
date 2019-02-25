@@ -8,7 +8,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
-public class Menu {
+class Menu {
     private MainController mainController;
     private CanvasLine canvasLine;
     private GraphWindow graphWindow;
@@ -17,7 +17,7 @@ public class Menu {
     private File picture;
     private AboutWindow aboutWindow;
 
-    public Menu(AboutWindow aw, TableWindow tw, MainController mc, GraphWindow gw, CanvasLine cl) {
+    Menu(AboutWindow aw, TableWindow tw, MainController mc, GraphWindow gw, CanvasLine cl) {
         mainController = mc;
         graphWindow = gw;
         tableWindow = tw;
@@ -38,9 +38,6 @@ public class Menu {
         newMenu.add(tableItem);
         tableItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //canvasArea.setVisible(false);
-                //canvasArea.removeMouseListener(mouseLocation);
-                //canvasLine.addMouseListener(mouseLocation);
                 tableWindow.setVisible(true);
                 tableWindow.be = true;
             }
@@ -65,7 +62,6 @@ public class Menu {
                 if (ret == JFileChooser.APPROVE_OPTION) {
                     picture = fileOpen.getSelectedFile();
                     mainController.setPicture(picture);
-                    //canvasLine.setPicture(picture);
                     canvasLine.setVisible(true);
                 }
 
@@ -111,7 +107,6 @@ public class Menu {
 
         aboutItem.addActionListener(new ActionListener() {   //opening new window with main inf
             public void actionPerformed(ActionEvent e) {
-                //AboutWindow aboutWindow = new AboutWindow();
                 aboutWindow.setVisible(true);
             }
         });
@@ -125,9 +120,6 @@ public class Menu {
         editMenu.add(drawLineItem);
         drawLineItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //canvasArea.setVisible(false);
-                //canvasArea.removeMouseListener(mouseLocation);
-                //canvasLine.addMouseListener(mouseLocation);
                 canvasLine.setMode(true);
             }
         });
@@ -137,10 +129,6 @@ public class Menu {
         editMenu.add(drawAreaItem);
         drawAreaItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                //canvasLine.setVisible(false);
-                //canvasLine.removeMouseListener(mouseLocation);
-                //canvasArea.addMouseListener(mouseLocation);
-                //canvasArea.setVisible(true);
                 canvasLine.setMode(false);
             }
         });
@@ -154,7 +142,6 @@ public class Menu {
                 graphWindow.setVisible(true);
                 closeItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        //panel.remove(canvGraph);
                         graphWindow.setVisible(false);
                     }
                 });
@@ -164,12 +151,11 @@ public class Menu {
         });
 
         menuBar.add(editMenu);
-
         menuBar.add(helpMenu);
     }
 
-    //TO DO (create methods for creating menu and sub-menu buttons
-    protected JMenuBar getMenuBar() {
+    //TODO (create methods for creating menu and sub-menu buttons
+    JMenuBar getMenuBar() {
         return menuBar;
     }
 }

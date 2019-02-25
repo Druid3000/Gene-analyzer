@@ -20,31 +20,10 @@ public class TableWindow extends JFrame {
     //private static TableController table_controller;
     private MainController mainController;
     //поле существования данного окна
-    protected boolean be = false;
-
-
-    //КОНСТРУКТОРЫ МОДЕЛИ таблицы
-    //---------------------------------------
-
-    //конструктор для создания класса без заполнения первой строки таблицы // не используется
-    /*public TableWindow(com.epam.gene_nalyzer.Controllers.MainController mc){
-        super("Table of the optical density");
-        mainController = mc;
-        //установка диспетчера компоновки
-        getContentPane().setLayout(new FlowLayout());
-        setBounds(600, 200, 600,400);
-        //установка иконки для окна
-        setIconImage(getToolkit().getImage("iconTable.gif"));
-        //действие при закрытии окна
-        setDefaultCloseOperation(HIDE_ON_CLOSE);
-        //создаем таблицу
-        CreateTable();
-        //видимость окна
-        updateData();
-    }*/
+    boolean be = false;
 
     //конструктор для создания класса с заполнением первой строки таблицы
-    public TableWindow(MainController mc) {
+    TableWindow(MainController mc) {
         super("Table of the optical density");
         mainController = mc;
         //установка диспетчера компоновки
@@ -104,21 +83,14 @@ public class TableWindow extends JFrame {
                 });
     }
 
-    //метод для добавления информации (строки) в таблицу
-    private void updateData() {
-
-        /*int num = resultsTable.getRowCount();
-        int size = mainController.getAreas().size();
-        if (num != size) {
-            resultsTable.setModel(mainController.getTable());
-        }
-        updateData();*/
-        mainController.updateData();
-
-    }
-
 
     //метод для удаления указанной строки из таблицы (удалит область)
+
+    //метод для добавления информации (строки) в таблицу
+    private void updateData() {
+        mainController.updateData();
+    }
+
     public void deleteData(int idRow) {
         mainController.transferDeleteData(idRow);
     }
@@ -130,5 +102,4 @@ public class TableWindow extends JFrame {
     //метод для сохранения информации (таблицы)
     public void saveData() {
     }
-
 }
