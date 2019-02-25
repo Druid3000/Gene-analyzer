@@ -2,7 +2,6 @@ package com.epam.gene_analyzer.window;
 
 import com.epam.gene_analyzer.controllers.MainController;
 import com.epam.gene_analyzer.model.Line;
-import com.epam.gene_analyzer.model.Pixel;
 
 import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
@@ -10,8 +9,6 @@ import javax.swing.event.PopupMenuListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.event.MouseEvent;
-import java.awt.event.MouseMotionListener;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
