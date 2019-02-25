@@ -25,7 +25,7 @@ public class CanvasLine extends JComponent {
     private boolean mode = true;  //true - линии, false - области
 
 
-    protected CanvasLine(MainController mainController) {
+    CanvasLine(MainController mainController) {
         addListener();
         addJPopMenu();
         this.mainController = mainController;
@@ -100,12 +100,9 @@ public class CanvasLine extends JComponent {
         }
     }
 
-    protected void setMode(boolean m) {
-        mode = m;
-    }
-
     /*Метод, перерисовывающий элемент внутри окна
      *при обновлении*/
+
     public void paintComponent(Graphics graphics) {
         super.paintComponents(graphics);
         reloadJPopMenu();
@@ -116,6 +113,10 @@ public class CanvasLine extends JComponent {
             drawAreaPerimeter(graphics2D);//или drawArea(graphics2D) - закрасит область
         }
         super.repaint();
+    }
+
+    void setMode(boolean m) {
+        mode = m;
     }
 
     private void addListener() {
