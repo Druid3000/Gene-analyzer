@@ -33,7 +33,7 @@ public class MainWindow extends JFrame {
         pack();
     }
 
-    public void changeWindowSize(int width, int height){
+    /*public void changeWindowSize(int width, int height){
         setPreferredSize(new Dimension(width, height));
-    }
+    }*/
 }
