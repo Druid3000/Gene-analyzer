@@ -57,6 +57,15 @@ public class MouseLocation implements MouseListener, MouseMotionListener {//priv
 
     public void mousePressed(MouseEvent event) {
         if (event.getButton() == MouseEvent.BUTTON1) {
+            if (canvasLine.isChooseBackgroundIntensity()){
+                Pixel p = new Pixel();
+                p.setX(event.getX());
+                p.setY(event.getY());
+                p.setColor(new Color(mainController.getPicture().getRGB(event.getX(),event.getY())));
+                mainController.setBackgroundIntensity(p);
+                canvasLine.setChooseBackgroundIntensity(false);
+            }
+            else
             if (canvasLine.getPosition()) {
                 xPosition1 = event.getX();
                 yPosition1 = event.getY();

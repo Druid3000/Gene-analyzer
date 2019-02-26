@@ -1,7 +1,8 @@
-package com.epam.gene_analyzer.window;
+package com.epam.gene_analyzer.windows;
 
 import com.epam.gene_analyzer.controllers.MainController;
 import com.epam.gene_analyzer.model.Line;
+import com.epam.gene_analyzer.windows.MouseLocation;
 
 import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
@@ -22,6 +23,7 @@ public class CanvasLine extends JComponent {
     private MainController mainController;
     private boolean mode = true;  //true - линии, false - области
     private boolean position = true;//true = 1 точка. false = 2 точка
+    private boolean chooseBackgroundIntensity = false;//true = режим выбора интенсивности. false = обычный режим
     private MouseLocation mouseLocation;
 
     CanvasLine(MainController mc) {
@@ -203,10 +205,6 @@ public class CanvasLine extends JComponent {
         return position;
     }
 
-    protected void setMode(boolean m) {
-        mode = m;
-    }
-
     protected void changePosition() {
         position = !position;
     }
@@ -215,6 +213,17 @@ public class CanvasLine extends JComponent {
         return mode;
     }
 
+    protected void setMode(boolean m) {
+        mode = m;
+    }
+
+    protected boolean isChooseBackgroundIntensity() {
+        return chooseBackgroundIntensity;
+    }
+
+    protected void setChooseBackgroundIntensity(boolean cbi) {
+        chooseBackgroundIntensity = cbi;
+    }
     protected void setLines(ArrayList<Line> lines) {
         this.lines = lines;
     }
