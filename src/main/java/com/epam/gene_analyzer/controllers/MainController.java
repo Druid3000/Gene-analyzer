@@ -68,10 +68,10 @@ public class MainController {
         else return null;
     }
 
-    public double getMaxDensity() {//поиск максимальной плотности D
-        double maxDensity = 1;
+    public int getMaxDensity() {//поиск максимальной плотности D
+        int maxDensity = 1;
         for (int a = 0; a < getLines().size(); a++) {
-            if ((int) getLines().get(a).getMaxDensity(backgroundIntensity) + 1 > maxDensity) {
+            if (getLines().get(a).getMaxDensity(backgroundIntensity)> (double)maxDensity) {
                 maxDensity += Math.abs((int) getLines().get(a).getMaxDensity(backgroundIntensity) + 1 - maxDensity);
             }
         }
@@ -143,9 +143,10 @@ public class MainController {
             double pixelIntensity;
             int x = xBorder, y, xPast, yPast;
             pixelIntensity = getLines().get(t).getPixelIntensity(0);
-            if (pixelIntensity > 2)
+            if (pixelIntensity > 1)
                 y = height - yBorder - (int) ((graphHeight * Math.log10(getBackgroundIntensity() / pixelIntensity)) / (getMaxDensity()));//нормирование
             else y = yBorder;
+            if (y>height - yBorder) y=height - yBorder;
             yPast = y;
             Pixel p = new Pixel();
             p.setX(x);
@@ -174,9 +175,11 @@ public class MainController {
                 yPast = y;
                 pixelIntensity = getLines().get(t).getPixelIntensity(i);
                 x = i + xBorder;
-                if (pixelIntensity > 2)
+                if (pixelIntensity > 1)
                     y = height - yBorder - (int) ((graphHeight * Math.log10(getBackgroundIntensity() / pixelIntensity)) / (getMaxDensity()));
                 else y = yBorder;
+
+                if (y>height - yBorder) y=height - yBorder;
                 p = new Pixel();
                 p.setX(x);
                 p.setY(y);
