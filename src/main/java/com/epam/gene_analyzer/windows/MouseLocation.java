@@ -8,10 +8,10 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class MouseLocation implements MouseListener, MouseMotionListener {//private
-    private int xPosition1 = 0;
-    private int yPosition1 = 0;
-    private int xPosition2 = 1;
-    private int yPosition2 = 1;
+    private int xPosition1;
+    private int yPosition1;
+    private int xPosition2;
+    private int yPosition2;
     private int xPositionNow;
     private int yPositionNow;
     private CanvasLine canvasLine;
@@ -20,6 +20,10 @@ public class MouseLocation implements MouseListener, MouseMotionListener {//priv
     MouseLocation(CanvasLine cl, MainController ml) {
         canvasLine = cl;
         mainController = ml;
+        xPosition1 = 0;
+        yPosition1 = 0;
+        xPosition2 = 1;
+        yPosition2 = 1;
     }
 
     protected int getXPosition1() {

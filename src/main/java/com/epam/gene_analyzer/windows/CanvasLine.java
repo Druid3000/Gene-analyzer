@@ -33,6 +33,50 @@ public class CanvasLine extends JComponent {
         addJPopMenu();
     }
 
+    /*Метод, перерисовывающий элемент внутри окна
+     *при обновлении*/
+    public void paintComponent(Graphics graphics) {
+        super.paintComponents(graphics);
+        reloadJPopMenu();
+        Graphics2D graphics2D = (Graphics2D) graphics;
+        drawPicture(graphics2D);
+        drawCurrentLine(graphics2D);
+        drawCursorX(graphics2D);
+        if (mode) drawLines(graphics2D);
+        else {
+            drawAreaPerimeter(graphics2D);//или drawArea(graphics2D) - закрасит область
+        }
+        super.repaint();
+    }
+
+    protected boolean getPosition() {
+        return position;
+    }
+
+    protected void changePosition() {
+        position = !position;
+    }
+
+    protected boolean getMode() {
+        return mode;
+    }
+
+    protected void setMode(boolean m) {
+        mode = m;
+    }
+
+    protected boolean isChooseBackgroundIntensity() {
+        return chooseBackgroundIntensity;
+    }
+
+    protected void setChooseBackgroundIntensity(boolean cbi) {
+        chooseBackgroundIntensity = cbi;
+    }
+
+    protected void setLines(ArrayList<Line> lines) {
+        this.lines = lines;
+    }
+
     private void drawPicture(Graphics2D graphics2D) {//отрисовка изображения
         picture = mainController.getPicture();
         if (picture != null) {
@@ -117,21 +161,6 @@ public class CanvasLine extends JComponent {
         }
     }
 
-    /*Метод, перерисовывающий элемент внутри окна
-     *при обновлении*/
-    public void paintComponent(Graphics graphics) {
-        super.paintComponents(graphics);
-        reloadJPopMenu();
-        Graphics2D graphics2D = (Graphics2D) graphics;
-        drawPicture(graphics2D);
-        drawCurrentLine(graphics2D);
-        drawCursorX(graphics2D);
-        if (mode) drawLines(graphics2D);
-        else {
-            drawAreaPerimeter(graphics2D);//или drawArea(graphics2D) - закрасит область
-        }
-        super.repaint();
-    }
 
     private void addListener() {
         mouseLocation = new MouseLocation(this, mainController);
@@ -255,34 +284,6 @@ public class CanvasLine extends JComponent {
             graphics2D.setColor(Color.red);
             graphics2D.drawLine(x1, y1, x2, y2);
         }
-    }
-
-    protected boolean getPosition() {
-        return position;
-    }
-
-    protected void changePosition() {
-        position = !position;
-    }
-
-    protected boolean getMode() {
-        return mode;
-    }
-
-    protected void setMode(boolean m) {
-        mode = m;
-    }
-
-    protected boolean isChooseBackgroundIntensity() {
-        return chooseBackgroundIntensity;
-    }
-
-    protected void setChooseBackgroundIntensity(boolean cbi) {
-        chooseBackgroundIntensity = cbi;
-    }
-
-    protected void setLines(ArrayList<Line> lines) {
-        this.lines = lines;
     }
 
 
