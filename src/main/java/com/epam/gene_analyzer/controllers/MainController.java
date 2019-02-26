@@ -82,7 +82,13 @@ public class MainController {
         backgroundIntensityOld = backgroundIntensity;
         backgroundIntensity = p.getIntensity();
         updateData();
-
+    }
+    public void setBackgroundIntensity(double intensity){
+        backgroundIntensityOld=backgroundIntensity;
+        backgroundIntensity=intensity;
+    }
+    public double getBackgroundIntensity() {   //для установки по желанию интенсивности пикселя за интенсивность фона
+        return backgroundIntensity;
     }
 
     public ArrayList<Pixel> getGraphics(int graphHeight, int height, int xBorder, int yBorder) {//на вход  идут размеры холста графика
@@ -189,10 +195,6 @@ public class MainController {
         }
 
         return graphPixels;
-    }
-
-    private double getBackgroundIntensity() {
-        return backgroundIntensity;
     }
 
 }

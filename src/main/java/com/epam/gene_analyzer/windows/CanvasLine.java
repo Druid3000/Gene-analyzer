@@ -175,14 +175,24 @@ public class CanvasLine extends JComponent {
 
         popupMenu.addSeparator();
 
-
-        JMenuItem chooseBackgroundIntensity = new JMenuItem("Установить интенсивность фона по пикселю");
-        chooseBackgroundIntensity.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                setChooseBackgroundIntensity(true);
-            }
-        });
-        popupMenu.add(chooseBackgroundIntensity);
+        if (mainController.getBackgroundIntensity()==255) {
+            JMenuItem chooseBackgroundIntensity = new JMenuItem("Установить интенсивность фона по пикселю");
+            chooseBackgroundIntensity.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    setChooseBackgroundIntensity(true);
+                }
+            });
+            popupMenu.add(chooseBackgroundIntensity);
+        }
+        else {
+            JMenuItem chooseBackgroundIntensity = new JMenuItem("Установить интенсивность фона по умолчанию");
+            chooseBackgroundIntensity.addActionListener(new ActionListener() {
+                public void actionPerformed(ActionEvent e) {
+                    mainController.setBackgroundIntensity(255.0);
+                }
+            });
+            popupMenu.add(chooseBackgroundIntensity);
+        }
 
         setComponentPopupMenu(popupMenu);
         popupMenu.addPopupMenuListener(new PopupMenuListener() {
@@ -226,13 +236,25 @@ public class CanvasLine extends JComponent {
                 //----
                 popupMenu.addSeparator();
                 //----
-                JMenuItem chooseBackgroundIntensity = new JMenuItem("Установить интенсивность фона по пикселю");
-                chooseBackgroundIntensity.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        setChooseBackgroundIntensity(true);
-                    }
-                });
-                popupMenu.add(chooseBackgroundIntensity);
+
+                if (mainController.getBackgroundIntensity()==255) {
+                    JMenuItem chooseBackgroundIntensity = new JMenuItem("Установить интенсивность фона по пикселю");
+                    chooseBackgroundIntensity.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            setChooseBackgroundIntensity(true);
+                        }
+                    });
+                    popupMenu.add(chooseBackgroundIntensity);
+                }
+                else {
+                    JMenuItem chooseBackgroundIntensity = new JMenuItem("Установить интенсивность фона по умолчанию");
+                    chooseBackgroundIntensity.addActionListener(new ActionListener() {
+                        public void actionPerformed(ActionEvent e) {
+                            mainController.setBackgroundIntensity(255.0);
+                        }
+                    });
+                    popupMenu.add(chooseBackgroundIntensity);
+                }
 
                 setComponentPopupMenu(popupMenu);
             } else {
