@@ -17,6 +17,20 @@ class CanvasGraph extends JComponent {
         setVisible(true);
     }
 
+    /*Метод, перерисовывающий элемент внутри окна
+     *при обновлении*/
+    public void paintComponent(Graphics graphics) {
+
+        super.paintComponents(graphics);
+        Graphics2D graphics2D = (Graphics2D) graphics;
+        drawCoordinateAxes(graphics2D);
+        drawCoordinateLabels(graphics2D);
+        drawGraph(graphics2D);
+        drawLegend(graphics2D);
+        super.repaint();  /* 	Вызывает обновление себя после завершения рисования	*/
+
+    }
+
     private void drawCoordinateAxes(Graphics2D graphics2D) {//отрисовка осей координат
         graphics2D.setColor(Color.white);
         Rectangle r = new Rectangle(xBorder, yBorder, graphWeight, graphHeight);
@@ -78,18 +92,5 @@ class CanvasGraph extends JComponent {
 
     }
 
-    /*Метод, перерисовывающий элемент внутри окна
-     *при обновлении*/
-    public void paintComponent(Graphics graphics) {
-
-        super.paintComponents(graphics);
-        Graphics2D graphics2D = (Graphics2D) graphics;
-        drawCoordinateAxes(graphics2D);
-        drawCoordinateLabels(graphics2D);
-        drawGraph(graphics2D);
-        drawLegend(graphics2D);
-        super.repaint();  /* 	Вызывает обновление себя после завершения рисования	*/
-
-    }
 
 }

@@ -11,6 +11,7 @@ public class JPopMenuListener implements ActionListener {
     }
 
     //Этот метод должен быть, так как без него не работает. Вопросы к Максиму
+    //Метод сам по себе не нужен в нашей программе. Но его реализация из интерфейса необходима.
     public void actionPerformed(ActionEvent e) {
 
     }
