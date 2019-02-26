@@ -26,8 +26,6 @@ class Menu {
 
         final Font font = new Font("Verdana", Font.PLAIN, 14); //style of menu
         menuBar = new JMenuBar();                          //create menu bar
-        final JMenuItem closeItem = new JMenuItem();
-
 
         final JMenu fileMenu = new JMenu("File");                      //button menu "file"
         fileMenu.setFont(font);
@@ -37,7 +35,7 @@ class Menu {
         final JMenu modeMenu = new JMenu("Mode");                   //button menu "mode"
         modeMenu.setFont(font);
         menuBar.add(modeMenu);
-        createModeItems(modeMenu, font, closeItem);
+        createModeItems(modeMenu, font);
 
         final JMenu helpMenu = new JMenu("Help");         //button menu "Help"
         helpMenu.setFont(font);
@@ -81,7 +79,7 @@ class Menu {
         });
     }
 
-    private void createModeItems(final JMenu modeMenu, final Font font, final JMenuItem closeItem){
+    private void createModeItems(final JMenu modeMenu, final Font font){
         JMenuItem drawLineItem = new JMenuItem("Draw line");
         drawLineItem.setFont(font);
         modeMenu.add(drawLineItem);
@@ -108,11 +106,6 @@ class Menu {
         graphItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 graphWindow.setVisible(true);
-                closeItem.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        graphWindow.setVisible(false);
-                    }
-                });
             }
         });
 
@@ -123,11 +116,6 @@ class Menu {
             public void actionPerformed(ActionEvent e) {
                 tableWindow.setVisible(true);
                 tableWindow.be = true;
-                closeItem.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        tableWindow.setVisible(false);
-                    }
-                });
             }
         });
     }
@@ -136,7 +124,7 @@ class Menu {
     JMenuItem aboutItem = new JMenuItem("About");
         aboutItem.setFont(font);
         helpMenu.add(aboutItem);
-        aboutItem.addActionListener(new ActionListener() {   //opening new window with main inf
+        aboutItem.addActionListener(new ActionListener() {   //opening about window
         public void actionPerformed(ActionEvent e) {
             aboutWindow.setVisible(true);
         }
