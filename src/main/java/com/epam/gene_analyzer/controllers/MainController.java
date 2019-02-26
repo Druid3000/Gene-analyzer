@@ -81,6 +81,7 @@ public class MainController {
     public void setBackgroundIntensity(Pixel p) {   //для установки по желанию интенсивности пикселя за интенсивность фона
         backgroundIntensityOld = backgroundIntensity;
         backgroundIntensity = p.getIntensity();
+        updateData();
 
     }
 
@@ -171,7 +172,7 @@ public class MainController {
     // методы из контроллера таблиц (переделано)
     //
 
-    //метод для передачи добавляемых данных
+    //метод для обновления данных в таблице
     public void updateData() {
         //rtModel=new RtModel();
         rtModel.removeRows();
@@ -182,8 +183,6 @@ public class MainController {
                 newData[i] = areaArray.get(n).getArea().get(i).getIntensity();
             }
             rtModel.setValueAt(areaArray.get(n).getId(), newData, backgroundIntensity);
-            //int a = rtModel.getRowCount();
-            //System.out.println(a);
         }
         rtModel.fireTableDataChanged();
     }
