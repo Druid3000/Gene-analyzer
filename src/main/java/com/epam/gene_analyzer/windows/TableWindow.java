@@ -28,7 +28,8 @@ public class TableWindow extends JFrame {
         mainController = mc;
         //установка диспетчера компоновки
         getContentPane().setLayout(new FlowLayout());
-        setBounds(600, 200, 600, 400);
+        setBounds(680, 40, 600, 400);
+        setResizable(false);
         //установка иконки для окна
         setIconImage(getToolkit().getImage("iconTable.gif"));
         //действие при закрытии окна
