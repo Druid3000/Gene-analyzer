@@ -21,7 +21,6 @@ public class MainWindow extends JFrame {
     }
 
     public void showWindow(){
-        setVisible(true);
         setTitle("Определение оптической плотности");
         setIconImage(getToolkit().getImage("iconMain.gif"));
         setLocation(60, 70);
@@ -31,6 +30,7 @@ public class MainWindow extends JFrame {
         setJMenuBar(menu.getMenuBar());
         add(canvasLine);
         pack();
+        setVisible(true);
     }
 
     /*public void changeWindowSize(int width, int height){
