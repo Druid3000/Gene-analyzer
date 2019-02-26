@@ -71,7 +71,7 @@ public class MainController {
     public int getMaxDensity() {//поиск максимальной плотности D
         int maxDensity = 1;
         for (int a = 0; a < getLines().size(); a++) {
-            if (getLines().get(a).getMaxDensity(backgroundIntensity)> (double)maxDensity) {
+            if (getLines().get(a).getMaxDensity(backgroundIntensity) > (double) maxDensity) {
                 maxDensity += Math.abs((int) getLines().get(a).getMaxDensity(backgroundIntensity) + 1 - maxDensity);
             }
         }
@@ -82,7 +82,16 @@ public class MainController {
         backgroundIntensityOld = backgroundIntensity;
         backgroundIntensity = p.getIntensity();
         updateData();
+    }
 
+    public void setBackgroundIntensity(double intensity) {
+        backgroundIntensityOld = backgroundIntensity;
+        backgroundIntensity = intensity;
+        updateData();
+    }
+
+    public double getBackgroundIntensity() {   //для установки по желанию интенсивности пикселя за интенсивность фона
+        return backgroundIntensity;
     }
 
     public ArrayList<Pixel> getGraphics(int graphHeight, int height, int xBorder, int yBorder) {//на вход  идут размеры холста графика
@@ -146,7 +155,7 @@ public class MainController {
             if (pixelIntensity > 1)
                 y = height - yBorder - (int) ((graphHeight * Math.log10(getBackgroundIntensity() / pixelIntensity)) / (getMaxDensity()));//нормирование
             else y = yBorder;
-            if (y>height - yBorder) y=height - yBorder;
+            if (y > height - yBorder) y = height - yBorder;
             yPast = y;
             Pixel p = new Pixel();
             p.setX(x);
@@ -179,7 +188,7 @@ public class MainController {
                     y = height - yBorder - (int) ((graphHeight * Math.log10(getBackgroundIntensity() / pixelIntensity)) / (getMaxDensity()));
                 else y = yBorder;
 
-                if (y>height - yBorder) y=height - yBorder;
+                if (y > height - yBorder) y = height - yBorder;
                 p = new Pixel();
                 p.setX(x);
                 p.setY(y);
@@ -189,10 +198,6 @@ public class MainController {
         }
 
         return graphPixels;
-    }
-
-    private double getBackgroundIntensity() {
-        return backgroundIntensity;
     }
 
 }
