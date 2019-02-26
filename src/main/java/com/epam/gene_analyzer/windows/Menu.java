@@ -28,33 +28,13 @@ class Menu {
         menuBar = new JMenuBar();                          //меню-строка
         final JMenu fileMenu = new JMenu("File");                      //кнопка меню "file"
         fileMenu.setFont(font);
-        JMenu newMenu = new JMenu("New");                       //под-меню в меню "file"
-        newMenu.setFont(font);
-        fileMenu.add(newMenu);
-        /*Аня: я переименовала один из пунктов подменю "New" в "Table", оно служит для отображения таблицы
-          с результатами оптических плотностей*/
-        JMenuItem tableItem = new JMenuItem("Table");
-        tableItem.setFont(font);
-        newMenu.add(tableItem);
-        tableItem.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                tableWindow.setVisible(true);
-                tableWindow.be = true;
-            }
-        });
 
-
-        JMenuItem imgFileItem = new JMenuItem("Image file");
-        imgFileItem.setFont(font);
-        newMenu.add(imgFileItem);
-
-        JMenuItem folderItem = new JMenuItem("Folder");
-        folderItem.setFont(font);
-        newMenu.add(folderItem);
         JMenuItem openItem = new JMenuItem("Open");
         openItem.setFont(font);
-
-
+        fileMenu.add(openItem);
+        final JMenuItem closeItem = new JMenuItem("Close");
+        closeItem.setFont(font);
+        fileMenu.add(closeItem);
         openItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileOpen = new JFileChooser();
@@ -64,33 +44,22 @@ class Menu {
                     mainController.setPicture(picture);
                     canvasLine.setVisible(true);
                 }
-
+                closeItem.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        canvasLine.setVisible(false);
+                    }
+                });
             }
         });
 
-        fileMenu.add(openItem);
-        final JMenuItem closeItem = new JMenuItem("Close");
-        closeItem.setFont(font);
-        fileMenu.add(closeItem);
 
 
-        JMenuItem closeAllItem = new JMenuItem("Close all");
-        closeAllItem.setFont(font);
-        fileMenu.add(closeAllItem);
+
         fileMenu.addSeparator();
-
-        closeAllItem.addActionListener(new ActionListener() {
-            //@Override
-            public void actionPerformed(ActionEvent e) {
-                //panel.setVisible(false);
-            }
-        });
 
         JMenuItem exitItem = new JMenuItem("Exit");
         exitItem.setFont(font);
         fileMenu.add(exitItem);
-
-
         exitItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
@@ -112,7 +81,7 @@ class Menu {
         });
 
         menuBar.add(fileMenu);
-        JMenu editMenu = new JMenu("Edit");
+        JMenu editMenu = new JMenu("Mode");
         editMenu.setFont(font);
 
         JMenuItem drawLineItem = new JMenuItem("Draw line");
@@ -133,6 +102,10 @@ class Menu {
             }
         });
 
+        editMenu.addSeparator();
+
+
+
         final JMenuItem graphItem = new JMenuItem("Get graph");
         graphItem.setFont(font);
         editMenu.add(graphItem);
@@ -143,6 +116,24 @@ class Menu {
                 closeItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         graphWindow.setVisible(false);
+                    }
+                });
+
+
+            }
+        });
+
+        final JMenuItem dataItem = new JMenuItem("Show data");
+        dataItem.setFont(font);
+        editMenu.add(dataItem);
+
+        dataItem.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                tableWindow.setVisible(true);
+                tableWindow.be = true;
+                closeItem.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        tableWindow.setVisible(false);
                     }
                 });
 
