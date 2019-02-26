@@ -101,6 +101,21 @@ public class CanvasLine extends JComponent {
         }
     }
 
+    private void drawCursorX(Graphics2D graphics2D) {
+        if (chooseBackgroundIntensity) {
+            graphics2D.setColor(Color.magenta);
+            int x = mouseLocation.getXPositionNow();
+            int y = mouseLocation.getYPositionNow();
+            for (int i = -10; i < 11; i++) {
+                if (x > 0 & x < getWidth() & y > 0 & y < getHeight())
+                    graphics2D.drawLine(x + i, y, x + i, y);
+            }
+            for (int i = -10; i < 11; i++) {
+                if (x > 0 & x < getWidth() & y > 0 & y < getHeight())
+                    graphics2D.drawLine(x, y + i, x, y + i);
+            }
+        }
+    }
 
     /*Метод, перерисовывающий элемент внутри окна
      *при обновлении*/
@@ -110,6 +125,7 @@ public class CanvasLine extends JComponent {
         Graphics2D graphics2D = (Graphics2D) graphics;
         drawPicture(graphics2D);
         drawCurrentLine(graphics2D);
+        drawCursorX(graphics2D);
         if (mode) drawLines(graphics2D);
         else {
             drawAreaPerimeter(graphics2D);//или drawArea(graphics2D) - закрасит область
@@ -154,10 +170,9 @@ public class CanvasLine extends JComponent {
     }
 
     private void reloadJPopMenu() {
-        if(picture==null){
+        if (picture == null) {
             popupMenu.setVisible(false);
-        }
-        else {
+        } else {
             //popupMenu.setVisible(true);
             if (mode) {
                 popupMenu = new JPopupMenu();
@@ -234,7 +249,7 @@ public class CanvasLine extends JComponent {
         int x1 = mouseLocation.getXPosition1();
         int y1 = mouseLocation.getYPosition1();
 
-        if (mode & !position & picture != null&!chooseBackgroundIntensity) {
+        if (mode & !position & picture != null & !chooseBackgroundIntensity) {
             int x2 = mouseLocation.getXPositionNow();
             int y2 = mouseLocation.getYPositionNow();
             graphics2D.setColor(Color.red);
@@ -265,8 +280,10 @@ public class CanvasLine extends JComponent {
     protected void setChooseBackgroundIntensity(boolean cbi) {
         chooseBackgroundIntensity = cbi;
     }
+
     protected void setLines(ArrayList<Line> lines) {
         this.lines = lines;
     }
+
 
 }
