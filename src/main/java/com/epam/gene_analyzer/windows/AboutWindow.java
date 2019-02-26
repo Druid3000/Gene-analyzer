@@ -6,7 +6,7 @@ public class AboutWindow extends JFrame {
     AboutWindow() {
         super("About Program");
         setDefaultCloseOperation(HIDE_ON_CLOSE);
-        setSize(300, 300);
+        setBounds(600, 160, 300, 300);
     }
 }
 
