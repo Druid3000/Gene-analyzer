@@ -14,7 +14,7 @@ class GraphWindow extends JFrame {
         setIconImage(getToolkit().getImage("iconGraph.png"));
         add(canvasGraph);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setBounds(710, 200, 550, 650);
+        setBounds(810, 220, 550, 550);
         setResizable(false);
 
     }
