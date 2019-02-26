@@ -15,11 +15,10 @@ public class MainController {
     private ArrayList<Area> areaArray = new ArrayList<Area>();//массив всех областей
     private BufferedImage picture;
     private int numberOfLinesOld = 0;
+    private double backgroundIntensityOld = 255.0;
     private double backgroundIntensity = 255.0;
     private RtModel rtModel = new RtModel();//таблица областей
 
-    public MainController() {
-    }
 
     public void addLine(Pixel p1, Pixel p2) {
         Line l = new Line(p1, p2, picture);
@@ -29,7 +28,6 @@ public class MainController {
 
     public Line getLine(int id) {
         return lineArray.get(id);
-
     }
 
     public BufferedImage getPicture() {
@@ -45,7 +43,8 @@ public class MainController {
     }
 
     public ArrayList<Line> getLines() {
-        return lineArray;
+        if (lineArray != null) return lineArray;
+        else return null;
     }
 
     public void addArea(Pixel p) {
@@ -80,18 +79,60 @@ public class MainController {
     }
 
     public void setBackgroundIntensity(Pixel p) {   //для установки по желанию интенсивности пикселя за интенсивность фона
+        backgroundIntensityOld = backgroundIntensity;
         backgroundIntensity = p.getIntensity();
-    }
+        updateData();
 
-    private double getBackgroundIntensity() {
-        return backgroundIntensity;
     }
 
     public ArrayList<Pixel> getGraphics(int graphHeight, int height, int xBorder, int yBorder) {//на вход  идут размеры холста графика
         //для экономии памяти проверяю, изменилось ли количество линий
-        if (graphPixels == null || numberOfLinesOld != lineArray.size())
+        if ((graphPixels == null) || (numberOfLinesOld != lineArray.size()) || (backgroundIntensity != backgroundIntensityOld))
             graphPixels = getNewGraphics(graphHeight, height, xBorder, yBorder);
+        backgroundIntensityOld = backgroundIntensity;
         return graphPixels;
+    }
+
+    public RtModel getTable() {
+        return rtModel;
+    }
+
+    public void removeAreas() {
+        areaArray.clear();
+        updateData();
+    }
+
+    public void removeArea(int id) {
+        for (int i = 0; i < areaArray.size(); i++)
+            if (areaArray.get(i).getId() == id) {
+                areaArray.remove(i);
+                break;
+
+            }
+        updateData();
+    }
+    //
+    // методы из контроллера таблиц (переделано)
+    //
+
+    //метод для обновления данных в таблице
+    public void updateData() {
+        //rtModel=new RtModel();
+        rtModel.removeRows();
+        Double[] newData;
+        for (int n = 0; n < areaArray.size(); n++) {
+            newData = new Double[areaArray.get(n).getArea().size()];
+            for (int i = 0; i < areaArray.get(n).getArea().size(); i++) {
+                newData[i] = areaArray.get(n).getArea().get(i).getIntensity();
+            }
+            rtModel.setValueAt(areaArray.get(n).getId(), newData, backgroundIntensity);
+        }
+        rtModel.fireTableDataChanged();
+    }
+
+    //метод для передачи индекса удаляемой ячейки
+    public void transferDeleteData(int idRow) {
+        //rtModel.deleteValueAt(idRow);
     }
 
     private ArrayList<Pixel> getNewGraphics(int graphHeight, int height, int xBorder, int yBorder) {//на вход  идут размеры холста графика
@@ -147,48 +188,8 @@ public class MainController {
         return graphPixels;
     }
 
-    public RtModel getTable() {
-        return rtModel;
-    }
-
-    public void removeAreas() {
-        areaArray.clear();
-        updateData();
-    }
-
-    public void removeArea(int id) {
-        for (int i = 0; i < areaArray.size(); i++)
-            if (areaArray.get(i).getId() == id) {
-                areaArray.remove(i);
-                break;
-
-            }
-        updateData();
-    }
-    //
-    // методы из контроллера таблиц (переделано)
-    //
-
-    //метод для передачи добавляемых данных
-    public void updateData() {
-        //rtModel=new RtModel();
-        rtModel.removeRows();
-        Double[] newData;
-        for (int n = 0; n < areaArray.size(); n++) {
-            newData = new Double[areaArray.get(n).getArea().size()];
-            for (int i = 0; i < areaArray.get(n).getArea().size(); i++) {
-                newData[i] = areaArray.get(n).getArea().get(i).getIntensity();
-            }
-            rtModel.setValueAt(areaArray.get(n).getId(), newData, backgroundIntensity);
-            //int a = rtModel.getRowCount();
-            //System.out.println(a);
-        }
-        rtModel.fireTableDataChanged();
-    }
-
-    //метод для передачи индекса удаляемой ячейки
-    public void transferDeleteData(int idRow) {
-        //rtModel.deleteValueAt(idRow);
+    private double getBackgroundIntensity() {
+        return backgroundIntensity;
     }
 
 }

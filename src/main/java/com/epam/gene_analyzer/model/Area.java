@@ -95,15 +95,10 @@ public class Area {
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
                 c = new Color(image.getRGB(i, j));
-                R = c.getRed();
-                G = c.getGreen();
-                B = c.getBlue();
                 Pixel p = new Pixel();
                 p.setX(i);
                 p.setY(j);
-                p.setR(R);
-                p.setG(G);
-                p.setB(B);
+                p.setColor(c);
                 allPixels[i][j] = p;
             }
         }

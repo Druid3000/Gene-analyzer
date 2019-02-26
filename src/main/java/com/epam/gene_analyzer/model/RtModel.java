@@ -68,6 +68,19 @@ public class RtModel extends AbstractTableModel {
         return data.get(row)[column];
     }
 
+    //добавление новой строки
+    public void setValueAt(int id, Double[] newData, double bi) {
+        data.add(setData(id, newData, bi));
+        numRows++;
+        numberArea++;
+    }
+
+    public void removeRows() {
+        if (data.size() > 0) data.clear();
+        numberArea = (byte) ((int) numberArea - (int) numRows);
+        numRows = 0;
+    }
+
     //получение входных данных и их преобразование к табличным значениям
     private Object[] setData(int id, Double[] newData, double bi) {
         byte r0 = (byte) id;
@@ -89,13 +102,6 @@ public class RtModel extends AbstractTableModel {
         return row;
     }
 
-    //добавление новой строки
-    public void setValueAt(int id, Double[] newData, double bi) {
-        data.add(setData(id, newData, bi));
-        numRows++;
-        numberArea++;
-    }
-
     //удаление строки с заданным индексом
     /*private void deleteValueAt(int id){
         for (int i=0; i<data.size();i++){
@@ -108,9 +114,4 @@ public class RtModel extends AbstractTableModel {
         fireTableDataChanged();
     }*/
 
-    public void removeRows() {
-        if (data.size() > 0) data.clear();
-        numberArea = (byte) ((int) numberArea - (int) numRows);
-        numRows = 0;
-    }
 }
