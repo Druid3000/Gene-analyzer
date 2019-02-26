@@ -127,6 +127,18 @@ public class CanvasLine extends JComponent {
         popupMenu = new JPopupMenu();
         JMenuItem deleteAll = new JMenuItem("Удалить все линии");
         popupMenu.add(deleteAll);
+
+        popupMenu.addSeparator();
+
+
+        JMenuItem chooseBackgroundIntensity = new JMenuItem("Установить интенсивность фона по пикселю");
+        chooseBackgroundIntensity.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                setChooseBackgroundIntensity(true);
+            }
+        });
+        popupMenu.add(chooseBackgroundIntensity);
+
         setComponentPopupMenu(popupMenu);
         popupMenu.addPopupMenuListener(new PopupMenuListener() {
             public void popupMenuWillBecomeVisible(PopupMenuEvent e) {
@@ -142,50 +154,79 @@ public class CanvasLine extends JComponent {
     }
 
     private void reloadJPopMenu() {
-        if (mode) {
-            popupMenu = new JPopupMenu();
-            for (int i = 0; i < lines.size(); i++) {
-                JMenuItem cutMenuItem = new JMenuItem("Удалить линию номер " + lines.get(i).getId());
-                cutMenuItem.addActionListener(new JPopMenuListener(i) {
+        if(picture==null){
+            popupMenu.setVisible(false);
+        }
+        else {
+            //popupMenu.setVisible(true);
+            if (mode) {
+                popupMenu = new JPopupMenu();
+                for (int i = 0; i < lines.size(); i++) {
+                    JMenuItem cutMenuItem = new JMenuItem("Удалить линию номер " + lines.get(i).getId());
+                    cutMenuItem.addActionListener(new JPopMenuListener(i) {
+                        public void actionPerformed(ActionEvent e) {
+                            lines.remove(this.id);
+                        }
+                    });
+                    popupMenu.add(cutMenuItem);
+                }
+                popupMenu.addSeparator();
+
+                JMenuItem deleteAll = new JMenuItem("Удалить все линии");
+                deleteAll.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        lines.remove(this.id);
+                        lines.clear();
                     }
                 });
-                popupMenu.add(cutMenuItem);
-            }
-            popupMenu.addSeparator();
-
-            JMenuItem deleteAll = new JMenuItem("Удалить все линии");
-            deleteAll.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    lines.clear();
-                }
-            });
-            popupMenu.add(deleteAll);
-            setComponentPopupMenu(popupMenu);
-        } else {
-            popupMenu = new JPopupMenu();
-            for (int i = 0; i < mainController.getAreas().size(); i++) {
-                JMenuItem cutMenuItem = new JMenuItem("Удалить область номер " + mainController.getArea(i).getId());
-                cutMenuItem.addActionListener(new JPopMenuListener(mainController.getArea(i).getId()) {
+                popupMenu.add(deleteAll);
+                //----
+                popupMenu.addSeparator();
+                //----
+                JMenuItem chooseBackgroundIntensity = new JMenuItem("Установить интенсивность фона по пикселю");
+                chooseBackgroundIntensity.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        mainController.removeArea(this.id);
+                        setChooseBackgroundIntensity(true);
+                    }
+                });
+                popupMenu.add(chooseBackgroundIntensity);
+
+                setComponentPopupMenu(popupMenu);
+            } else {
+                popupMenu = new JPopupMenu();
+                for (int i = 0; i < mainController.getAreas().size(); i++) {
+                    JMenuItem cutMenuItem = new JMenuItem("Удалить область номер " + mainController.getArea(i).getId());
+                    cutMenuItem.addActionListener(new JPopMenuListener(mainController.getArea(i).getId()) {
+                        public void actionPerformed(ActionEvent e) {
+                            mainController.removeArea(this.id);
+                            mainController.updateData();
+                        }
+                    });
+                    popupMenu.add(cutMenuItem);
+                }
+                popupMenu.addSeparator();
+
+                JMenuItem deleteAll = new JMenuItem("Удалить все области");
+                deleteAll.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        mainController.removeAreas();
                         mainController.updateData();
                     }
                 });
-                popupMenu.add(cutMenuItem);
-            }
-            popupMenu.addSeparator();
+                popupMenu.add(deleteAll);
+                //----
+                popupMenu.addSeparator();
+                //----
+                JMenuItem chooseBackgroundIntensity = new JMenuItem("Установить интенсивность фона по пикселю");
+                chooseBackgroundIntensity.addActionListener(new ActionListener() {
+                    public void actionPerformed(ActionEvent e) {
+                        setChooseBackgroundIntensity(true);
 
-            JMenuItem deleteAll = new JMenuItem("Удалить все области");
-            deleteAll.addActionListener(new ActionListener() {
-                public void actionPerformed(ActionEvent e) {
-                    mainController.removeAreas();
-                    mainController.updateData();
-                }
-            });
-            popupMenu.add(deleteAll);
-            setComponentPopupMenu(popupMenu);
+                    }
+                });
+                popupMenu.add(chooseBackgroundIntensity);
+
+                setComponentPopupMenu(popupMenu);
+            }
         }
     }
 
@@ -193,7 +234,7 @@ public class CanvasLine extends JComponent {
         int x1 = mouseLocation.getXPosition1();
         int y1 = mouseLocation.getYPosition1();
 
-        if (mode & !position & picture != null) {
+        if (mode & !position & picture != null&!chooseBackgroundIntensity) {
             int x2 = mouseLocation.getXPositionNow();
             int y2 = mouseLocation.getYPositionNow();
             graphics2D.setColor(Color.red);

@@ -15,6 +15,7 @@ public class MainController {
     private ArrayList<Area> areaArray = new ArrayList<Area>();//массив всех областей
     private BufferedImage picture;
     private int numberOfLinesOld = 0;
+    private double backgroundIntensityOld = 255.0;
     private double backgroundIntensity = 255.0;
     private RtModel rtModel = new RtModel();//таблица областей
 
@@ -78,7 +79,9 @@ public class MainController {
     }
 
     public void setBackgroundIntensity(Pixel p) {   //для установки по желанию интенсивности пикселя за интенсивность фона
+        backgroundIntensityOld = backgroundIntensity;
         backgroundIntensity = p.getIntensity();
+
     }
 
     private double getBackgroundIntensity() {
@@ -87,8 +90,9 @@ public class MainController {
 
     public ArrayList<Pixel> getGraphics(int graphHeight, int height, int xBorder, int yBorder) {//на вход  идут размеры холста графика
         //для экономии памяти проверяю, изменилось ли количество линий
-        if (graphPixels == null || numberOfLinesOld != lineArray.size())
+        if ((graphPixels == null) || (numberOfLinesOld != lineArray.size()) || (backgroundIntensity != backgroundIntensityOld))
             graphPixels = getNewGraphics(graphHeight, height, xBorder, yBorder);
+        backgroundIntensityOld=backgroundIntensity;
         return graphPixels;
     }
 
