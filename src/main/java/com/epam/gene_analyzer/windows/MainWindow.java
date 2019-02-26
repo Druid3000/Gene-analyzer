@@ -24,10 +24,16 @@ public class MainWindow extends JFrame {
         setVisible(true);
         setTitle("Определение оптической плотности");
         setIconImage(getToolkit().getImage("iconMain.gif"));
-        setPreferredSize(new Dimension(1000, 1000));
+        setLocation(60, 70);
+        setMinimumSize(new Dimension(400, 400));
+        setPreferredSize(new Dimension(600, 500));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setJMenuBar(menu.getMenuBar());
         add(canvasLine);
         pack();
+    }
+
+    public void changeWindowSize(int width, int height){
+        setPreferredSize(new Dimension(width, height));
     }
 }
