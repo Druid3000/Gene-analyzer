@@ -1,23 +1,18 @@
 package com.epam.gene_analyzer.windows;
 
-import com.epam.gene_analyzer.controllers.MainController;
-
 import javax.swing.*;
-import javax.swing.text.html.HTMLDocument;
 import java.awt.*;
 
-public class AboutWindow extends JFrame {
+class AboutWindow extends JFrame {
 
     AboutWindow() {
-
         setTitle("About Program");
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setSize(400, 350);
         JFrame.setDefaultLookAndFeelDecorated(true);
         createGUI();
     }
-    public void createGUI(){
-
+    private void createGUI(){
 
         JPanel htmlPanel = new JPanel();
         htmlPanel.setBorder(BorderFactory.createTitledBorder(""));
@@ -39,7 +34,6 @@ public class AboutWindow extends JFrame {
         htmlLabel.setText(text);
         htmlLabel.setFont(font);
         htmlPanel.add(htmlLabel);
-
 
         add(htmlPanel);
     }
