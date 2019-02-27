@@ -171,8 +171,8 @@ class Menu {
 
     }
 
-    public void frame(){
-        SliderTestFrame frame = new SliderTestFrame();
+    private void frame(){
+        SliderTestFrame frame = new SliderTestFrame(mainController);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setVisible(true);
     }

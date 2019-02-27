@@ -17,8 +17,12 @@ public class MainController {
     private int numberOfLinesOld = 0;
     private double backgroundIntensityOld = 255.0;
     private double backgroundIntensity = 255.0;
+    private double delta = 0.1;
     private RtModel rtModel = new RtModel();//таблица областей
 
+    public void setDelta(double d) {
+        delta = d;
+    }
 
     public void addLine(Pixel p1, Pixel p2) {
         Line l = new Line(p1, p2, picture);
@@ -49,7 +53,7 @@ public class MainController {
 
     public void addArea(Pixel p) {
         Area area = new Area();
-        area.setArea(p, picture);
+        area.setArea(p, picture, delta);
         areaArray.add(area);
         updateData();
     }
@@ -68,11 +72,11 @@ public class MainController {
         else return null;
     }
 
-    public int getMaxDensity() {//поиск максимальной плотности D
-        int maxDensity = 1;
+    public double getMaxDensity() {//поиск максимальной плотности D
+        double maxDensity = 1.0;
         for (int a = 0; a < getLines().size(); a++) {
-            if (getLines().get(a).getMaxDensity(backgroundIntensity) > (double) maxDensity) {
-                maxDensity += Math.abs((int) getLines().get(a).getMaxDensity(backgroundIntensity) + 1 - maxDensity);
+            if (getLines().get(a).getMaxDensity(backgroundIntensity) > maxDensity) {
+                maxDensity += Math.abs(getLines().get(a).getMaxDensity(backgroundIntensity) + 1 - maxDensity);
             }
         }
         return maxDensity;
