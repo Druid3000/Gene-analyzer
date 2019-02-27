@@ -36,11 +36,3 @@ public class RtModelTest {
         assertEquals(expected, actual);
     }
 }
-
-/*
-double source = 3.1415;
-    String expected="3.1415";
-
-    String actual = StringUtils.fromDouble(source);
-    assertEquals("Unexpected string value", expected, actual);
- */
