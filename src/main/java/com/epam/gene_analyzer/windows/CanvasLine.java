@@ -99,8 +99,8 @@ public class CanvasLine extends JComponent {
                     y1 = lines.get(i).getArray().get(0).getY();
                     y2 = lines.get(i).getArray().get(lines.get(i).getArray().size() - 1).getY();
                     graphics2D.drawLine(x1, y1, x2, y2);
-                    graphics2D.setFont(new Font("Verdana", Font.PLAIN, 18));
-                    graphics2D.setColor(new Color(144, 9, 9));
+                    graphics2D.setFont(new Font("Verdana", Font.PLAIN, 24));
+                    graphics2D.setColor(Color.magenta);
                     graphics2D.drawString(Integer.toString(lines.get(i).getId()), x1, y1);//подпись номера линии
                 }
             }
@@ -137,7 +137,8 @@ public class CanvasLine extends JComponent {
                             mainController.getAreaPerimeter(n).get(i).getX(),
                             mainController.getAreaPerimeter(n).get(i).getY());
                 }
-                graphics2D.setFont(new Font("Verdana", Font.PLAIN, 18));//номер области
+                graphics2D.setFont(new Font("Verdana", Font.PLAIN, 24));//номер области
+                graphics2D.setColor(Color.magenta);
                 graphics2D.drawString(Integer.toString(mainController.getAreas().get(n).getId()),
                         mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).getX(),
                         mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).getY());
