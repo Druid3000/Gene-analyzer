@@ -3,6 +3,7 @@ package com.epam.gene_analyzer.windows;
 import com.epam.gene_analyzer.controllers.MainController;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -16,6 +17,7 @@ class Menu {
     private JMenuBar menuBar;
     private File picture;
     private AboutWindow aboutWindow;
+
 
     Menu(AboutWindow aw, TableWindow tw, MainController mc, GraphWindow gw, CanvasLine cl) {
         mainController = mc;
@@ -36,6 +38,11 @@ class Menu {
         modeMenu.setFont(font);
         menuBar.add(modeMenu);
         createModeItems(modeMenu, font);
+
+        final JMenu settingsMenu = new JMenu("Settings");
+        settingsMenu.setFont(font);
+        menuBar.add(settingsMenu);
+        createSettingsItems(settingsMenu, font, cl);
 
         final JMenu helpMenu = new JMenu("Help");         //button menu "Help"
         helpMenu.setFont(font);
@@ -121,7 +128,7 @@ class Menu {
     }
 
     private void createHelpItems(final JMenu helpMenu, final Font font){
-    JMenuItem aboutItem = new JMenuItem("About");
+        JMenuItem aboutItem = new JMenuItem("About");
         aboutItem.setFont(font);
         helpMenu.add(aboutItem);
         aboutItem.addActionListener(new ActionListener() {   //opening about window
@@ -130,6 +137,35 @@ class Menu {
         }
     });
     }
+
+    private void createSettingsItems(final JMenu settingsMenu, final Font font, final CanvasLine canvasLine){
+        JMenuItem setDelta = new JMenuItem("Set Delta");
+        setDelta.setFont(font);
+        settingsMenu.add(setDelta);
+        setDelta.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                frame();
+            }
+        });
+
+
+        JMenuItem chooseBackgroundIntensity = new JMenuItem("Set Background pixel Intensity");
+        chooseBackgroundIntensity.setFont(font);
+        settingsMenu.add(chooseBackgroundIntensity);
+        chooseBackgroundIntensity.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                canvasLine.setChooseBackgroundIntensity(true);
+            }
+        });
+
+    }
+
+    public void frame(){
+        SliderTestFrame frame = new SliderTestFrame();
+        frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
+        frame.setVisible(true);
+    }
+
     //TODO (create methods for creating menu and sub-menu buttons
     JMenuBar getMenuBar() {
         return menuBar;
