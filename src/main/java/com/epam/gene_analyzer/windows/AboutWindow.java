@@ -8,7 +8,8 @@ class AboutWindow extends JFrame {
     AboutWindow() {
         setTitle("About Program");
         setDefaultCloseOperation(HIDE_ON_CLOSE);
-        setSize(400, 350);
+        setBounds(600, 160, 400, 350);
+        setIconImage(getToolkit().getImage("src/main/resources/iconMain.gif"));
         JFrame.setDefaultLookAndFeelDecorated(true);
         createGUI();
     }
