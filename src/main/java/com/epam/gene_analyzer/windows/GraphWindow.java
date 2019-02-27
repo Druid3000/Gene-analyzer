@@ -13,7 +13,9 @@ public class GraphWindow extends JFrame {
         setTitle("Optical density graphs");
         add(canvasGraph);
         setDefaultCloseOperation(HIDE_ON_CLOSE);
-        setSize(550, 550);
+        setIconImage(getToolkit().getImage("src/main/resources/iconGraph.png"));
+        setBounds(810, 220, 550, 550);
+        setResizable(false);
 
     }
 }
