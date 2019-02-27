@@ -10,7 +10,7 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 public class SliderTestFrame extends JFrame {
-    private int delta;
+    private double delta;
     private JPanel sliderPanel;
     private ChangeListener listener;
     private MainController mainController;
@@ -31,7 +31,7 @@ public class SliderTestFrame extends JFrame {
                 // Обновление поля редактирования при
                 // изменении значения регулятора.
                 JSlider source = (JSlider) event.getSource();
-                delta = source.getValue()/100;
+                delta = (double) source.getValue() / 100;
                 setDelta(delta);
             }
         };
@@ -75,7 +75,8 @@ public class SliderTestFrame extends JFrame {
         sliderPanel.add(panel);
         JFrame.setDefaultLookAndFeelDecorated(true);
     }
-    private void setDelta(int delta){
+
+    private void setDelta(double delta) {
         mainController.setDelta(delta);
     }
 
