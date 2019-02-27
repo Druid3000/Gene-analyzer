@@ -31,7 +31,7 @@ public class TableWindow extends JFrame {
         setBounds(680, 40, 600, 400);
         setResizable(false);
         //установка иконки для окна
-        setIconImage(getToolkit().getImage("iconTable.gif"));
+        setIconImage(getToolkit().getImage("src/main/resources/iconTable.gif"));
         //действие при закрытии окна
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         //создаем таблицу
