@@ -122,7 +122,6 @@ public class MouseLocation implements MouseListener, MouseMotionListener {//priv
             xPositionNow = event.getPoint().x;
             yPositionNow = event.getPoint().y;
         }
-
     }
 
     public void mouseReleased(MouseEvent event) {
