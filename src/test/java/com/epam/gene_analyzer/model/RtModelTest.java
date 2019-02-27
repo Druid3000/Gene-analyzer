@@ -8,9 +8,9 @@ import static org.junit.Assert.*;
 
 public class RtModelTest {
 
-    RtModel rtm;
-    Double[] source = {1.0, 2.0,3.0};
-    Object expected;
+    private RtModel rtm;
+    private Double[] source = {1.0, 2.0, 3.0};
+    private Object expected;
 
 
     @Before
