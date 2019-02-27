@@ -90,10 +90,6 @@ public class MainController {
         updateData();
     }
 
-    public double getBackgroundIntensity() {   //для установки по желанию интенсивности пикселя за интенсивность фона
-        return backgroundIntensity;
-    }
-
     public ArrayList<Pixel> getGraphics(int graphHeight, int height, int xBorder, int yBorder) {//на вход  идут размеры холста графика
         //для экономии памяти проверяю, изменилось ли количество линий
         if ((graphPixels == null) || (numberOfLinesOld != lineArray.size()) || (backgroundIntensity != backgroundIntensityOld))
@@ -120,11 +116,12 @@ public class MainController {
             }
         updateData();
     }
+
     //
     // методы из контроллера таблиц (переделано)
     //
-
     //метод для обновления данных в таблице
+
     public void updateData() {
         //rtModel=new RtModel();
         rtModel.removeRows();
@@ -138,8 +135,8 @@ public class MainController {
         }
         rtModel.fireTableDataChanged();
     }
-
     //метод для передачи индекса удаляемой ячейки
+
     public void transferDeleteData(int idRow) {
         //rtModel.deleteValueAt(idRow);
     }
@@ -198,6 +195,10 @@ public class MainController {
         }
 
         return graphPixels;
+    }
+
+    private double getBackgroundIntensity() {   //для установки по желанию интенсивности пикселя за интенсивность фона
+        return backgroundIntensity;
     }
 
 }
