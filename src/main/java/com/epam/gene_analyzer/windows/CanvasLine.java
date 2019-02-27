@@ -170,13 +170,13 @@ public class CanvasLine extends JComponent {
 
     private void addJPopMenu() {
         popupMenu = new JPopupMenu();
-        JMenuItem deleteAll = new JMenuItem("Удалить все линии");
+        JMenuItem deleteAll = new JMenuItem("Remove all lines");
         popupMenu.add(deleteAll);
 
         popupMenu.addSeparator();
 
 
-        JMenuItem chooseBackgroundIntensity = new JMenuItem("Установить интенсивность фона по пикселю");
+        JMenuItem chooseBackgroundIntensity = new JMenuItem("Set pixel Background intensity");
         chooseBackgroundIntensity.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 setChooseBackgroundIntensity(true);
@@ -184,7 +184,7 @@ public class CanvasLine extends JComponent {
         });
         popupMenu.add(chooseBackgroundIntensity);
 
-        JMenuItem chooseBackgroundIntensityDefault = new JMenuItem("Установить интенсивность фона по умолчанию");
+        JMenuItem chooseBackgroundIntensityDefault = new JMenuItem("Set default Background intensity");
         chooseBackgroundIntensityDefault.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 mainController.setBackgroundIntensity(255.0);
@@ -215,7 +215,7 @@ public class CanvasLine extends JComponent {
             if (mode) {
                 popupMenu = new JPopupMenu();
                 for (int i = 0; i < lines.size(); i++) {
-                    JMenuItem cutMenuItem = new JMenuItem("Удалить линию номер " + lines.get(i).getId());
+                    JMenuItem cutMenuItem = new JMenuItem("Remove line " + lines.get(i).getId());
                     cutMenuItem.addActionListener(new JPopMenuListener(i) {
                         public void actionPerformed(ActionEvent e) {
                             lines.remove(this.id);
@@ -225,7 +225,7 @@ public class CanvasLine extends JComponent {
                 }
                 popupMenu.addSeparator();
 
-                JMenuItem deleteAll = new JMenuItem("Удалить все линии");
+                JMenuItem deleteAll = new JMenuItem("Remove all lines");
                 deleteAll.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         lines.clear();
@@ -236,7 +236,7 @@ public class CanvasLine extends JComponent {
                 popupMenu.addSeparator();
                 //----
 
-                JMenuItem chooseBackgroundIntensity = new JMenuItem("Установить интенсивность фона по пикселю");
+                JMenuItem chooseBackgroundIntensity = new JMenuItem("Set pixel Background intensity");
                 chooseBackgroundIntensity.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         setChooseBackgroundIntensity(true);
@@ -244,7 +244,7 @@ public class CanvasLine extends JComponent {
                 });
                 popupMenu.add(chooseBackgroundIntensity);
 
-                JMenuItem chooseBackgroundIntensityDefault = new JMenuItem("Установить интенсивность фона по умолчанию");
+                JMenuItem chooseBackgroundIntensityDefault = new JMenuItem("Set default Background intensity");
                 chooseBackgroundIntensityDefault.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         mainController.setBackgroundIntensity(255.0);
@@ -258,7 +258,7 @@ public class CanvasLine extends JComponent {
             } else {
                 popupMenu = new JPopupMenu();
                 for (int i = 0; i < mainController.getAreas().size(); i++) {
-                    JMenuItem cutMenuItem = new JMenuItem("Удалить область номер " + mainController.getArea(i).getId());
+                    JMenuItem cutMenuItem = new JMenuItem("Remove area " + mainController.getArea(i).getId());
                     cutMenuItem.addActionListener(new JPopMenuListener(mainController.getArea(i).getId()) {
                         public void actionPerformed(ActionEvent e) {
                             mainController.removeArea(this.id);
@@ -269,7 +269,7 @@ public class CanvasLine extends JComponent {
                 }
                 popupMenu.addSeparator();
 
-                JMenuItem deleteAll = new JMenuItem("Удалить все области");
+                JMenuItem deleteAll = new JMenuItem("Remove all areas");
                 deleteAll.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         mainController.removeAreas();
@@ -281,7 +281,7 @@ public class CanvasLine extends JComponent {
                 popupMenu.addSeparator();
                 //----
 
-                JMenuItem chooseBackgroundIntensity = new JMenuItem("Установить интенсивность фона по пикселю");
+                JMenuItem chooseBackgroundIntensity = new JMenuItem("Set pixel Background intensity");
                 chooseBackgroundIntensity.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         setChooseBackgroundIntensity(true);
@@ -289,7 +289,7 @@ public class CanvasLine extends JComponent {
                 });
                 popupMenu.add(chooseBackgroundIntensity);
 
-                JMenuItem chooseBackgroundIntensityDefault = new JMenuItem("Установить интенсивность фона по умолчанию");
+                JMenuItem chooseBackgroundIntensityDefault = new JMenuItem("Set default Background intensity");
                 chooseBackgroundIntensityDefault.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         mainController.setBackgroundIntensity(255.0);
