@@ -82,7 +82,7 @@ public class RtModel extends AbstractTableModel {
     }
 
     //получение входных данных и их преобразование к табличным значениям
-    private Object[] setData(int id, Double[] newData, double bi) {
+    protected Object[] setData(int id, Double[] newData, double bi) {
         byte r0 = (byte) id;
         double r1 = 0, r2 = 0, r4;
         int r3;
