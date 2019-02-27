@@ -4,18 +4,16 @@ import com.epam.gene_analyzer.controllers.MainController;
 
 import javax.swing.*;
 
-class GraphWindow extends JFrame {
+public class GraphWindow extends JFrame {
 
     GraphWindow(MainController mc) {
 
         MainController mainController = mc;
         CanvasGraph canvasGraph = new CanvasGraph(mainController);
-        setTitle("Графики оптической плотности");
-        setIconImage(getToolkit().getImage("iconGraph.png"));
+        setTitle("Optical density graphs");
         add(canvasGraph);
-        setDefaultCloseOperation(DISPOSE_ON_CLOSE);
-        setBounds(810, 220, 550, 550);
-        setResizable(false);
+        setDefaultCloseOperation(HIDE_ON_CLOSE);
+        setSize(550, 550);
 
     }
 }

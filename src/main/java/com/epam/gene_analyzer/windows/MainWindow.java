@@ -21,19 +21,12 @@ public class MainWindow extends JFrame {
     }
 
     public void showWindow(){
-        setTitle("Определение оптической плотности");
-        setIconImage(getToolkit().getImage("iconMain.gif"));
-        setLocation(60, 70);
-        setMinimumSize(new Dimension(400, 400));
-        setPreferredSize(new Dimension(600, 500));
+        setVisible(true);
+        setTitle("Optical density determination");
+        setPreferredSize(new Dimension(1000, 1000));
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setJMenuBar(menu.getMenuBar());
         add(canvasLine);
         pack();
-        setVisible(true);
     }
-
-    /*public void changeWindowSize(int width, int height){
-        setPreferredSize(new Dimension(width, height));
-    }*/
 }
