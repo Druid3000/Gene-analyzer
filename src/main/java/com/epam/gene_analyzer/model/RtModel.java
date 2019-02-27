@@ -91,12 +91,16 @@ public class RtModel extends AbstractTableModel {
             r1 += newData[i];
         }
         r1 = Math.log10(bi / (r1 / newData.length));
+        if (r1 < 0) r1 = 0;
         //находим Total OD
         for (int i = 0; i < newData.length; i++) {
             r2 += Math.log10(bi / newData[i]);
         }
+        if (r2 < 0) r2 = 0;
         r3 = newData.length;
         r4 = bi;
+        if (r4 < 0.001) r4 = 0;
+
 
         Object[] row = {r0, r1, r2, r3, r4};
         return row;
