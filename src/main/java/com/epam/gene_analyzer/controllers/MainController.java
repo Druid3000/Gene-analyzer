@@ -72,11 +72,11 @@ public class MainController {
         else return null;
     }
 
-    public int getMaxDensity() {//поиск максимальной плотности D
-        int maxDensity = 1;
+    public double getMaxDensity() {//поиск максимальной плотности D
+        double maxDensity = 1.0;
         for (int a = 0; a < getLines().size(); a++) {
-            if (getLines().get(a).getMaxDensity(backgroundIntensity) > (double) maxDensity) {
-                maxDensity += Math.abs((int) getLines().get(a).getMaxDensity(backgroundIntensity) + 1 - maxDensity);
+            if (getLines().get(a).getMaxDensity(backgroundIntensity) > maxDensity) {
+                maxDensity += Math.abs(getLines().get(a).getMaxDensity(backgroundIntensity) + 1 - maxDensity);
             }
         }
         return maxDensity;

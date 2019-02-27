@@ -16,7 +16,6 @@ public class MouseLocation implements MouseListener, MouseMotionListener {//priv
     private int yPositionNow;
     private CanvasLine canvasLine;
     private MainController mainController;
-    private Menu menu;
 
     MouseLocation(CanvasLine cl, MainController ml) {
         canvasLine = cl;
@@ -69,7 +68,6 @@ public class MouseLocation implements MouseListener, MouseMotionListener {//priv
                     p.setY(event.getY());
                     p.setColor(new Color(mainController.getPicture().getRGB(event.getX(), event.getY())));
                     mainController.setBackgroundIntensity(p);
-                    //mainController.reloadGraphics();//обновление графиков с новой интенсивностью, под вопросом
                     canvasLine.setChooseBackgroundIntensity(false);
                 } else {
                     if (canvasLine.getPosition()) {
