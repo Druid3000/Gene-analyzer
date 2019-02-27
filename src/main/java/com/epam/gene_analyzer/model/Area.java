@@ -8,11 +8,12 @@ import java.util.concurrent.atomic.AtomicInteger;
 public class Area {
     private ArrayList<Pixel> pixels;
     private ArrayList<Pixel> perimeter;
-    private final double delta = 0.1;
+    private double delta;
     private static final AtomicInteger id = new AtomicInteger(0);
     private int idThis = 1;
 
-    public void setArea(Pixel pixel, BufferedImage image) {
+    public void setArea(Pixel pixel, BufferedImage image, double del) {
+        delta = del;
         pixels = new ArrayList<Pixel>();
         perimeter = new ArrayList<Pixel>();
         Pixel[][] allPixels = getPixelsArrayFromImage(image);
