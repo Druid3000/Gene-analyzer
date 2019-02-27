@@ -16,7 +16,6 @@ public class MouseLocation implements MouseListener, MouseMotionListener {//priv
     private int yPositionNow;
     private CanvasLine canvasLine;
     private MainController mainController;
-    private Menu menu;
 
     MouseLocation(CanvasLine cl, MainController ml) {
         canvasLine = cl;

@@ -166,33 +166,14 @@ public class CanvasLine extends JComponent {
     private void addListener() {
         mouseLocation = new MouseLocation(this, mainController);
         addMouseListener(mouseLocation);
-        addMouseMotionListener(mouseLocation);
-    }
+        addMouseMotionListener(mouseLocation);}
 
     private void addJPopMenu() {
         popupMenu = new JPopupMenu();
         JMenuItem deleteAll = new JMenuItem("Remove all lines");
         popupMenu.add(deleteAll);
 
-        popupMenu.addSeparator();
 
-
-        JMenuItem chooseBackgroundIntensity = new JMenuItem("Set pixel Background intensity");
-        chooseBackgroundIntensity.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                setChooseBackgroundIntensity(true);
-            }
-        });
-        popupMenu.add(chooseBackgroundIntensity);
-
-        JMenuItem chooseBackgroundIntensityDefault = new JMenuItem("Set default Background intensity");
-        chooseBackgroundIntensityDefault.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                mainController.setBackgroundIntensity(255.0);
-                setChooseBackgroundIntensity(false);
-            }
-        });
-        popupMenu.add(chooseBackgroundIntensityDefault);
 
         setComponentPopupMenu(popupMenu);
         popupMenu.addPopupMenuListener(new PopupMenuListener() {
@@ -233,27 +214,6 @@ public class CanvasLine extends JComponent {
                     }
                 });
                 popupMenu.add(deleteAll);
-                //----
-                popupMenu.addSeparator();
-                //----
-
-                JMenuItem chooseBackgroundIntensity = new JMenuItem("Set pixel Background intensity");
-                chooseBackgroundIntensity.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        setChooseBackgroundIntensity(true);
-                    }
-                });
-                popupMenu.add(chooseBackgroundIntensity);
-
-                JMenuItem chooseBackgroundIntensityDefault = new JMenuItem("Set default Background intensity");
-                chooseBackgroundIntensityDefault.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        mainController.setBackgroundIntensity(255.0);
-                        setChooseBackgroundIntensity(false);
-                    }
-                });
-                popupMenu.add(chooseBackgroundIntensityDefault);
-
 
                 setComponentPopupMenu(popupMenu);
             } else {
@@ -278,26 +238,6 @@ public class CanvasLine extends JComponent {
                     }
                 });
                 popupMenu.add(deleteAll);
-                //----
-                popupMenu.addSeparator();
-                //----
-
-                JMenuItem chooseBackgroundIntensity = new JMenuItem("Set pixel Background intensity");
-                chooseBackgroundIntensity.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        setChooseBackgroundIntensity(true);
-                    }
-                });
-                popupMenu.add(chooseBackgroundIntensity);
-
-                JMenuItem chooseBackgroundIntensityDefault = new JMenuItem("Set default Background intensity");
-                chooseBackgroundIntensityDefault.addActionListener(new ActionListener() {
-                    public void actionPerformed(ActionEvent e) {
-                        mainController.setBackgroundIntensity(255.0);
-                        setChooseBackgroundIntensity(false);
-                    }
-                });
-                popupMenu.add(chooseBackgroundIntensityDefault);
 
                 setComponentPopupMenu(popupMenu);
             }
