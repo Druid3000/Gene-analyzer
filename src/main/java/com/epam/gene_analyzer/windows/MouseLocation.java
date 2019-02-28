@@ -93,7 +93,7 @@ public class MouseLocation implements MouseListener, MouseMotionListener {//priv
                                     if (!(x1 == x2 & y1 == y2)) {
                                         //if (mainController.getLines() != null) {
                                         if (mainController.getLines().size() == 10)
-                                            JOptionPane.showMessageDialog(null, "Удалите хотя бы одну линию, чтобы добавить новую!");
+                                            JOptionPane.showMessageDialog(null, "Delete at least one line to add a new one!");
                                         else
                                             mainController.addLine(p1, p2);
                                         canvasLine.setLines(mainController.getLines());

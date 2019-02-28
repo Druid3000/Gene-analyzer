@@ -148,13 +148,24 @@ class Menu {
             }
         });
 
+        settingsMenu.addSeparator();
 
-        JMenuItem chooseBackgroundIntensity = new JMenuItem("Set Background pixel Intensity");
+        JMenuItem chooseBackgroundIntensity = new JMenuItem("Set pixel Background Intensity");
         chooseBackgroundIntensity.setFont(font);
         settingsMenu.add(chooseBackgroundIntensity);
         chooseBackgroundIntensity.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 canvasLine.setChooseBackgroundIntensity(true);
+            }
+        });
+
+        JMenuItem chooseDefaultIntensity = new JMenuItem("Set default Background Intensity");
+        chooseDefaultIntensity.setFont(font);
+        settingsMenu.add(chooseDefaultIntensity);
+        chooseDefaultIntensity.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mainController.setBackgroundIntensity(255.0);
+                canvasLine.setChooseBackgroundIntensity(false);
             }
         });
 
