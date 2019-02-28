@@ -7,8 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-/** Class for getting mouse locations
- *
+/**
+ * Class for getting mouse locations
  */
 public class MouseLocation implements MouseListener, MouseMotionListener {
     private int xPosition1;
@@ -29,7 +29,8 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         yPosition2 = 1;
     }
 
-    /** Getting X1
+    /**
+     * Getting X1
      *
      * @return X1
      */
@@ -37,7 +38,8 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         return xPosition1;
     }
 
-    /** Getting Y1
+    /**
+     * Getting Y1
      *
      * @return Y1
      */
@@ -45,7 +47,8 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         return yPosition1;
     }
 
-    /** Getting X2
+    /**
+     * Getting X2
      *
      * @return X2
      */
@@ -53,7 +56,8 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         return xPosition2;
     }
 
-    /** Getting Y2
+    /**
+     * Getting Y2
      *
      * @return Y2
      */
@@ -61,7 +65,8 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         return yPosition2;
     }
 
-    /** Getting X now
+    /**
+     * Getting X now
      *
      * @return X now
      */
@@ -69,7 +74,8 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         return xPositionNow;
     }
 
-    /** Getting Y now
+    /**
+     * Getting Y now
      *
      * @return Y now
      */
@@ -77,28 +83,32 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         return yPositionNow;
     }
 
-    /** Method for mouse click
+    /**
+     * Method for mouse click
      *
      * @param event click
      */
     public void mouseClicked(MouseEvent event) {
     }
 
-    /** Method for mouse enter
+    /**
+     * Method for mouse enter
      *
      * @param event enter
      */
     public void mouseEntered(MouseEvent event) {
     }
 
-    /** Method for mouse exit
+    /**
+     * Method for mouse exit
      *
      * @param event exit
      */
     public void mouseExited(MouseEvent event) {
     }
 
-    /** Method for mouse press.
+    /**
+     * Method for mouse press.
      * Using drawing lines.
      *
      * @param event press
@@ -114,15 +124,15 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
                     mainController.setBackgroundIntensity(p);
                     canvasLine.setChooseBackgroundIntensity(false);
                 } else {
-                    if (canvasLine.getPosition()) {
-                        xPosition1 = event.getX();
-                        yPosition1 = event.getY();
-                    } else {
-                        xPosition2 = event.getX();
-                        yPosition2 = event.getY();
+                    if (canvasLine.getMode()) {
+                        if (canvasLine.getPosition()) {
+                            xPosition1 = event.getX();
+                            yPosition1 = event.getY();
+                        } else {
+                            xPosition2 = event.getX();
+                            yPosition2 = event.getY();
 
-                        if (getXPositionNow() < canvasLine.getWidth() & getYPositionNow() < canvasLine.getHeight()) {
-                            if (canvasLine.getMode()) {
+                            if (getXPositionNow() < canvasLine.getWidth() & getYPositionNow() < canvasLine.getHeight()) {
                                 if (mainController.getPicture() != null) {
                                     int x1 = getXPosition1();
                                     int y1 = getYPosition1();
@@ -135,7 +145,6 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
                                     p2.setX(x2);
                                     p2.setY(y2);
                                     if (!(x1 == x2 & y1 == y2)) {
-
                                         if (mainController.getLines().size() == 10)
                                             JOptionPane.showMessageDialog(null, "Delete at least one line to add a new one!");
                                         else
@@ -144,8 +153,8 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
                                     }
                                 }
                             }
-
                         }
+                        canvasLine.changePosition();
                     }
                     if (!canvasLine.getMode()) {
                         int x = getXPositionNow(), y = getYPositionNow();
@@ -155,13 +164,13 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
                         p.setColor(new Color(mainController.getPicture().getRGB(x, y)));
                         mainController.addArea(p);
                     }
-                    canvasLine.changePosition();
                 }
             }
         }
     }
 
-    /** Method for mouse move
+    /**
+     * Method for mouse move
      *
      * @param event move
      */
@@ -172,14 +181,16 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         }
     }
 
-    /** Method for mouse release
+    /**
+     * Method for mouse release
      *
      * @param event release
      */
     public void mouseReleased(MouseEvent event) {
     }
 
-    /** Method for mouse drag
+    /**
+     * Method for mouse drag
      *
      * @param event drag
      */
