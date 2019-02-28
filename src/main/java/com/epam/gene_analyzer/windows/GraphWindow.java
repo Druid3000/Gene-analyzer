@@ -4,6 +4,9 @@ import com.epam.gene_analyzer.controllers.MainController;
 
 import javax.swing.*;
 
+/** Class based on JFrame for creating window with graphics
+ *
+ */
 public class GraphWindow extends JFrame {
 
     GraphWindow(MainController mc) {
