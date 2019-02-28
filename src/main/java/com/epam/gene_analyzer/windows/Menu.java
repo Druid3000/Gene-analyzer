@@ -67,7 +67,7 @@ class Menu {
         fileMenu.add(closeItem);
         openItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JFileChooser fileOpen = new JFileChooser();
+                JFileChooser fileOpen = new JFileChooser("./images");
                 int ret = fileOpen.showDialog(aboutWindow, "Open file");
                 if (ret == JFileChooser.APPROVE_OPTION) {
                     picture = fileOpen.getSelectedFile();
@@ -77,6 +77,7 @@ class Menu {
                 closeItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         canvasLine.setVisible(false);
+                        mainService.remPicture();
                     }
                 });
             }
@@ -89,6 +90,7 @@ class Menu {
         exitItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
+
             }
         });
     }
@@ -128,7 +130,7 @@ class Menu {
             }
         });
 
-        JMenuItem showDataItem = new JMenuItem("Show data");
+        JMenuItem showDataItem = new JMenuItem("Show table");
         showDataItem.setFont(font);
         modeMenu.add(showDataItem);
         showDataItem.addActionListener(new ActionListener() {

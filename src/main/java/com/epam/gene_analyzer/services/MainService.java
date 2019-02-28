@@ -85,6 +85,19 @@ public class MainService {
     }
 
     /**
+     * Method for removing  picture
+     * Clear all data with previous picture
+     */
+    public void remPicture() {
+        areaArray.clear();
+        lineArray.clear();
+        graphPixels.clear();
+        backgroundIntensity = 255.5;
+        backgroundIntensityOld = 255.0;
+        updateData();
+    }
+
+    /**
      * Method for getting list of line by using array of pixels
      *
      * @return array of pixels
@@ -196,6 +209,7 @@ public class MainService {
         backgroundIntensityOld = backgroundIntensity;
         return graphPixels;
     }
+
 
     /**
      * Method for getting table
