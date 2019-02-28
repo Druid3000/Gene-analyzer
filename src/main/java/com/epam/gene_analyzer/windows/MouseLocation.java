@@ -7,8 +7,8 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.*;
 
-/**
- * Class for getting mouse locations
+/** Class for getting mouse locations
+ *
  */
 public class MouseLocation implements MouseListener, MouseMotionListener {
     private int xPosition1;
@@ -18,19 +18,18 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
     private int xPositionNow;
     private int yPositionNow;
     private CanvasLine canvasLine;
-    private MainController mainController;
+    private MainService mainService;
 
-    MouseLocation(CanvasLine cl, MainController ml) {
+    MouseLocation(CanvasLine cl, MainService ml) {
         canvasLine = cl;
-        mainController = ml;
+        mainService = ml;
         xPosition1 = 0;
         yPosition1 = 0;
         xPosition2 = 1;
         yPosition2 = 1;
     }
 
-    /**
-     * Getting X1
+    /** Getting X1
      *
      * @return X1
      */
@@ -38,8 +37,7 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         return xPosition1;
     }
 
-    /**
-     * Getting Y1
+    /** Getting Y1
      *
      * @return Y1
      */
@@ -47,8 +45,7 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         return yPosition1;
     }
 
-    /**
-     * Getting X2
+    /** Getting X2
      *
      * @return X2
      */
@@ -56,8 +53,7 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         return xPosition2;
     }
 
-    /**
-     * Getting Y2
+    /** Getting Y2
      *
      * @return Y2
      */
@@ -65,8 +61,7 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         return yPosition2;
     }
 
-    /**
-     * Getting X now
+    /** Getting X now
      *
      * @return X now
      */
@@ -74,8 +69,7 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         return xPositionNow;
     }
 
-    /**
-     * Getting Y now
+    /** Getting Y now
      *
      * @return Y now
      */
@@ -83,45 +77,41 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         return yPositionNow;
     }
 
-    /**
-     * Method for mouse click
+    /** Method for mouse click
      *
      * @param event click
      */
     public void mouseClicked(MouseEvent event) {
     }
 
-    /**
-     * Method for mouse enter
+    /** Method for mouse enter
      *
      * @param event enter
      */
     public void mouseEntered(MouseEvent event) {
     }
 
-    /**
-     * Method for mouse exit
+    /** Method for mouse exit
      *
      * @param event exit
      */
     public void mouseExited(MouseEvent event) {
     }
 
-    /**
-     * Method for mouse press.
+    /** Method for mouse press.
      * Using drawing lines.
      *
      * @param event press
      */
     public void mousePressed(MouseEvent event) {
-        if (mainController.getPicture() != null) {
+        if (mainService.getPicture() != null) {
             if (event.getButton() == MouseEvent.BUTTON1) {
                 if (canvasLine.isChooseBackgroundIntensity()) {
                     Pixel p = new Pixel();
                     p.setX(event.getX());
                     p.setY(event.getY());
-                    p.setColor(new Color(mainController.getPicture().getRGB(event.getX(), event.getY())));
-                    mainController.setBackgroundIntensity(p);
+                    p.setColor(new Color(mainService.getPicture().getRGB(event.getX(), event.getY())));
+                    mainService.setBackgroundIntensity(p);
                     canvasLine.setChooseBackgroundIntensity(false);
                 } else {
                     if (canvasLine.getMode()) {
@@ -132,8 +122,8 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
                             xPosition2 = event.getX();
                             yPosition2 = event.getY();
 
-                            if (getXPositionNow() < canvasLine.getWidth() & getYPositionNow() < canvasLine.getHeight()) {
-                                if (mainController.getPicture() != null) {
+                        if (getXPositionNow() < canvasLine.getWidth() & getYPositionNow() < canvasLine.getHeight()) {
+                                if (mainService.getPicture() != null) {
                                     int x1 = getXPosition1();
                                     int y1 = getYPosition1();
                                     Pixel p1 = new Pixel();
@@ -145,11 +135,11 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
                                     p2.setX(x2);
                                     p2.setY(y2);
                                     if (!(x1 == x2 & y1 == y2)) {
-                                        if (mainController.getLines().size() == 10)
+                                        if (mainService.getLines().size() == 10)
                                             JOptionPane.showMessageDialog(null, "Delete at least one line to add a new one!");
                                         else
-                                            mainController.addLine(p1, p2);
-                                        canvasLine.setLines(mainController.getLines());
+                                            mainService.addLine(p1, p2);
+                                        canvasLine.setLines(mainService.getLines());
                                     }
                                 }
                             }
@@ -169,8 +159,7 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         }
     }
 
-    /**
-     * Method for mouse move
+    /** Method for mouse move
      *
      * @param event move
      */
@@ -181,16 +170,14 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
         }
     }
 
-    /**
-     * Method for mouse release
+    /** Method for mouse release
      *
      * @param event release
      */
     public void mouseReleased(MouseEvent event) {
     }
 
-    /**
-     * Method for mouse drag
+    /** Method for mouse drag
      *
      * @param event drag
      */

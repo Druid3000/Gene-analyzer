@@ -1,6 +1,6 @@
 package com.epam.gene_analyzer.windows;
 
-import com.epam.gene_analyzer.controllers.MainController;
+import com.epam.gene_analyzer.services.MainService;
 import com.epam.gene_analyzer.model.Pixel;
 
 import javax.swing.*;
@@ -14,14 +14,14 @@ import java.util.ArrayList;
  */
 class CanvasGraph extends JComponent {
     private final int height = 500, weight = 450, intensity = 256, xBorder = 50, yBorder = 50, graphHeight = 400, graphWeight = 400, labelX = 10, labelY = 10;//размеры окна
-    private MainController mainController;
+    private MainService mainService;
 
-    /** Method for calling mainController
+    /** Method for calling mainService
      *
-     * @param mc mainController
+     * @param mc mainService
      */
-    public CanvasGraph(MainController mc) {
-        mainController = mc;
+    public CanvasGraph(MainService mc) {
+        mainService = mc;
         setVisible(true);
     }
 
@@ -76,12 +76,12 @@ class CanvasGraph extends JComponent {
      */
     private void drawCoordinateLabels(Graphics2D graphics2D) {
 
-        if (mainController.getLines() != null) {
+        if (mainService.getLines() != null) {
             graphics2D.setColor(Color.BLACK);
             int n = labelY;
 
             for (int i = 1; i < n + 1; i++) {
-                graphics2D.drawString(Double.toString(mainController.getMaxDensity() * i / n), xBorder / 2, (height - yBorder) - i * graphHeight / n);
+                graphics2D.drawString(Double.toString(mainService.getMaxDensity() * i / n), xBorder / 2, (height - yBorder) - i * graphHeight / n);
             }
 
             n = labelX;
@@ -96,7 +96,7 @@ class CanvasGraph extends JComponent {
      * @param graphics2D graphic2D
      */
     private void drawGraph(Graphics2D graphics2D) {
-        ArrayList<Pixel> pixels = mainController.getGraphics(graphHeight, height, xBorder, yBorder);
+        ArrayList<Pixel> pixels = mainService.getGraphics(graphHeight, height, xBorder, yBorder);
         for (int i = 0; i < pixels.size(); i++) {
             graphics2D.setColor(pixels.get(i).getColor());
             int x = pixels.get(i).getX();
@@ -111,12 +111,12 @@ class CanvasGraph extends JComponent {
      */
     private void drawLegend(Graphics2D graphics2D) {
         super.setFont(new Font("Verdana", Font.PLAIN, 14));
-        for (int t = 0; t < mainController.getLines().size(); t++) {
-            graphics2D.setColor(mainController.getLines().get(t).getColor());
+        for (int t = 0; t < mainService.getLines().size(); t++) {
+            graphics2D.setColor(mainService.getLines().get(t).getColor());
             graphics2D.drawLine(xBorder / 2 + weight, yBorder + t * 15, xBorder / 2 + weight + 20, yBorder + t * 15);
             graphics2D.drawLine(xBorder / 2 + weight, yBorder + 1 + t * 15, xBorder / 2 + weight + 20, yBorder + 1 + t * 15);
             graphics2D.setColor(Color.black);
-            graphics2D.drawString(Integer.toString(mainController.getLines().get(t).getId()), xBorder / 2 + weight + 25, yBorder + t * 15 + 5);
+            graphics2D.drawString(Integer.toString(mainService.getLines().get(t).getId()), xBorder / 2 + weight + 25, yBorder + t * 15 + 5);
         }
         super.setFont(new Font("Verdana", Font.PLAIN, 11));
 

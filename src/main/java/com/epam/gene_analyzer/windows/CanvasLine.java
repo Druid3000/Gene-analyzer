@@ -1,8 +1,7 @@
 package com.epam.gene_analyzer.windows;
 
-import com.epam.gene_analyzer.controllers.MainController;
+import com.epam.gene_analyzer.services.MainService;
 import com.epam.gene_analyzer.model.Line;
-import com.epam.gene_analyzer.windows.MouseLocation;
 
 import javax.swing.*;
 import javax.swing.event.PopupMenuEvent;
@@ -27,14 +26,14 @@ public class CanvasLine extends JComponent {
     private BufferedImage picture;
     private ArrayList<Line> lines = new ArrayList<Line>();
     private JPopupMenu popupMenu;
-    private MainController mainController;
+    private MainService mainService;
     private boolean mode = true;
     private boolean position = true;
     private boolean chooseBackgroundIntensity = false;
     private MouseLocation mouseLocation;
 
-    CanvasLine(MainController mc) {
-        mainController = mc;
+    CanvasLine(MainService mc) {
+        mainService = mc;
         setVisible(true);
         addListener();
         addJPopMenu();
@@ -119,7 +118,7 @@ public class CanvasLine extends JComponent {
      * @param graphics2D graphics2D
      */
     private void drawPicture(Graphics2D graphics2D) {
-        picture = mainController.getPicture();
+        picture = mainService.getPicture();
         if (picture != null) {
             this.setSize(new Dimension(picture.getWidth(), picture.getHeight()));
             graphics2D.drawImage(picture, 0, 0, this);
@@ -161,20 +160,20 @@ public class CanvasLine extends JComponent {
      * @param graphics2D graphics2D
      */
     private void drawAreas(Graphics2D graphics2D) {
-        if (picture != null & mainController.getArea(0) != null) {
-            for (int n = 0; n < mainController.getAreas().size(); n++) {
+        if (picture != null & mainService.getArea(0) != null) {
+            for (int n = 0; n < mainService.getAreas().size(); n++) {
                 graphics2D.setColor(Color.RED);
-                for (int i = 0; i < mainController.getAreas().get(n).getArea().size(); i++) {
-                    graphics2D.drawLine(mainController.getAreas().get(n).getArea().get(i).getX(),
-                            mainController.getAreas().get(n).getArea().get(i).getY(),
-                            mainController.getAreas().get(n).getArea().get(i).getX(),
-                            mainController.getAreas().get(n).getArea().get(i).getY());
+                for (int i = 0; i < mainService.getAreas().get(n).getArea().size(); i++) {
+                    graphics2D.drawLine(mainService.getAreas().get(n).getArea().get(i).getX(),
+                            mainService.getAreas().get(n).getArea().get(i).getY(),
+                            mainService.getAreas().get(n).getArea().get(i).getX(),
+                            mainService.getAreas().get(n).getArea().get(i).getY());
                 }
                 graphics2D.setFont(new Font("Verdana", Font.PLAIN, 18));
                 graphics2D.setColor(Color.WHITE);
-                graphics2D.drawString(Integer.toString(mainController.getAreas().get(n).getId()),
-                        mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).getX(),
-                        mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).getY());
+                graphics2D.drawString(Integer.toString(mainService.getAreas().get(n).getId()),
+                        mainService.getAreas().get(n).getArea().get(mainService.getAreas().get(n).getArea().size() / 2).getX(),
+                        mainService.getAreas().get(n).getArea().get(mainService.getAreas().get(n).getArea().size() / 2).getY());
             }
         }
     }
@@ -184,20 +183,20 @@ public class CanvasLine extends JComponent {
      * @param graphics2D graphics2D
      */
     private void drawAreaPerimeter(Graphics2D graphics2D) {
-        if (picture != null & mainController.getAreaPerimeter(0) != null) {
-            for (int n = 0; n < mainController.getAreas().size(); n++) {
+        if (picture != null & mainService.getAreaPerimeter(0) != null) {
+            for (int n = 0; n < mainService.getAreas().size(); n++) {
                 graphics2D.setColor(Color.red);
-                for (int i = 0; i < mainController.getAreaPerimeter(n).size(); i++) {
-                    graphics2D.drawLine(mainController.getAreaPerimeter(n).get(i).getX(),
-                            mainController.getAreaPerimeter(n).get(i).getY(),
-                            mainController.getAreaPerimeter(n).get(i).getX(),
-                            mainController.getAreaPerimeter(n).get(i).getY());
+                for (int i = 0; i < mainService.getAreaPerimeter(n).size(); i++) {
+                    graphics2D.drawLine(mainService.getAreaPerimeter(n).get(i).getX(),
+                            mainService.getAreaPerimeter(n).get(i).getY(),
+                            mainService.getAreaPerimeter(n).get(i).getX(),
+                            mainService.getAreaPerimeter(n).get(i).getY());
                 }
                 graphics2D.setFont(new Font("Verdana", Font.PLAIN, 24));
                 graphics2D.setColor(Color.magenta);
-                graphics2D.drawString(Integer.toString(mainController.getAreas().get(n).getId()),
-                        mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).getX(),
-                        mainController.getAreas().get(n).getArea().get(mainController.getAreas().get(n).getArea().size() / 2).getY());
+                graphics2D.drawString(Integer.toString(mainService.getAreas().get(n).getId()),
+                        mainService.getAreas().get(n).getArea().get(mainService.getAreas().get(n).getArea().size() / 2).getX(),
+                        mainService.getAreas().get(n).getArea().get(mainService.getAreas().get(n).getArea().size() / 2).getY());
             }
         }
     }
@@ -227,7 +226,7 @@ public class CanvasLine extends JComponent {
      *
      */
     private void addListener() {
-        mouseLocation = new MouseLocation(this, mainController);
+        mouseLocation = new MouseLocation(this, mainService);
         addMouseListener(mouseLocation);
         addMouseMotionListener(mouseLocation);}
 
@@ -288,12 +287,12 @@ public class CanvasLine extends JComponent {
                 setComponentPopupMenu(popupMenu);
             } else {
                 popupMenu = new JPopupMenu();
-                for (int i = 0; i < mainController.getAreas().size(); i++) {
-                    JMenuItem cutMenuItem = new JMenuItem("Remove area " + mainController.getArea(i).getId());
-                    cutMenuItem.addActionListener(new JPopMenuListener(mainController.getArea(i).getId()) {
+                for (int i = 0; i < mainService.getAreas().size(); i++) {
+                    JMenuItem cutMenuItem = new JMenuItem("Remove area " + mainService.getArea(i).getId());
+                    cutMenuItem.addActionListener(new JPopMenuListener(mainService.getArea(i).getId()) {
                         public void actionPerformed(ActionEvent e) {
-                            mainController.removeArea(this.id);
-                            mainController.updateData();
+                            mainService.removeArea(this.id);
+                            mainService.updateData();
                         }
                     });
                     popupMenu.add(cutMenuItem);
@@ -303,8 +302,8 @@ public class CanvasLine extends JComponent {
                 JMenuItem deleteAll = new JMenuItem("Remove all areas");
                 deleteAll.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
-                        mainController.removeAreas();
-                        mainController.updateData();
+                        mainService.removeAreas();
+                        mainService.updateData();
                     }
                 });
                 popupMenu.add(deleteAll);
