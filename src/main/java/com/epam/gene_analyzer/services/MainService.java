@@ -66,12 +66,19 @@ public class MainService {
 
     /**
      * Method for setting file of picture
+     * Clear all data with previous picture
      *
      * @param f file of picture
      */
     public void setPicture(File f) {
         try {
             picture = ImageIO.read(f);
+            areaArray.clear();
+            lineArray.clear();
+            graphPixels.clear();
+            backgroundIntensity = 255.5;
+            backgroundIntensityOld = 255.0;
+            updateData();
         } catch (IOException ex) {
             //
         }
