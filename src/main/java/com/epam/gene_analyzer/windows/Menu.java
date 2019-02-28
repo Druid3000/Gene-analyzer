@@ -67,7 +67,7 @@ class Menu {
         fileMenu.add(closeItem);
         openItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JFileChooser fileOpen = new JFileChooser();
+                JFileChooser fileOpen = new JFileChooser("./images");
                 int ret = fileOpen.showDialog(aboutWindow, "Open file");
                 if (ret == JFileChooser.APPROVE_OPTION) {
                     picture = fileOpen.getSelectedFile();
