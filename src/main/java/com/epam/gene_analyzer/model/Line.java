@@ -1,33 +1,40 @@
-package Model;
+package com.epam.gene_analyzer.model;
 
-import javax.imageio.ImageIO;
 import java.awt.*;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/** Model class for creating Line.
+ * Get pixels from picture, get color of pixels, get intensity, get density, get array of pixels for drawing line.
+ *
+ */
 public class Line {
-    public static String[] cordsCode = new String[0];
     private static final AtomicInteger id = new AtomicInteger(0);
     private int idThis;
     private double maxDensity;
     private Color color;
     private ArrayList<Pixel> pixels = new ArrayList<Pixel>();
 
+    /** Method for drawing lines.
+     * Get coordinates, calculate segment length and number of pixels.
+     * Get color of pixels.
+     * Fill array of pixels on the segment for creating line.
+     * Color assignment for lines in graphic.
+     *
+     * @param p1 pixel
+     * @param p2 pixel
+     * @param image picture
+     */
     public Line(Pixel p1, Pixel p2, BufferedImage image) {
-        int x1 = p1.get_x(), x2 = p2.get_x(), y1 = p1.get_y(), y2 = p2.get_y();
+        int x1 = p1.getX(), x2 = p2.getX(), y1 = p1.getY(), y2 = p2.getY();
         double k, b;
         k = (double) (y1 - y2) / (x1 - x2);
         b = y1 - k * x1;
-        int length = Math.max(Math.abs(x1 - x2), (Math.abs(y1 - y2)));//длина отрезка (кол-во пикселей)
-        //создаю массив пикселей всего изображения
-        //BufferedImage image=im;
-        //try {
-        //    image = ImageIO.read(f);
+        int length = Math.max(Math.abs(x1 - x2), (Math.abs(y1 - y2)));
         int h = image.getHeight(), w = image.getWidth(), R, G, B;
 
-        Pixel[][] all_pxls = new Pixel[w][h];
+        Pixel[][] allPixels = new Pixel[w][h];
         Color c;
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
@@ -36,24 +43,20 @@ public class Line {
                 G = c.getGreen();
                 B = c.getBlue();
                 Pixel p = new Pixel();
-                p.set_x(i);
-                p.set_y(j);
-                p.set_R(R);
-                p.set_G(G);
-                p.set_B(B);
-                all_pxls[i][j] = p;
+                p.setX(i);
+                p.setY(j);
+                p.setR(R);
+                p.setG(G);
+                p.setB(B);
+                allPixels[i][j] = p;
             }
         }
 
-
-        // заполнение
         if (Math.abs(k) >= 1) {
             double x, y = y1;
             for (int i = 0; i < length; i++) {
                 x = (y - b) / k;
-                //g2d.drawLine((int) x, (int) y, (int) x, (int) y);
-                pixels.add(all_pxls[(int) x][(int) y]); //pxls[i]=all_pxls[(int)x][(int)y];//заполняю массив пикселей на отрезке
-                //System.out.println(x+":"+y);
+                pixels.add(allPixels[(int) x][(int) y]);
                 if (y1 < y2) y++;
                 else y--;
             }
@@ -61,15 +64,13 @@ public class Line {
             double x = x1, y;
             for (int i = 0; i < length; i++) {
                 y = k * x + b;
-                //g2d.drawLine((int) x, (int) y, (int) x, (int) y);
-                pixels.add(all_pxls[(int) x][(int) y]); //pxls[i] = all_pxls[(int) x][(int) y];//заполняю массив пикселей на отрезке
+                pixels.add(allPixels[(int) x][(int) y]);
                 if (x1 < x2) x++;
                 else x--;
             }
         }
-        //pixels = p;
+
         idThis = id.incrementAndGet();
-        //System.out.println(idThis+"   "+Line.id);
 
         switch (idThis % 10) {
             case 1:
@@ -108,37 +109,67 @@ public class Line {
         }
     }
 
+    /** Method for getting line id
+     *
+     * @return id
+     */
     public int getId() {
         return idThis;
     }
 
+    /** Method for getting max value of density
+     *
+     * @param intensity of pixel
+     * @return max density
+     */
     public double getMaxDensity(double intensity) {
         for (int a = 0; a < pixels.size(); a++) {
-            if (pixels.get(a).get_intensity() <= 1) {
-                maxDensity = 2.9;
+            if (pixels.get(a).getIntensity() <= 1) {
+                maxDensity = 1.9;
                 break;
-            } else if (Math.log10(intensity / pixels.get(a).get_intensity()) > maxDensity)
-                maxDensity = Math.log10(intensity / pixels.get(a).get_intensity());
+            } else if (Math.log10(intensity / pixels.get(a).getIntensity()) > maxDensity)
+                maxDensity = Math.log10(intensity / pixels.get(a).getIntensity());
         }
         return maxDensity;
     }
 
-    public int getLengthX() {   //метод для масштабирования по оси абсцисс
-        return pixels.get(pixels.size() - 1).get_x() - pixels.get(0).get_x();
+    /** Method for scaling on the X axis
+     *
+     * @return X
+     */
+    public int getLengthX() {
+        return pixels.get(pixels.size() - 1).getX() - pixels.get(0).getX();
     }
 
+    /** Method for getting segment length and number of pixels
+     *
+     * @return number of pixels
+     */
     public int getLength() {
         return pixels.size();
     }
 
+    /** Method for getting array of pixels
+     *
+     * @return array
+     */
     public ArrayList<Pixel> getArray() {
         return pixels;
     }
 
-    public double getPxlIntensity(int id) {
-        return pixels.get(id).get_intensity();
+    /** Method for getting pixel intensity
+     *
+     * @param id of pixel
+     * @return intensity
+     */
+    public double getPixelIntensity(int id) {
+        return pixels.get(id).getIntensity();
     }
 
+    /**  Method for getting pixel color
+     *
+     * @return color
+     */
     public Color getColor() {
         return color;
     }
