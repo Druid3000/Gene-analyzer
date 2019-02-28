@@ -1,6 +1,6 @@
 package com.epam.gene_analyzer.windows;
 
-import com.epam.gene_analyzer.services.MainService;
+import com.epam.gene_analyzer.services.*;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;

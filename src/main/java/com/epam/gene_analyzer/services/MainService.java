@@ -1,4 +1,4 @@
-package com.epam.gene_analyzer.controllers;
+package com.epam.gene_analyzer.services;
 
 import com.epam.gene_analyzer.model.*;
 
@@ -252,7 +252,7 @@ public class MainService {
             double pixelIntensity;
             int x = xBorder, y, xPast, yPast;
             pixelIntensity = getLines().get(t).getPixelIntensity(0);
-            if (pixelIntensity > 1)
+            if (pixelIntensity > 2)
                 y = height - yBorder - (int) ((graphHeight * Math.log10(getBackgroundIntensity() / pixelIntensity)) / (getMaxDensity()));
             else y = yBorder;
             if (y > height - yBorder) y = height - yBorder;

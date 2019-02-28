@@ -1,6 +1,6 @@
 package com.epam.gene_analyzer.windows;
 
-import com.epam.gene_analyzer.controllers.MainController;
+import com.epam.gene_analyzer.services.MainService;
 import com.epam.gene_analyzer.model.Pixel;
 
 import javax.swing.*;
@@ -151,8 +151,8 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
                         Pixel p = new Pixel();
                         p.setX(x);
                         p.setY(y);
-                        p.setColor(new Color(mainController.getPicture().getRGB(x, y)));
-                        mainController.addArea(p);
+                        p.setColor(new Color(mainService.getPicture().getRGB(x, y)));
+                        mainService.addArea(p);
                     }
                 }
             }
@@ -164,7 +164,7 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
      * @param event move
      */
     public void mouseMoved(MouseEvent event) {
-        if (mainController.getPicture() != null) {
+        if (mainService.getPicture() != null) {
             xPositionNow = event.getPoint().x;
             yPositionNow = event.getPoint().y;
         }
