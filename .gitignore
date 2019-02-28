@@ -1,7 +1,7 @@
 .idea
 out
-javaschool.iml
-
+target
 logs
 
-target
+Gene-analyzer.iml
+com.epam.gene-analyzer.iml

@@ -1,9 +1,8 @@
 package com.epam.gene_analyzer.windows;
 
-import com.epam.gene_analyzer.controllers.MainController;
+import com.epam.gene_analyzer.services.MainService;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -13,7 +12,7 @@ import java.io.File;
  *
  */
 class Menu {
-    private MainController mainController;
+    private MainService mainService;
     private CanvasLine canvasLine;
     private GraphWindow graphWindow;
     private TableWindow tableWindow;
@@ -22,8 +21,8 @@ class Menu {
     private AboutWindow aboutWindow;
 
 
-    Menu(AboutWindow aw, TableWindow tw, MainController mc, GraphWindow gw, CanvasLine cl) {
-        mainController = mc;
+    Menu(AboutWindow aw, TableWindow tw, MainService mc, GraphWindow gw, CanvasLine cl) {
+        mainService = mc;
         graphWindow = gw;
         tableWindow = tw;
         canvasLine = cl;
@@ -72,7 +71,7 @@ class Menu {
                 int ret = fileOpen.showDialog(null, "Open file");
                 if (ret == JFileChooser.APPROVE_OPTION) {
                     picture = fileOpen.getSelectedFile();
-                    mainController.setPicture(picture);
+                    mainService.setPicture(picture);
                     canvasLine.setVisible(true);
                 }
                 closeItem.addActionListener(new ActionListener() {
@@ -182,7 +181,7 @@ class Menu {
         settingsMenu.add(chooseDefaultIntensity);
         chooseDefaultIntensity.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                mainController.setBackgroundIntensity(255.0);
+                mainService.setBackgroundIntensity(255.0);
                 canvasLine.setChooseBackgroundIntensity(false);
             }
         });
@@ -193,7 +192,7 @@ class Menu {
      *
      */
     private void frame(){
-        SliderTestFrame frame = new SliderTestFrame(mainController);
+        SliderTestFrame frame = new SliderTestFrame(mainService);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setVisible(true);
     }

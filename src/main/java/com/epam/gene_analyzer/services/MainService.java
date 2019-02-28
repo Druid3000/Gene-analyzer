@@ -1,4 +1,4 @@
-package com.epam.gene_analyzer.controllers;
+package com.epam.gene_analyzer.services;
 
 import com.epam.gene_analyzer.model.*;
 
@@ -9,11 +9,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 
-/** Controller class for creating graphics and tables.
+/** Service class for creating graphics and tables.
  * Using array of lines, array of pixels for drawing graphics, array of areas, buffered pictures, values of old and new background intensity, table of areas.
  *
  */
-public class MainController {
+public class MainService {
     private ArrayList<Line> lineArray = new ArrayList<Line>();
     private ArrayList<Pixel> graphPixels = new ArrayList<Pixel>();
     private ArrayList<Area> areaArray = new ArrayList<Area>();

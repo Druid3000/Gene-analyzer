@@ -1,6 +1,6 @@
 package com.epam.gene_analyzer.windows;
 
-import com.epam.gene_analyzer.controllers.MainController;
+import com.epam.gene_analyzer.services.MainService;
 import com.epam.gene_analyzer.model.RtModel;
 
 import javax.swing.*;
@@ -11,23 +11,23 @@ import java.awt.*;
 
 
 /** Class for user or program interaction with the table model
- * Class - view for MVC model
+ * Class - view for displaying table
  *
  */
 public class TableWindow extends JFrame {
 
 
-    private MainController mainController;
+    private MainService mainService;
     boolean be = false;
 
 
     /** Constructor for creating a class with the filling of the first row of the table
      *
-     * @param mc main controller
+     * @param mc main Service
      */
-    TableWindow(MainController mc) {
+    TableWindow(MainService mc) {
         super("Table of the optical density");
-        mainController = mc;
+        mainService = mc;
 
         getContentPane().setLayout(new FlowLayout());
         setBounds(680, 40, 600, 400);
@@ -47,7 +47,7 @@ public class TableWindow extends JFrame {
      */
     private void CreateTable() {
 
-        RtModel tableModel = mainController.getTable();
+        RtModel tableModel = mainService.getTable();
         JTable resultsTable = new JTable(tableModel);
 
         final JScrollPane scrollPane = new JScrollPane(resultsTable);
@@ -88,7 +88,7 @@ public class TableWindow extends JFrame {
      *
      */
     private void updateData() {
-        mainController.updateData();
+        mainService.updateData();
     }
 
     /** Method for deleting data from table
@@ -96,7 +96,7 @@ public class TableWindow extends JFrame {
      * @param idRow data
      */
     public void deleteData(int idRow) {
-        mainController.transferDeleteData(idRow);
+        mainService.transferDeleteData(idRow);
     }
 
 

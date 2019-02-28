@@ -1,6 +1,6 @@
 package com.epam.gene_analyzer.windows;
 
-import com.epam.gene_analyzer.controllers.MainController;
+import com.epam.gene_analyzer.services.MainService;
 
 import javax.swing.*;
 
@@ -9,10 +9,10 @@ import javax.swing.*;
  */
 public class GraphWindow extends JFrame {
 
-    GraphWindow(MainController mc) {
+    GraphWindow(MainService mc) {
 
-        MainController mainController = mc;
-        CanvasGraph canvasGraph = new CanvasGraph(mainController);
+        MainService mainService = mc;
+        CanvasGraph canvasGraph = new CanvasGraph(mainService);
         setTitle("Optical density graphs");
         add(canvasGraph);
         setDefaultCloseOperation(HIDE_ON_CLOSE);
