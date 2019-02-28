@@ -1,6 +1,6 @@
 package com.epam.gene_analyzer.controllers;
 
-/** Controller class for calling methods that create graphs
+/** Controller class for calling methods that create graphs.
  *
  */
 public class GraphController {

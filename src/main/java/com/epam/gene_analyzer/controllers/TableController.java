@@ -3,7 +3,7 @@ package com.epam.gene_analyzer.controllers;
 import com.epam.gene_analyzer.model.RtModel;
 
 
-/** Controller class for connecting model of table with interface of user
+/** Controller class for connecting model of table with interface of user.
  *
  */
 public class TableController {

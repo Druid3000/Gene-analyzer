@@ -302,7 +302,7 @@ public class MainController {
      *
      * @return new background intensity
      */
-    private double getBackgroundIntensity() {   //для установки по желанию интенсивности пикселя за интенсивность фона
+    private double getBackgroundIntensity() { 
         return backgroundIntensity;
     }
 
