@@ -3,6 +3,9 @@ package com.epam.gene_analyzer.windows;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** Class for adding JPop menu listeners.
+ * Using elements of interface.
+ */
 public class JPopMenuListener implements ActionListener {
     int id;
 
@@ -10,8 +13,10 @@ public class JPopMenuListener implements ActionListener {
         this.id = i;
     }
 
-    //Этот метод должен быть, так как без него не работает. Вопросы к Максиму
-    //Метод сам по себе не нужен в нашей программе. Но его реализация из интерфейса необходима.
+    /** Method fo possible action
+     *
+     * @param e e
+     */
     public void actionPerformed(ActionEvent e) {
 
     }

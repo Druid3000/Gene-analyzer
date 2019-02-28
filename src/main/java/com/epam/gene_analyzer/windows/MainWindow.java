@@ -1,25 +1,35 @@
 package com.epam.gene_analyzer.windows;
 
-import com.epam.gene_analyzer.controllers.MainController;
+import com.epam.gene_analyzer.services.MainService;
 
 import javax.swing.*;
 import java.awt.*;
 
+/** Class based on JFrame for creating main window
+ * Using lines and menu.
+ *
+ */
 public class MainWindow extends JFrame {
 
     private CanvasLine canvasLine;
     private Menu menu;
 
+    /** Method for calling services.
+     *
+     */
     public MainWindow() {
-        MainController mainController = new MainController();
-        GraphWindow graphWindow = new GraphWindow(mainController);
+        MainService mainService = new MainService();
+        GraphWindow graphWindow = new GraphWindow(mainService);
         AboutWindow aboutWindow = new AboutWindow();
-        TableWindow tableWindow = new TableWindow(mainController);
+        TableWindow tableWindow = new TableWindow(mainService);
 
-        canvasLine = new CanvasLine(mainController);
-        menu = new Menu(aboutWindow, tableWindow, mainController, graphWindow, canvasLine);
+        canvasLine = new CanvasLine(mainService);
+        menu = new Menu(aboutWindow, tableWindow, mainService, graphWindow, canvasLine);
     }
 
+    /** Method for showing window
+     *
+     */
     public void showWindow(){
         setTitle("Optical density determination");
         setIconImage(getToolkit().getImage("src/main/resources/iconMain.gif"));

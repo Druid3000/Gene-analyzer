@@ -1,6 +1,6 @@
 package com.epam.gene_analyzer.windows;
 
-import com.epam.gene_analyzer.controllers.MainController;
+import com.epam.gene_analyzer.services.MainService;
 import com.epam.gene_analyzer.model.RtModel;
 
 import javax.swing.*;
@@ -10,70 +10,68 @@ import javax.swing.table.TableColumnModel;
 import java.awt.*;
 
 
-//класс является View в модели MVC и представляет взаимодействие пользователя или программы с моделью Таблицы
+/** Class for user or program interaction with the table model
+ * Class - view for displaying table
+ *
+ */
 public class TableWindow extends JFrame {
 
-    //ПОЛЯ КЛАССА
-    //---------------------------------------
 
-    //поле контроллера (для работы с классом модели)
-    //private static TableController table_controller;
-    private MainController mainController;
-    //поле существования данного окна
+    private MainService mainService;
     boolean be = false;
 
-    //конструктор для создания класса с заполнением первой строки таблицы
-    TableWindow(MainController mc) {
+
+    /** Constructor for creating a class with the filling of the first row of the table
+     *
+     * @param mc main Service
+     */
+    TableWindow(MainService mc) {
         super("Table of the optical density");
-        mainController = mc;
-        //установка диспетчера компоновки
+        mainService = mc;
+
         getContentPane().setLayout(new FlowLayout());
         setBounds(680, 40, 600, 400);
         setResizable(false);
-        //установка иконки для окна
+
         setIconImage(getToolkit().getImage("src/main/resources/iconTable.gif"));
-        //действие при закрытии окна
+
         setDefaultCloseOperation(HIDE_ON_CLOSE);
-        //создаем таблицу
+
         CreateTable();
-        //updateData();
+
     }
 
 
-    //МЕТОДЫ КЛАССА
-    //----------------------------------------
-
-    //метод создания таблицы
+    /** Method for creating a table.
+     * Inclusion of the table in the panel with scrolling.
+     */
     private void CreateTable() {
-        //создание таблицы
-        RtModel tableModel = mainController.getTable();
+
+        RtModel tableModel = mainService.getTable();
         JTable resultsTable = new JTable(tableModel);
-        //table_controller = new TableController(tableModel);
-        //включение таблицы в состав панели с прокруткой
+
         final JScrollPane scrollPane = new JScrollPane(resultsTable);
-        //установка размера области просмотра для прокрутки
+
         resultsTable.setPreferredScrollableViewportSize(new Dimension(550, 320));
-        //добавление полосы прокрутки с таблицей в главное окно
+
         getContentPane().add(scrollPane);
-        //допускается выбор одного элемента
+
         resultsTable.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
-        //запретить выбор строк
+
         resultsTable.setRowSelectionAllowed(false);
-        //разрешить выбор столбцов
+
         resultsTable.setColumnSelectionAllowed(true);
-        //получение ссылки на модель таблицы
-        //tableModel = resultsTable.getModel();
-        //получение ссылки на модель столбцов
+
         TableColumnModel tableColumnModel = resultsTable.getColumnModel();
-        //изменение размера первого столбца (по модели)
+
         tableColumnModel.getColumn(0).setPreferredWidth(30);
-        //установка минимальных значений ширины столбцов
+
         tableColumnModel.getColumn(0).setMinWidth(20);
         tableColumnModel.getColumn(1).setMinWidth(75);
         tableColumnModel.getColumn(2).setMinWidth(55);
         tableColumnModel.getColumn(3).setMinWidth(40);
         tableColumnModel.getColumn(4).setMinWidth(75);
-        //установка максимального значения для первого и последнего столбцов
+
         tableColumnModel.getColumn(0).setMaxWidth(50);
         tableColumnModel.getColumn(4).setMaxWidth(100);
         resultsTable.getModel().addTableModelListener(
@@ -85,22 +83,33 @@ public class TableWindow extends JFrame {
     }
 
 
-    //метод для удаления указанной строки из таблицы (удалит область)
 
-    //метод для добавления информации (строки) в таблицу
+    /** Method for adding data in table
+     *
+     */
     private void updateData() {
-        mainController.updateData();
+        mainService.updateData();
     }
 
+    /** Method for deleting data from table
+     *
+     * @param idRow data
+     */
     public void deleteData(int idRow) {
-        mainController.transferDeleteData(idRow);
+        mainService.transferDeleteData(idRow);
     }
 
-    //метод для сортировки таблицы
+
+    /** Method for table sorting
+     *
+     * @param colomn_name column name
+     */
     public void sortData(String colomn_name) {
     }
 
-    //метод для сохранения информации (таблицы)
+    /** Method for saving information in table
+     *
+     */
     public void saveData() {
     }
 }

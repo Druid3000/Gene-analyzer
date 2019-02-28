@@ -5,14 +5,25 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
+/** Model class for creating Area.
+ * Get pixel and array of pixels around chosen pixel.
+ *
+ */
 public class Area {
     private ArrayList<Pixel> pixels;
     private ArrayList<Pixel> perimeter;
-    private final double delta = 0.1;
+    private double delta;
     private static final AtomicInteger id = new AtomicInteger(0);
     private int idThis = 1;
 
-    public void setArea(Pixel pixel, BufferedImage image) {
+    /** Method for setting area
+     *
+     * @param pixel chosen pixel
+     * @param image picture
+     * @param del value of delta
+     */
+    public void setArea(Pixel pixel, BufferedImage image, double del) {
+        delta = del;
         pixels = new ArrayList<Pixel>();
         perimeter = new ArrayList<Pixel>();
         Pixel[][] allPixels = getPixelsArrayFromImage(image);
@@ -26,23 +37,45 @@ public class Area {
         idThis = id.incrementAndGet();
     }
 
+    /** Method for getting array of pixels
+     *
+     * @return array
+     */
     public ArrayList<Pixel> getArea() {
         return pixels;
     }
 
+    /** Method for getting array of perimeter
+     *
+     * @return array
+     */
     public ArrayList<Pixel> getAreaPerimeter() {
         return perimeter;
     }
 
+    /** Method for getting id of area
+     *
+     * @return id
+     */
     public int getId() {
         return idThis;
     }
 
-    //Логика выделения областей
-    private void checkNear(Pixel[][] allPixels, Pixel[][] allPixelsUnchanged, int x, int y, double intensity, int side) {//side - показывает, откуда пришла проверка
-        //side = 0 - начало; 1 - слева; 2 - справа; 3 - сверху; 4 - снизу.
+
+    /** Method with Area selection logic.
+     * Using: side for showing where the check came from.
+     * Side = 0 - start; 1 - from the left; 2 - from the right; 3 - from above; 4 - from bottom.
+     *
+     * @param allPixels pixels
+     * @param allPixelsUnchanged unchanged pixels
+     * @param x coordinate
+     * @param y coordinate
+     * @param intensity of pixel
+     * @param side direction of check
+     */
+    private void checkNear(Pixel[][] allPixels, Pixel[][] allPixelsUnchanged, int x, int y, double intensity, int side) {
         double newIntensity;
-        if ((x - 1 >= 0) & side != 1)//слева от пикселя
+        if ((x - 1 >= 0) & side != 1)
         {
             newIntensity = allPixels[x - 1][y].getIntensity();
             if (newIntensity == 0) newIntensity = 0.000001;
@@ -54,7 +87,7 @@ public class Area {
                 perimeter.add(allPixelsUnchanged[x - 1][y]);
             }
         }
-        if (x + 1 < allPixels.length & side != 2)// справа от пикселя
+        if (x + 1 < allPixels.length & side != 2)
         {
             newIntensity = allPixels[x + 1][y].getIntensity();
             if (newIntensity == 0) newIntensity = 0.000001;
@@ -64,7 +97,7 @@ public class Area {
                 checkNear(allPixels, allPixelsUnchanged, x + 1, y, intensity, 1);
             } else if (allPixels[x + 1][y].getIntensity() < 256) perimeter.add(allPixelsUnchanged[x + 1][y]);
         }
-        if (y - 1 >= 0 & side != 3)//сверху от пикселя
+        if (y - 1 >= 0 & side != 3)
         {
             newIntensity = allPixels[x][y - 1].getIntensity();
             if (newIntensity == 0) newIntensity = 0.000001;
@@ -74,7 +107,7 @@ public class Area {
                 checkNear(allPixels, allPixelsUnchanged, x, y - 1, intensity, 4);
             } else if (allPixels[x][y - 1].getIntensity() < 256) perimeter.add(allPixelsUnchanged[x][y - 1]);
         }
-        if (y + 1 < allPixels[0].length & side != 4)//снизу от пикселя
+        if (y + 1 < allPixels[0].length & side != 4)
         {
             newIntensity = allPixels[x][y + 1].getIntensity();
             if (newIntensity == 0) newIntensity = 0.000001;
@@ -86,7 +119,11 @@ public class Area {
         }
     }
 
-    //Создание двумерного массива из картика
+    /** Method for creating a two-dimensional array of picture
+     *
+     * @param image picture
+     * @return array
+     */
     private Pixel[][] getPixelsArrayFromImage(BufferedImage image) {
         Pixel[][] allPixels;
         int h = image.getHeight(), w = image.getWidth(), R, G, B;

@@ -1,16 +1,18 @@
 package com.epam.gene_analyzer.windows;
 
-import com.epam.gene_analyzer.controllers.MainController;
+import com.epam.gene_analyzer.services.MainService;
 
 import javax.swing.*;
-import javax.swing.event.ChangeEvent;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+/** Class for showing items for user
+ *
+ */
 class Menu {
-    private MainController mainController;
+    private MainService mainService;
     private CanvasLine canvasLine;
     private GraphWindow graphWindow;
     private TableWindow tableWindow;
@@ -19,22 +21,22 @@ class Menu {
     private AboutWindow aboutWindow;
 
 
-    Menu(AboutWindow aw, TableWindow tw, MainController mc, GraphWindow gw, CanvasLine cl) {
-        mainController = mc;
+    Menu(AboutWindow aw, TableWindow tw, MainService mc, GraphWindow gw, CanvasLine cl) {
+        mainService = mc;
         graphWindow = gw;
         tableWindow = tw;
         canvasLine = cl;
         aboutWindow = aw;
 
-        final Font font = new Font("Verdana", Font.PLAIN, 14); //style of menu
-        menuBar = new JMenuBar();                          //create menu bar
+        final Font font = new Font("Verdana", Font.PLAIN, 14);
+        menuBar = new JMenuBar();
 
-        final JMenu fileMenu = new JMenu("File");                      //button menu "file"
+        final JMenu fileMenu = new JMenu("File");
         fileMenu.setFont(font);
         menuBar.add(fileMenu);
         createFileItems(fileMenu, font);
 
-        final JMenu modeMenu = new JMenu("Mode");                   //button menu "mode"
+        final JMenu modeMenu = new JMenu("Mode");
         modeMenu.setFont(font);
         menuBar.add(modeMenu);
         createModeItems(modeMenu, font);
@@ -44,13 +46,18 @@ class Menu {
         menuBar.add(settingsMenu);
         createSettingsItems(settingsMenu, font, cl);
 
-        final JMenu helpMenu = new JMenu("Help");         //button menu "Help"
+        final JMenu helpMenu = new JMenu("Help");
         helpMenu.setFont(font);
         menuBar.add(helpMenu);
         createHelpItems(helpMenu, font);
 
     }
 
+    /** Creating buttons for work with file
+     *
+     * @param fileMenu file
+     * @param font font
+     */
     private void createFileItems(final JMenu fileMenu, final Font font){
         JMenuItem openItem = new JMenuItem("Open");
         openItem.setFont(font);
@@ -61,10 +68,10 @@ class Menu {
         openItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileOpen = new JFileChooser();
-                int ret = fileOpen.showDialog(null, "Open file");
+                int ret = fileOpen.showDialog(aboutWindow, "Open file");
                 if (ret == JFileChooser.APPROVE_OPTION) {
                     picture = fileOpen.getSelectedFile();
-                    mainController.setPicture(picture);
+                    mainService.setPicture(picture);
                     canvasLine.setVisible(true);
                 }
                 closeItem.addActionListener(new ActionListener() {
@@ -86,6 +93,11 @@ class Menu {
         });
     }
 
+    /** Creating modes for drawing line, area, graph, showing data
+     *
+     * @param modeMenu mode
+     * @param font font
+     */
     private void createModeItems(final JMenu modeMenu, final Font font){
         JMenuItem drawLineItem = new JMenuItem("Draw line");
         drawLineItem.setFont(font);
@@ -127,6 +139,11 @@ class Menu {
         });
     }
 
+    /** Creating items for help for user
+     *
+     * @param helpMenu help
+     * @param font font
+     */
     private void createHelpItems(final JMenu helpMenu, final Font font){
         JMenuItem aboutItem = new JMenuItem("About");
         aboutItem.setFont(font);
@@ -148,8 +165,9 @@ class Menu {
             }
         });
 
+        settingsMenu.addSeparator();
 
-        JMenuItem chooseBackgroundIntensity = new JMenuItem("Set Background pixel Intensity");
+        JMenuItem chooseBackgroundIntensity = new JMenuItem("Set pixel Background Intensity");
         chooseBackgroundIntensity.setFont(font);
         settingsMenu.add(chooseBackgroundIntensity);
         chooseBackgroundIntensity.addActionListener(new ActionListener() {
@@ -158,15 +176,27 @@ class Menu {
             }
         });
 
+        JMenuItem chooseDefaultIntensity = new JMenuItem("Set default Background Intensity");
+        chooseDefaultIntensity.setFont(font);
+        settingsMenu.add(chooseDefaultIntensity);
+        chooseDefaultIntensity.addActionListener(new ActionListener() {
+            public void actionPerformed(ActionEvent e) {
+                mainService.setBackgroundIntensity(255.0);
+                canvasLine.setChooseBackgroundIntensity(false);
+            }
+        });
+
     }
 
-    public void frame(){
-        SliderTestFrame frame = new SliderTestFrame();
+    /** Testing frame
+     *
+     */
+    private void frame(){
+        SliderTestFrame frame = new SliderTestFrame(mainService);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setVisible(true);
     }
 
-    //TODO (create methods for creating menu and sub-menu buttons
     JMenuBar getMenuBar() {
         return menuBar;
     }

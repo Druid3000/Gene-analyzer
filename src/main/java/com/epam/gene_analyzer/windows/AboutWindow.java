@@ -3,6 +3,9 @@ package com.epam.gene_analyzer.windows;
 import javax.swing.*;
 import java.awt.*;
 
+/** Windows class based on JFrame for creating window
+ *
+ */
 class AboutWindow extends JFrame {
 
     AboutWindow() {
@@ -10,9 +13,12 @@ class AboutWindow extends JFrame {
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setBounds(600, 160, 400, 350);
         setIconImage(getToolkit().getImage("src/main/resources/iconMain.gif"));
-        JFrame.setDefaultLookAndFeelDecorated(true);
         createGUI();
     }
+
+    /** Creating GUI for window with using html
+     *
+     */
     private void createGUI(){
 
         JPanel htmlPanel = new JPanel();
