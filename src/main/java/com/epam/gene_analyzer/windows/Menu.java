@@ -68,7 +68,7 @@ class Menu {
         openItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 JFileChooser fileOpen = new JFileChooser();
-                int ret = fileOpen.showDialog(null, "Open file");
+                int ret = fileOpen.showDialog(aboutWindow, "Open file");
                 if (ret == JFileChooser.APPROVE_OPTION) {
                     picture = fileOpen.getSelectedFile();
                     mainService.setPicture(picture);
