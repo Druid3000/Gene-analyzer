@@ -128,7 +128,7 @@ class Menu {
             }
         });
 
-        JMenuItem showDataItem = new JMenuItem("Show data");
+        JMenuItem showDataItem = new JMenuItem("Show table");
         showDataItem.setFont(font);
         modeMenu.add(showDataItem);
         showDataItem.addActionListener(new ActionListener() {
