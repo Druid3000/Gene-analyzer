@@ -10,7 +10,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 /** Controller class for creating graphics and tables.
- * Using array of lines, array of pixels for drawing graphics, array of areas, buffered pictures, values of background intensity, table of areas.
+ * Using array of lines, array of pixels for drawing graphics, array of areas, buffered pictures, values of old and new background intensity, table of areas.
  *
  */
 public class MainController {

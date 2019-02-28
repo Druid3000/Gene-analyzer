@@ -15,7 +15,7 @@ public class TableController {
 
     /** Method for getting table model
      *
-     * @param rtModel table model
+     * @param rtModel model of table
      */
     public TableController(RtModel rtModel) {
         this.rtModel = rtModel;

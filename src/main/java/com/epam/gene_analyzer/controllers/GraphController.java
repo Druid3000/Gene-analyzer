@@ -8,7 +8,7 @@ public class GraphController {
 
     /** Method for building window of graph
      *
-     * @param v argument
+     * @param v arg
      */
     public void setGraphWindowVisible(boolean v) {
         visible = v;
