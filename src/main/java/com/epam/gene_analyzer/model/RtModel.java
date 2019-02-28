@@ -3,48 +3,59 @@ package com.epam.gene_analyzer.model;
 import javax.swing.table.AbstractTableModel;
 import java.util.ArrayList;
 
+/** Model class for creating Table model.
+ * Use names of columns, array of table data, number of rows, row number in table, area number.
+ * Add and remove rows.
+ * Get new data for adding new rows to table.
+ */
 public class RtModel extends AbstractTableModel {
 
-    //ПОЛЯ МОДЕЛИ таблицы
-    //---------------------------------------
 
-    //поле массива с названием столбцов таблицы
     private static String[] headings = {"№", "Average OD", "Total OD", "Area", "B.Intensity"};
-    //поле массива с данными для таблицы
     private ArrayList<Object[]> data = new ArrayList<Object[]>();
-    //поле с количеством строк
     private byte numRows = 0;
-    //поле номера строки в таблице//отключил, т.к. используется номер области
     private byte numberArea = 1;
 
 
-    //КОНСТРУКТОРЫ МОДЕЛИ таблицы
-    //---------------------------------------
-
-    //конструктор без заполнения первой строки
+    /** Constructor without filling the first line
+     *
+     */
     public RtModel() {
         super();
     }
 
-    //МЕТОДЫ МОДЕЛИ таблицы
-    //---------------------------------------
 
-    //вывод количества строк
+    /** Method for getting number of rows
+     *
+     * @return number of rows
+     */
     public int getRowCount() {
         return numRows;
     }
 
-    //вывод количества столбцов
+    /** Method for getting number of columns
+     *
+     * @return number of columns
+     */
     public int getColumnCount() {
         return 5;
     }
 
-    //вывод имени столбца по заданному индексу
+
+    /** Method for getting name of column with index
+     *
+     * @param column column number
+     * @return name of column
+     */
     public String getColumnName(int column) {
         return headings[column];
     }
 
-    // тип данных, хранимых в столбце
+    /** Method for getting data type from of column
+     *
+     * @param column column number
+     * @return data type
+     */
     public Class getColumnClass(int column) {
         switch (column) {
             case 0:
@@ -62,37 +73,56 @@ public class RtModel extends AbstractTableModel {
         }
     }
 
-    //получение данных из заданной ячейки
+    /** Method for getting data from cell of table from different columns
+     *
+     * @param row row number
+     * @param column column number
+     * @return data
+     */
     public Object getValueAt(int row, int column) {
-        // разные данные для разных стобцов
         return data.get(row)[column];
     }
 
-    //добавление новой строки
+
+    /** Method for adding new row
+     *
+     * @param id of row
+     * @param newData data
+     * @param bi arg
+     */
     public void setValueAt(int id, Double[] newData, double bi) {
         data.add(setData(id, newData, bi));
         numRows++;
         numberArea++;
     }
 
+    /** Method for removing rows
+     *
+     */
     public void removeRows() {
         if (data.size() > 0) data.clear();
         numberArea = (byte) ((int) numberArea - (int) numRows);
         numRows = 0;
     }
 
-    //получение входных данных и их преобразование к табличным значениям
+    /** Method for getting new data and transforming data for table values
+     *
+     * @param id of data
+     * @param newData data
+     * @param bi arg
+     * @return row with new data
+     */
     private Object[] setData(int id, Double[] newData, double bi) {
         byte r0 = (byte) id;
         double r1 = 0, r2 = 0, r4;
         int r3;
-        //находим Average OD
+
         for (int i = 0; i < newData.length; i++) {
             r1 += newData[i];
         }
         r1 = Math.log10(bi / (r1 / newData.length));
         if (r1 < 0) r1 = 0;
-        //находим Total OD
+
         for (int i = 0; i < newData.length; i++) {
             r2 += Math.log10(bi / newData[i]);
         }
@@ -105,17 +135,4 @@ public class RtModel extends AbstractTableModel {
         Object[] row = {r0, r1, r2, r3, r4};
         return row;
     }
-
-    //удаление строки с заданным индексом
-    /*private void deleteValueAt(int id){
-        for (int i=0; i<data.size();i++){
-            if ((data.get(i)[0].toString()) == Integer.toString(id)){
-                data.remove(i);
-                numRows--;
-                break;
-            }
-        }
-        fireTableDataChanged();
-    }*/
-
 }
