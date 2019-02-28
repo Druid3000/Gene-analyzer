@@ -22,12 +22,12 @@ public class RtModelTest {
         expected = 0.0;
     }
 
-    @After
+/*    @After
     public void afterTest() {
         rtm = null;
         source = null;
         expected = null;
-    }
+    }*/
 
 
     @Test
