@@ -5,9 +5,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/** Model class for creating Area.
+/**
+ * Model class for creating Area.
  * Get pixel and array of pixels around chosen pixel.
- *
  */
 public class Area {
     private ArrayList<Pixel> pixels;
@@ -16,11 +16,12 @@ public class Area {
     private static final AtomicInteger id = new AtomicInteger(0);
     private int idThis = 1;
 
-    /** Method for setting area
+    /**
+     * Method for setting area
      *
      * @param pixel chosen pixel
      * @param image picture
-     * @param del value of delta
+     * @param del   value of delta
      */
     public void setArea(Pixel pixel, BufferedImage image, double del) {
         delta = del;
@@ -37,7 +38,8 @@ public class Area {
         idThis = id.incrementAndGet();
     }
 
-    /** Method for getting array of pixels
+    /**
+     * Method for getting array of pixels
      *
      * @return array
      */
@@ -45,7 +47,8 @@ public class Area {
         return pixels;
     }
 
-    /** Method for getting array of perimeter
+    /**
+     * Method for getting array of perimeter
      *
      * @return array
      */
@@ -53,7 +56,8 @@ public class Area {
         return perimeter;
     }
 
-    /** Method for getting id of area
+    /**
+     * Method for getting id of area
      *
      * @return id
      */
@@ -62,21 +66,21 @@ public class Area {
     }
 
 
-    /** Method with Area selection logic.
+    /**
+     * Method with Area selection logic.
      * Using: side for showing where the check came from.
      * Side = 0 - start; 1 - from the left; 2 - from the right; 3 - from above; 4 - from bottom.
      *
-     * @param allPixels pixels
+     * @param allPixels          pixels
      * @param allPixelsUnchanged unchanged pixels
-     * @param x coordinate
-     * @param y coordinate
-     * @param intensity of pixel
-     * @param side direction of check
+     * @param x                  coordinate
+     * @param y                  coordinate
+     * @param intensity          of pixel
+     * @param side               direction of check
      */
     private void checkNear(Pixel[][] allPixels, Pixel[][] allPixelsUnchanged, int x, int y, double intensity, int side) {
         double newIntensity;
-        if ((x - 1 >= 0) & side != 1)
-        {
+        if ((x - 1 >= 0) & side != 1) {
             newIntensity = allPixels[x - 1][y].getIntensity();
             if (newIntensity == 0) newIntensity = 0.000001;
             if ((Math.abs(newIntensity - intensity) / (intensity)) <= delta) {
@@ -87,8 +91,8 @@ public class Area {
                 perimeter.add(allPixelsUnchanged[x - 1][y]);
             }
         }
-        if (x + 1 < allPixels.length & side != 2)
-        {
+
+        if (x + 1 < allPixels.length & side != 2) {
             newIntensity = allPixels[x + 1][y].getIntensity();
             if (newIntensity == 0) newIntensity = 0.000001;
             if ((Math.abs(newIntensity - (intensity)) / (intensity)) <= delta) {
@@ -97,8 +101,8 @@ public class Area {
                 checkNear(allPixels, allPixelsUnchanged, x + 1, y, intensity, 1);
             } else if (allPixels[x + 1][y].getIntensity() < 256) perimeter.add(allPixelsUnchanged[x + 1][y]);
         }
-        if (y - 1 >= 0 & side != 3)
-        {
+
+        if (y - 1 >= 0 & side != 3) {
             newIntensity = allPixels[x][y - 1].getIntensity();
             if (newIntensity == 0) newIntensity = 0.000001;
             if ((Math.abs(newIntensity - (intensity)) / (intensity)) <= delta) {
@@ -107,8 +111,8 @@ public class Area {
                 checkNear(allPixels, allPixelsUnchanged, x, y - 1, intensity, 4);
             } else if (allPixels[x][y - 1].getIntensity() < 256) perimeter.add(allPixelsUnchanged[x][y - 1]);
         }
-        if (y + 1 < allPixels[0].length & side != 4)
-        {
+
+        if (y + 1 < allPixels[0].length & side != 4) {
             newIntensity = allPixels[x][y + 1].getIntensity();
             if (newIntensity == 0) newIntensity = 0.000001;
             if ((Math.abs(newIntensity - (intensity)) / (intensity)) <= delta) {
@@ -119,7 +123,8 @@ public class Area {
         }
     }
 
-    /** Method for creating a two-dimensional array of picture
+    /**
+     * Method for creating a two-dimensional array of picture
      *
      * @param image picture
      * @return array

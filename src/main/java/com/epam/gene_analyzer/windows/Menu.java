@@ -77,6 +77,7 @@ class Menu {
                 closeItem.addActionListener(new ActionListener() {
                     public void actionPerformed(ActionEvent e) {
                         canvasLine.setVisible(false);
+                        mainService.remPicture();
                     }
                 });
             }
@@ -89,6 +90,7 @@ class Menu {
         exitItem.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 System.exit(0);
+
             }
         });
     }
