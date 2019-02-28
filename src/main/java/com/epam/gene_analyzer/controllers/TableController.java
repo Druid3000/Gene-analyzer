@@ -2,36 +2,29 @@ package com.epam.gene_analyzer.controllers;
 
 import com.epam.gene_analyzer.model.RtModel;
 
-//класс Контроллера для связи модели таблицы и интерфейса пользователя
+
+/** Controller class for connecting model of table with interface of user.
+ *
+ */
 public class TableController {
 
-    //ПОЛЯ КЛАССА
-    //---------------------------------------
-
-    //поле модели таблицы
+    /** Field of table model
+     *
+     */
     private RtModel rtModel;
 
-
-    //КОНСТРУКТОРЫ МОДЕЛИ таблицы
-    //---------------------------------------
-
-    //конструктор с получением модели
+    /** Method for getting table model
+     *
+     * @param rtModel model of table
+     */
     public TableController(RtModel rtModel) {
         this.rtModel = rtModel;
     }
 
-
-    //МЕТОДЫ КЛАССА
-    //----------------------------------------
-
-    //метод для передачи добавляемых данных
-    /*public void transferAddData(Double[] new_data, double bi){
-        rtModel.setValueAt(new_data, bi);
-    }
-    */
-
-    //метод для передачи индекса удаляемой ячейки
+    /** Method for transfer index of deleted row of table
+     *
+     * @param idRow id of row
+     */
     public void transferDeleteData(int idRow) {
-        //rtModel.deleteValueAt(idRow);
     }
 }

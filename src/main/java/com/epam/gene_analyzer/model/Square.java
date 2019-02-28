@@ -4,9 +4,20 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 
+/** Model class for creating Square.
+ * Use array of pixels.
+ * Get pixel coordinates of square, get height and width of square, ger arrays of pixels for creating square.
+ *
+ */
 public class Square {
     private ArrayList<Pixel> pixels = new ArrayList<Pixel>();
 
+    /** Method for getting coordinates and color of pixels for building square.
+     *
+     * @param p1 pixel
+     * @param p2 pixel
+     * @param image buffered picture
+     */
     public Square(Pixel p1, Pixel p2, BufferedImage image){
         int x1 = p1.getX();
         int x2 = p2.getX();
@@ -39,7 +50,9 @@ public class Square {
             }
         }
 
-        //заполнение
+        /** Method for filling array with pixel coordinates
+         *
+         */
         for (int i=x1; i<x2; i++){
             for (int j=y2; j<y1; j++){
                 pixels.add(allPixels[i][j]);
@@ -47,8 +60,11 @@ public class Square {
         }
     }
 
+    /** Method for getting array with pixels
+     *
+     * @return array
+     */
     public ArrayList<Pixel> getArray() {
         return pixels;
     }
-
 }

@@ -9,6 +9,9 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
+/** Class for testing slider frame
+ * Use general listener for all regulators
+ */
 public class SliderTestFrame extends JFrame {
     private double delta;
     private JPanel sliderPanel;
@@ -23,26 +26,30 @@ public class SliderTestFrame extends JFrame {
         sliderPanel = new JPanel();
         sliderPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
-        // Общий слушатель для всех регуляторов.
+
         listener = new ChangeListener()
         {
+            /** Updating the edit field when changing the value of the controller
+             * Adding a simple regulator
+             * Adding a controller with numeric labels
+             *
+             * @param event e
+             */
             public void stateChanged(ChangeEvent event)
             {
-                // Обновление поля редактирования при
-                // изменении значения регулятора.
+
                 JSlider source = (JSlider) event.getSource();
                 delta = (double) source.getValue() / 100;
                 setDelta(delta);
             }
         };
 
-        // Добавление простого регулятора.
 
         JSlider slider = new JSlider(0,100);
         slider.setPaintTicks(true);
         slider.setSnapToTicks(true);
         addSlider(slider, "Delta value (%)");
-        // Добавление регулятора с числовыми метками.
+
         slider.setPaintLabels(true);
         slider.setMajorTickSpacing(20);
         slider.setMinorTickSpacing(5);
@@ -60,12 +67,12 @@ public class SliderTestFrame extends JFrame {
         sliderPanel.add(buttonOK, BorderLayout.CENTER);
 
     }
-    /*
-     * Добавление регулятора в панель и связывание его со слушателем.
-     * @param s Регулятор
-     * @param description Описание регулятора
-     */
 
+    /** Adding a regulator to the panel and linking it with the listene
+     *
+     * @param s Regulator
+     * @param description Regulator description
+     */
     private void addSlider(JSlider s, String description)
     {
         s.addChangeListener(listener);
@@ -76,6 +83,10 @@ public class SliderTestFrame extends JFrame {
         JFrame.setDefaultLookAndFeelDecorated(true);
     }
 
+    /** Setting delta
+     *
+     * @param delta delta
+     */
     private void setDelta(double delta) {
         mainController.setDelta(delta);
     }

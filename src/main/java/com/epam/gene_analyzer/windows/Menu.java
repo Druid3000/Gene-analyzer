@@ -9,6 +9,9 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.io.File;
 
+/** Class for showing items for user
+ *
+ */
 class Menu {
     private MainController mainController;
     private CanvasLine canvasLine;
@@ -26,15 +29,15 @@ class Menu {
         canvasLine = cl;
         aboutWindow = aw;
 
-        final Font font = new Font("Verdana", Font.PLAIN, 14); //style of menu
-        menuBar = new JMenuBar();                          //create menu bar
+        final Font font = new Font("Verdana", Font.PLAIN, 14);
+        menuBar = new JMenuBar();
 
-        final JMenu fileMenu = new JMenu("File");                      //button menu "file"
+        final JMenu fileMenu = new JMenu("File");
         fileMenu.setFont(font);
         menuBar.add(fileMenu);
         createFileItems(fileMenu, font);
 
-        final JMenu modeMenu = new JMenu("Mode");                   //button menu "mode"
+        final JMenu modeMenu = new JMenu("Mode");
         modeMenu.setFont(font);
         menuBar.add(modeMenu);
         createModeItems(modeMenu, font);
@@ -44,13 +47,18 @@ class Menu {
         menuBar.add(settingsMenu);
         createSettingsItems(settingsMenu, font, cl);
 
-        final JMenu helpMenu = new JMenu("Help");         //button menu "Help"
+        final JMenu helpMenu = new JMenu("Help");
         helpMenu.setFont(font);
         menuBar.add(helpMenu);
         createHelpItems(helpMenu, font);
 
     }
 
+    /** Creating buttons for work with file
+     *
+     * @param fileMenu file
+     * @param font font
+     */
     private void createFileItems(final JMenu fileMenu, final Font font){
         JMenuItem openItem = new JMenuItem("Open");
         openItem.setFont(font);
@@ -86,6 +94,11 @@ class Menu {
         });
     }
 
+    /** Creating modes for drawing line, area, graph, showing data
+     *
+     * @param modeMenu mode
+     * @param font font
+     */
     private void createModeItems(final JMenu modeMenu, final Font font){
         JMenuItem drawLineItem = new JMenuItem("Draw line");
         drawLineItem.setFont(font);
@@ -127,6 +140,11 @@ class Menu {
         });
     }
 
+    /** Creating items for help for user
+     *
+     * @param helpMenu help
+     * @param font font
+     */
     private void createHelpItems(final JMenu helpMenu, final Font font){
         JMenuItem aboutItem = new JMenuItem("About");
         aboutItem.setFont(font);
@@ -171,13 +189,15 @@ class Menu {
 
     }
 
+    /** Testing frame
+     *
+     */
     private void frame(){
         SliderTestFrame frame = new SliderTestFrame(mainController);
         frame.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         frame.setVisible(true);
     }
 
-    //TODO (create methods for creating menu and sub-menu buttons
     JMenuBar getMenuBar() {
         return menuBar;
     }

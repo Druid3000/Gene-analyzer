@@ -5,11 +5,18 @@ import com.epam.gene_analyzer.controllers.MainController;
 import javax.swing.*;
 import java.awt.*;
 
+/** Class based on JFrame for creating main window
+ * Using lines and menu.
+ *
+ */
 public class MainWindow extends JFrame {
 
     private CanvasLine canvasLine;
     private Menu menu;
 
+    /** Method for calling controllers.
+     *
+     */
     public MainWindow() {
         MainController mainController = new MainController();
         GraphWindow graphWindow = new GraphWindow(mainController);
@@ -20,6 +27,9 @@ public class MainWindow extends JFrame {
         menu = new Menu(aboutWindow, tableWindow, mainController, graphWindow, canvasLine);
     }
 
+    /** Method for showing window
+     *
+     */
     public void showWindow(){
         setTitle("Optical density determination");
         setIconImage(getToolkit().getImage("src/main/resources/iconMain.gif"));
