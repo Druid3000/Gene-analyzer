@@ -9,9 +9,9 @@ import javax.swing.*;
  */
 public class GraphWindow extends JFrame {
 
-    GraphWindow(MainService mc) {
+    GraphWindow(MainService ms) {
 
-        MainService mainService = mc;
+        MainService mainService = ms;
         CanvasGraph canvasGraph = new CanvasGraph(mainService);
         setTitle("Optical density graphs");
         add(canvasGraph);
