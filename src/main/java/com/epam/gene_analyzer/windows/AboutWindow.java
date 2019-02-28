@@ -13,7 +13,6 @@ class AboutWindow extends JFrame {
         setDefaultCloseOperation(HIDE_ON_CLOSE);
         setBounds(600, 160, 400, 350);
         setIconImage(getToolkit().getImage("src/main/resources/iconMain.gif"));
-        JFrame.setDefaultLookAndFeelDecorated(true);
         createGUI();
     }
 
