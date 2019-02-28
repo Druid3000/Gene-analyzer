@@ -125,7 +125,7 @@ public class Line {
     public double getMaxDensity(double intensity) {
         for (int a = 0; a < pixels.size(); a++) {
             if (pixels.get(a).getIntensity() <= 1) {
-                maxDensity = 1.9;
+                maxDensity = 2.0;
                 break;
             } else if (Math.log10(intensity / pixels.get(a).getIntensity()) > maxDensity)
                 maxDensity = Math.log10(intensity / pixels.get(a).getIntensity());

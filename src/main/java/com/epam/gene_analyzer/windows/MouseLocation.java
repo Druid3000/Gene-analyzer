@@ -1,6 +1,6 @@
 package com.epam.gene_analyzer.windows;
 
-import com.epam.gene_analyzer.controllers.MainController;
+import com.epam.gene_analyzer.services.MainService;
 import com.epam.gene_analyzer.model.Pixel;
 
 import javax.swing.*;
@@ -18,11 +18,11 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
     private int xPositionNow;
     private int yPositionNow;
     private CanvasLine canvasLine;
-    private MainController mainController;
+    private MainService mainService;
 
-    MouseLocation(CanvasLine cl, MainController ml) {
+    MouseLocation(CanvasLine cl, MainService ml) {
         canvasLine = cl;
-        mainController = ml;
+        mainService = ml;
         xPosition1 = 0;
         yPosition1 = 0;
         xPosition2 = 1;
@@ -104,26 +104,26 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
      * @param event press
      */
     public void mousePressed(MouseEvent event) {
-        if (mainController.getPicture() != null) {
+        if (mainService.getPicture() != null) {
             if (event.getButton() == MouseEvent.BUTTON1) {
                 if (canvasLine.isChooseBackgroundIntensity()) {
                     Pixel p = new Pixel();
                     p.setX(event.getX());
                     p.setY(event.getY());
-                    p.setColor(new Color(mainController.getPicture().getRGB(event.getX(), event.getY())));
-                    mainController.setBackgroundIntensity(p);
+                    p.setColor(new Color(mainService.getPicture().getRGB(event.getX(), event.getY())));
+                    mainService.setBackgroundIntensity(p);
                     canvasLine.setChooseBackgroundIntensity(false);
                 } else {
-                    if (canvasLine.getPosition()) {
-                        xPosition1 = event.getX();
-                        yPosition1 = event.getY();
-                    } else {
-                        xPosition2 = event.getX();
-                        yPosition2 = event.getY();
+                    if (canvasLine.getMode()) {
+                        if (canvasLine.getPosition()) {
+                            xPosition1 = event.getX();
+                            yPosition1 = event.getY();
+                        } else {
+                            xPosition2 = event.getX();
+                            yPosition2 = event.getY();
 
                         if (getXPositionNow() < canvasLine.getWidth() & getYPositionNow() < canvasLine.getHeight()) {
-                            if (canvasLine.getMode()) {
-                                if (mainController.getPicture() != null) {
+                                if (mainService.getPicture() != null) {
                                     int x1 = getXPosition1();
                                     int y1 = getYPosition1();
                                     Pixel p1 = new Pixel();
@@ -135,27 +135,25 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
                                     p2.setX(x2);
                                     p2.setY(y2);
                                     if (!(x1 == x2 & y1 == y2)) {
-
-                                        if (mainController.getLines().size() == 10)
+                                        if (mainService.getLines().size() == 10)
                                             JOptionPane.showMessageDialog(null, "Delete at least one line to add a new one!");
                                         else
-                                            mainController.addLine(p1, p2);
-                                        canvasLine.setLines(mainController.getLines());
+                                            mainService.addLine(p1, p2);
+                                        canvasLine.setLines(mainService.getLines());
                                     }
                                 }
                             }
-
                         }
+                        canvasLine.changePosition();
                     }
                     if (!canvasLine.getMode()) {
                         int x = getXPositionNow(), y = getYPositionNow();
                         Pixel p = new Pixel();
                         p.setX(x);
                         p.setY(y);
-                        p.setColor(new Color(mainController.getPicture().getRGB(x, y)));
-                        mainController.addArea(p);
+                        p.setColor(new Color(mainService.getPicture().getRGB(x, y)));
+                        mainService.addArea(p);
                     }
-                    canvasLine.changePosition();
                 }
             }
         }
@@ -166,7 +164,7 @@ public class MouseLocation implements MouseListener, MouseMotionListener {
      * @param event move
      */
     public void mouseMoved(MouseEvent event) {
-        if (mainController.getPicture() != null) {
+        if (mainService.getPicture() != null) {
             xPositionNow = event.getPoint().x;
             yPositionNow = event.getPoint().y;
         }

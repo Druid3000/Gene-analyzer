@@ -1,6 +1,6 @@
 package com.epam.gene_analyzer.windows;
 
-import com.epam.gene_analyzer.controllers.MainController;
+import com.epam.gene_analyzer.services.*;
 
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
@@ -16,10 +16,10 @@ public class SliderTestFrame extends JFrame {
     private double delta;
     private JPanel sliderPanel;
     private ChangeListener listener;
-    private MainController mainController;
-    SliderTestFrame(MainController mainController)
+    private MainService mainService;
+    SliderTestFrame(MainService mainService)
     {
-        this.mainController=mainController;
+        this.mainService = mainService;
         setTitle("Change Delta Value");
         setSize(350, 150);
         JFrame.setDefaultLookAndFeelDecorated(true);
@@ -29,9 +29,9 @@ public class SliderTestFrame extends JFrame {
 
         listener = new ChangeListener()
         {
-            /** Updating the edit field when changing the value of the controller
+            /** Updating the edit field when changing the value of the service
              * Adding a simple regulator
-             * Adding a controller with numeric labels
+             * Adding a service with numeric labels
              *
              * @param event e
              */
@@ -88,7 +88,7 @@ public class SliderTestFrame extends JFrame {
      * @param delta delta
      */
     private void setDelta(double delta) {
-        mainController.setDelta(delta);
+        mainService.setDelta(delta);
     }
 
 }
