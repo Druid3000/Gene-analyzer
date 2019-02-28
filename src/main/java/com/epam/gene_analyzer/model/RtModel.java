@@ -105,6 +105,7 @@ public class RtModel extends AbstractTableModel {
         numRows = 0;
     }
 
+
     /** Method for getting new data and transforming data for table values
      *
      * @param id of data
@@ -112,7 +113,8 @@ public class RtModel extends AbstractTableModel {
      * @param bi arg
      * @return row with new data
      */
-    private Object[] setData(int id, Double[] newData, double bi) {
+    protected Object[] setData(int id, Double[] newData, double bi) {
+
         byte r0 = (byte) id;
         double r1 = 0, r2 = 0, r4;
         int r3;
