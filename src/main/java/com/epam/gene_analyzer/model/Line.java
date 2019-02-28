@@ -5,9 +5,9 @@ import java.awt.image.BufferedImage;
 import java.util.ArrayList;
 import java.util.concurrent.atomic.AtomicInteger;
 
-/** Model class for creating Line.
+/**
+ * Model class for creating Line.
  * Get pixels from picture, get color of pixels, get intensity, get density, get array of pixels for drawing line.
- *
  */
 public class Line {
     private static final AtomicInteger id = new AtomicInteger(0);
@@ -16,14 +16,15 @@ public class Line {
     private Color color;
     private ArrayList<Pixel> pixels = new ArrayList<Pixel>();
 
-    /** Method for drawing lines.
+    /**
+     * Method for drawing lines.
      * Get coordinates, calculate segment length and number of pixels.
      * Get color of pixels.
      * Fill array of pixels on the segment for creating line.
      * Color assignment for lines in graphic.
      *
-     * @param p1 pixel
-     * @param p2 pixel
+     * @param p1    pixel
+     * @param p2    pixel
      * @param image picture
      */
     public Line(Pixel p1, Pixel p2, BufferedImage image) {
@@ -39,15 +40,10 @@ public class Line {
         for (int i = 0; i < w; i++) {
             for (int j = 0; j < h; j++) {
                 c = new Color(image.getRGB(i, j));
-                R = c.getRed();
-                G = c.getGreen();
-                B = c.getBlue();
                 Pixel p = new Pixel();
                 p.setX(i);
                 p.setY(j);
-                p.setR(R);
-                p.setG(G);
-                p.setB(B);
+                p.setColor(c);
                 allPixels[i][j] = p;
             }
         }
@@ -55,7 +51,10 @@ public class Line {
         if (Math.abs(k) >= 1) {
             double x, y = y1;
             for (int i = 0; i < length; i++) {
-                x = (y - b) / k;
+                if (Math.abs(k) < 100000)
+                    x = (y - b) / k;
+                else
+                    x = x1;
                 pixels.add(allPixels[(int) x][(int) y]);
                 if (y1 < y2) y++;
                 else y--;
@@ -98,7 +97,7 @@ public class Line {
                 color = Color.RED;
                 break;
             case 9:
-                color = Color.WHITE;
+                color = new Color(140, 200, 20);
                 break;
             case 0:
                 color = Color.YELLOW;
@@ -109,7 +108,8 @@ public class Line {
         }
     }
 
-    /** Method for getting line id
+    /**
+     * Method for getting line id
      *
      * @return id
      */
@@ -117,7 +117,8 @@ public class Line {
         return idThis;
     }
 
-    /** Method for getting max value of density
+    /**
+     * Method for getting max value of density
      *
      * @param intensity of pixel
      * @return max density
@@ -133,7 +134,8 @@ public class Line {
         return maxDensity;
     }
 
-    /** Method for scaling on the X axis
+    /**
+     * Method for scaling on the X axis
      *
      * @return X
      */
@@ -141,7 +143,8 @@ public class Line {
         return pixels.get(pixels.size() - 1).getX() - pixels.get(0).getX();
     }
 
-    /** Method for getting segment length and number of pixels
+    /**
+     * Method for getting segment length and number of pixels
      *
      * @return number of pixels
      */
@@ -149,7 +152,8 @@ public class Line {
         return pixels.size();
     }
 
-    /** Method for getting array of pixels
+    /**
+     * Method for getting array of pixels
      *
      * @return array
      */
@@ -157,7 +161,8 @@ public class Line {
         return pixels;
     }
 
-    /** Method for getting pixel intensity
+    /**
+     * Method for getting pixel intensity
      *
      * @param id of pixel
      * @return intensity
@@ -166,7 +171,8 @@ public class Line {
         return pixels.get(id).getIntensity();
     }
 
-    /**  Method for getting pixel color
+    /**
+     * Method for getting pixel color
      *
      * @return color
      */

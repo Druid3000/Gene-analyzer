@@ -290,7 +290,7 @@ public class MainService {
             double pixelIntensity;
             int x = xBorder, y, xPast, yPast;
             pixelIntensity = getLines().get(t).getPixelIntensity(0);
-            if (pixelIntensity > 2.55)
+            if (pixelIntensity > 3)
                 y = height - yBorder - (int) ((graphHeight * Math.log10(getBackgroundIntensity() / pixelIntensity)) / (getMaxDensity()));
             else y = yBorder;
             if (y > height - yBorder) y = height - yBorder;
@@ -307,7 +307,7 @@ public class MainService {
                             p = new Pixel();
                             p.setColor(c);
                             p.setX(i - 1 + xBorder);
-                            if (pixelIntensity > 2.55)
+                            if (pixelIntensity > 3)
                                 p.setY(yPast + j);
                             else p.setY(yBorder);
                             graphPixels.add(p);
@@ -315,9 +315,7 @@ public class MainService {
                             p = new Pixel();
                             p.setX(i - 1 + xBorder);
                             p.setColor(c);
-                            if (pixelIntensity > 2.55)
-                                p.setY(yPast - j);
-                            else p.setY(yBorder);
+                            p.setY(yPast - j);
                             graphPixels.add(p);
                         }
                     }
@@ -325,7 +323,7 @@ public class MainService {
                 yPast = y;
                 pixelIntensity = getLines().get(t).getPixelIntensity(i);
                 x = i + xBorder;
-                if (pixelIntensity > 1)
+                if (pixelIntensity > 3)
                     y = height - yBorder - (int) ((graphHeight * Math.log10(getBackgroundIntensity() / pixelIntensity)) / (getMaxDensity()));
                 else y = yBorder;
 
